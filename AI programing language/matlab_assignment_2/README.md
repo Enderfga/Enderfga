@@ -31,23 +31,23 @@ for n=1:length(B)                    %通过for循环与多重if语句进行判�
 
   if B(n)=='b'
 
-​    if B(n+1)=='o'
+    if B(n+1)=='o'
 
-​      if B(n+2)=='o'
+      if B(n+2)=='o'
 
-​        if B(n+3)=='k'
+        if B(n+3)=='k'
 
-​          if B(n+4)=='s'
+          if B(n+4)=='s'
 
-​            k=k+1;
+            k=k+1;
 
-​          end
+          end
 
-​        end
+        end
 
-​      end
+      end
 
-​    end
+    end
 
   end
 
@@ -60,18 +60,19 @@ disp('How many times did the word "books" appear')
 disp(k);
 
 %1.3
+（也可以使用split函数，更快方便实现）
 
 for n=1:length(B)                    %依旧利用for循环遍历B，找到指定位置        
 
   if B(n)=='.'                     %第二句话的首字母应该在'.'后第二位（后第一位是空格）
 
-​    if B(n+2) >= 'a'&&B(n+2) <= 'z'         %检查目标大写与否
+    if B(n+2) >= 'a'&&B(n+2) <= 'z'         %检查目标大写与否
 
-​      B(n+2)=upper(B(n+2));break;         
+      B(n+2)=upper(B(n+2));break;         
 
 %使用upper函数将字符串转换为大写;简化第一节课char(abs()-32)的做法
 
-​    end   
+    end   
 
 %只检查第二句话首字母，故直接使用break跳出循环；若删去可以转换每一句话首字母，但要注意n+2>length
 
@@ -239,27 +240,27 @@ for n=1:length(A)            %循环length（A）次即可，元胞数组前半�
 
   if cell2mat(A(n))==1         %通过if条件的嵌套，将成绩分为四组1班/2班的男生/女生
 
-​    if char(A(n+length(A)))=='男'
+    if char(A(n+length(A)))=='男'
 
-​      M1(i)=cell2mat(A(length(A)*2+n));i=i+1;
+      M1(i)=cell2mat(A(length(A)*2+n));i=i+1;
 
-​    else
+    else
 
-​      F1(k)=cell2mat(A(length(A)*2+n));k=k+1;
+      F1(k)=cell2mat(A(length(A)*2+n));k=k+1;
 
-​    end
+    end
 
   else
 
-​    if char(A(n+length(A)))=='男'
+    if char(A(n+length(A)))=='男'
 
-​      M2(a)=cell2mat(A(length(A)*2+n));a=a+1;
+      M2(a)=cell2mat(A(length(A)*2+n));a=a+1;
 
-​    else
+    else
 
-​      F2(b)=cell2mat(A(length(A)*2+n));b=b+1;
+      F2(b)=cell2mat(A(length(A)*2+n));b=b+1;
 
-​    end
+    end
 
   end
 
@@ -384,7 +385,7 @@ pie(ax2,[length(F1) length(M1) length(F2) length(M2)],label) %男女人数饼图
 
 二维线图/散点图/条形图/阶梯图都可以通过y轴观察出学生的成绩水平，二维线图和散点图的对比可以看出各个分数段学生的分布；条形图和阶梯图较为类似，可看出成绩的极差。而与前几种差异较大的饼图虽然不能直接看出成绩高低，但可以展现出各个分数和人数占总体的比例。
 
-在第二小题中，我设法将男女同学的成绩分别读出，希望以此作出各种直观的2D图像；但由于四个向量的长度不同，我想画出的叠加条形图，气泡图等都没有成功，已作图像也不甚理想。尝试补0却使图像突变，暂未得出较好的解决方法。如果能画到一张图上，并且补充图例说明，信息的反映应该更好。
+在第二小题中，我设法将男女同学的成绩分别读出，希望以此作出各种直观的2D图像；但由于四个向量的长度不同，我想画出的叠加条形图，气泡图等都没有成功，已作图像也不甚理想。尝试补0却使图像突变，暂未得出较好的解决方法。如果能画到一张图上，并且补充图例说明，信息的反映应该更好。（横纵坐标的label和内容应该补全）
 
 ### 5. (简答题)Problem 5 (25 分)
 
