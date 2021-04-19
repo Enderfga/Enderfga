@@ -47,14 +47,6 @@ with open('password.txt','w') as ps:
     ps.write("".join(password))   #使用join函数将所获得列表转换为字符串再写入
 ```
 
-![image-20210416111031550](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20210416111031550.png)
-
-![image-20210416110930593](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20210416110930593.png)
-
-![image-20210416111224132](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20210416111224132.png)
-
-![image-20210416111249992](C:\Users\User\AppData\Roaming\Typora\typora-user-images\image-20210416111249992.png)
-
 1.1考察基础的txt文件写入操作，如果没有使用with，应注意open()之后需close();
 
 1.2中时间追加到末尾可以使用‘a’，但无法实现拼音写在开头，原内容放到第二行；故我选择了先读取原有内容，然后将三行数据按顺序写入；
@@ -257,7 +249,7 @@ plt.show()
 ```
 
 
-![svg](C:\Users\User\Downloads\output_1_0.svg)
+![svg](output_1_0.svg)
 
 ```python
 #Problem 3.2
@@ -278,7 +270,7 @@ plt.show()
 ```
 
 
-![svg](C:\Users\User\Downloads\output_2_0.svg)
+![svg](output_2_0.svg)
 
 ```python
 #Problem 3.3
