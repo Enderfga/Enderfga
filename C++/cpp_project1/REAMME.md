@@ -210,9 +210,7 @@ std::cout << pvec1 + pvec2 << std::endl;
 
  
 
-模仿课堂上讲的Matrix类，建立稀疏矩阵类（稀疏矩阵指矩阵中大部分元素为0）SparseMatrix。私有成员包括矩阵行、列数, 以及非零元素数组struct NonzeroElement {int row; int col; double value} *data；比如： 
-
-![img](file:///C:\Users\User\AppData\Local\Temp\ksohtml12604\wps1.jpg) 
+模仿课堂上讲的Matrix类，建立稀疏矩阵类（稀疏矩阵指矩阵中大部分元素为0）SparseMatrix。私有成员包括矩阵行、列数, 以及非零元素数组struct NonzeroElement {int row; int col; double value} *data；
 
 1. 默认构造函数，构造函数 （参数为Matrix对象），析构函数，（深度）复制构造函数，（深度）赋值运算符，
 
@@ -226,8 +224,4 @@ std::cout << pvec1 + pvec2 << std::endl;
 
  
 
-编写主函数测试所有功能。采用上面图示例子。
-
-以加法为例：
-
-![img](file:///C:\Users\User\AppData\Local\Temp\ksohtml12604\wps2.jpg) 
+编写主函数测试所有功能。
