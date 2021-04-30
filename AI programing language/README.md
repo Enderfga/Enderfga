@@ -1,6 +1,9 @@
 
 ![人工智能编程语言](人工智能编程语言.svg)
 
+![C语言，matlab，python的异同](C语言，matlab，python的异同.svg)
+
+
 # 人工智能编程语言
 
 ## Python
