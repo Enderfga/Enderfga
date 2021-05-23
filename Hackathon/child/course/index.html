@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="js/color.js"></script>
+    <script src="js/see_btn.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel="stylesheet" href="css/select.css">
+    <title>课程表</title>
+    <style>
+        #backtop {
+            position: fixed;
+            right: 10%;
+            bottom: 50px;
+        }
+    </style>
+    <style>
+        #a1 {
+            position: fixed;
+            left: 50px;
+            top: 5px;
+        }
+    </style>
+    <style>
+        #a2 {
+            position: fixed;
+            left: 100px;
+            top: 5px;
+        }
+    </style>
+    <style>
+        #a3 {
+            position: fixed;
+            left: 150px;
+            top: 5px;
+        }
+    </style>
+    <style>
+        #a4 {
+            position: fixed;
+            left: 200px;
+            top: 5px;
+        }
+    </style>
+    <style>
+        #a5 {
+            position: fixed;
+            left: 250px;
+            top: 5px;
+        }
+    </style>
+</head>
+
+<body onload="see_all();">
+    <div class="container">
+        <select name="" id="cusSelectbox">
+            <option>西区1栋</option>
+            <option>西区2栋</option>
+            <option>西区3栋</option>
+            <option>西区4栋</option>
+            <option>西区5栋</option>
+        </select>
+    </div>
+    <div style="text-align:center">西区1栋</div>
+    <ul>
+        <a href="../westtb.html">
+        <li class="prev" ><span></span></li></a>
+        <a href="index_s.html">
+        <li class="next" ><span></span></li></a>
+    </ul>        
+    <div id="backtop"><a href="#top">回到顶部</a></div>
+    <div id="a1">
+        <a href="#1">101</a>
+        </div>
+        <div id="a2">
+        <a href="#2">102</a>
+        </div>
+        <div id="a3">
+        <a href="#3">103</a>
+        </div>
+        <div id="a4">
+        <a href="#4">104</a>
+        </div>
+        <div id="a5">
+        <a href="#5">105</a>
+    </div>
+    <div class="body">
+        <div class="week">
+            <div class="day" id="1">
+                <div class="dayleft">101</div>
+                <div class="dayright">
+                    <div id="info11" class="info">08:00-09:50 </div>
+                    <div id="info12" class="info">10:00-11:40 </div>
+                    <div id="info13" class="info">14:30-16:05 </div>
+                    <div id="info14" class="info">16:15-17:50 </div>
+                    <div id="info15" class="info">18:00~ </div>
+                </div>
+            </div>
+            <div class="day" id="2">
+                <div class="dayleft">102</div>
+                <div class="dayright">
+                    <div id="info21" class="info">08:00-09:50 </div>
+                    <div id="info22" class="info">10:00-11:40 </div>
+                    <div id="info23" class="info">14:30-16:05 </div>
+                    <div id="info24" class="info">16:15-17:50 </div>
+                    <div id="info25" class="info">18:00~ </div>
+                </div>
+            </div>
+            <div class="day" id="3">
+                <div class="dayleft">103</div>
+                <div class="dayright">
+                    <div id="info31" class="info">08:00-09:50 </div>
+                    <div id="info32" class="info">10:00-11:40 </div>
+                    <div id="info33" class="info">14:30-16:05 </div>
+                    <div id="info34" class="info">16:15-17:50 </div>
+                    <div id="info35" class="info">18:00~ </div>
+                </div>
+            </div>
+            <div class="day" id="4">
+                <div class="dayleft">104</div>
+                <div class="dayright">
+                    <div id="info41" class="info">08:00-09:50 </div>
+                    <div id="info42" class="info">10:00-11:40 </div>
+                    <div id="info43" class="info">14:30-16:05 </div>
+                    <div id="info44" class="info">16:15-17:50 </div>
+                    <div id="info45" class="info">18:00~ </div>
+                </div>
+            </div>
+            <div class="day" id="5">
+                <div class="dayleft">105</div>
+                <div class="dayright">
+                    <div id="info51" class="info">08:00-09:50 </div>
+                    <div id="info52" class="info">10:00-11:40 </div>
+                    <div id="info53" class="info">14:30-16:05 </div>
+                    <div id="info54" class="info">16:15-17:50 </div>
+                    <div id="info55" class="info">18:00~ </div>
+                </div>
+            </div>
+            <div class="day" id="6">
+                <div class="dayleft">教师休息室</div>
+                <div class="dayright">
+                    <div class="infos"> </div>
+                </div>
+            </div>
+            <div class="day" id="0">
+                <div class="dayleft">物业管理中心</div>
+                <div class="dayright">
+                    <div class="infos"> </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+<!-- partial -->
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script  src="js/script.js"></script>
+    <script src="js/infos.js"></script>
+    <script>
+        var d = new Date();
+        var day = d.getDay();
+        console.log("Today's " + day + 2);
+        document.getElementById(day + 2).style.display = "flex";
+        setstyle();
+    </script>
+</body>
+
+</html>

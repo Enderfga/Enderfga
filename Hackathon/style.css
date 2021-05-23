@@ -1,0 +1,155 @@
+body, html {
+	margin: 0;
+	padding: 0;
+	
+	overflow: hidden;
+}
+
+/*div#picture-container {
+	position: relative;
+	left: var(--bg-left);
+	top: var(--bg-top);
+
+	width: min(100vw, calc(100vh * var(--natural-ratio)));
+	height: min(100vh, calc(100vw / var(--natural-ratio)));
+}*/
+
+div#picture-container {
+	position: absolute;
+
+	width: 100%;
+	height: 100%;
+}
+
+/*img#bg {
+	position: absolute;
+	-webkit-user-drag: none;
+
+	left: var(--bg-left);
+	top: var(--bg-top);
+}*/
+
+img#bg {
+	position: absolute;
+	-webkit-user-drag: none;
+	width:100%;
+	height:100%;
+
+}
+
+.point {
+	position: absolute;
+	content: '';
+	width: 20px;
+	height: 20px;
+	background-color: rgb(241, 15, 15);
+	border-radius: 50%;
+	
+}
+
+.point::after {
+	width: 100px;
+	height: 20px;
+	display: none;
+	color: hsl(0, 11%, 96%);
+	
+	position: relative;
+	left: 20px;
+
+	user-select: none;
+}
+
+.point#west-teaching-facility {
+	left: 31%;
+	top: 26%;
+}
+
+.point#west-teaching-facility::after {
+	content: '西区教学楼';
+}
+
+.point#library {
+	left: 10%;
+	top: 36%;
+}
+
+.point#library::after {
+	content: '图书馆';
+}
+
+.point#Ground {
+	left: 76%;
+	top: 28%;
+}
+
+.point#Ground::after {
+	content: '田径场';
+}
+
+.point#west-dormitory {
+	left: 84%;
+	top: 15%;
+}
+
+.point#west-dormitory::after {
+	content: '西园宿舍';
+}
+
+.point#west-canteen {
+	left: 65.4%;
+	top: 9%;
+}
+
+.point#west-canteen::after {
+	content: '西园食堂';
+}
+
+.point#hospital {
+	left: 47.5%;
+	top: 6%;
+}
+
+.point#hospital::after {
+	content: '医科组团';
+}
+
+.point#pig {
+	left: 48.7%;
+	top: 43%;
+}
+
+.point#pig::after {
+	content: '猪婆山';
+}
+
+.point#gym {
+	left: 53.7%;
+	top: 84%;
+}
+
+.point#gym::after {
+	content: '体育馆';
+}
+
+.point#hall {
+	left: 22%;
+	top: 77%;
+}
+
+.point#hall::after {
+	content: '大礼堂';
+}
+
+.point#room {
+	left: 13%;
+	top: 12%;
+}
+
+.point#room::after {
+	content: '理学园';
+}
+
+.point:hover::after {
+	display: block !important;
+	animation: label-enter 1s linear forward;
+}

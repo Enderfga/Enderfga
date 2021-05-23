@@ -1,0 +1,131 @@
+body{
+  margin: 0;
+  padding: 0;
+}
+section{
+	height: 100vh;
+	background: #000;
+}
+section:before{
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(to right, #f00, #f00, #0f0, #0ff, #ff0, #0ff);
+	mix-blend-mode: color;
+	pointer-events: none;
+}
+video{
+	height: 100%;
+    width: 100%;
+    display: block;
+}
+h1{
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 100%;
+	text-align: center;
+	color: #fff;
+	font-size: 5em;
+	font-family: sans-serif;
+	letter-spacing: 0.2em;
+}
+h1 span{
+	opacity: 0;
+	display: inline-block;
+	animation: animate 1s linear forwards;
+}
+@keyframes animate{
+	0%{
+		opacity: 0;
+		transform: rotateY(90deg);
+		filter: blur(10px);
+	}
+	100%{
+		opacity: 1;
+		transform: rotateY(0deg);
+		filter: blur(0);
+	}
+}
+h1 span:nth-child(1){
+	animation-delay: 1s;
+}
+h1 span:nth-child(2){
+	animation-delay: 1.5s;
+}
+h1 span:nth-child(3){
+	animation-delay: 2s;
+}
+h1 span:nth-child(4){
+	animation-delay: 2.5s;
+}
+h1 span:nth-child(5){
+	animation-delay: 3s;
+}
+h1 span:nth-child(6){
+	animation-delay: 3.5s;
+}
+h1 span:nth-child(7){
+	animation-delay: 4s;
+}
+h1 span:nth-child(8){
+	animation-delay: 4.5s;
+}
+
+/*a{
+	position: absolute;
+	top: 70%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 200px;
+	height: 60px;
+	text-align: center;
+	line-height: 60px;
+	color: #fff;
+	font-size: 24px;
+	text-transform: uppercase;
+	text-decoration: none;
+	font-family: sans-serif;
+	box-sizing: border-box;
+	background: linear-gradient(90deg, #03a9f4, #f441a5, #ffeb3b, #03a9f4);
+	background-size: 400%;
+	border-radius: 30px;
+	z-index: 1;
+}
+a:hover{
+	animation: animate 8s linear infinite;
+}
+
+@keyframes animate{
+	0%{
+		background-position: 0%;
+	}
+	100%{
+		background-position: 400%;
+	}
+}
+
+a:before{
+	content: '';
+	position: absolute;
+	top: -5px;
+	left: -5px;
+	right: -5px;
+	bottom: -5px;
+	z-index: -1;
+	background: linear-gradient(90deg, #03a9f4, #f441a5, #ffeb3b, #03a9f4);
+	background-size: 400%;
+	border-radius: 40px;
+	opacity: 0;
+	transition: 0.5s;
+}
+a:hover:before{
+	filter: blur(20px);
+	opacity: 1;
+	animation: animate 8s linear infinite;
+}*/

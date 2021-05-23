@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="js/color.js"></script>
+    <script src="js/see_btn.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <title>宿舍CBD</title>
+    <style>
+        #backtop {
+            position: fixed;
+            right: 10%;
+            bottom: 50px;
+        }
+    </style>
+    <style>
+        #a1 {
+            position: fixed;
+            left: 25px;
+            top: 5px;
+        }
+    </style>
+    <style>
+        #a2 {
+            position: fixed;
+            left: 100px;
+            top: 5px;
+        }
+    </style>
+    <style>
+        #a3 {
+            position: fixed;
+            left: 175px;
+            top: 5px;
+        }
+    </style>
+    <style>
+        #a4 {
+            position: fixed;
+            left: 250px;
+            top: 5px;
+        }
+    </style>
+    <style>
+        #a5 {
+            position: fixed;
+            left: 325px;
+            top: 5px;
+        }
+    </style>
+</head>
+
+<body onload="see_all();">
+    <div style="text-align:center">宿舍CBD</div>
+    <ul>
+        <a href="../dormitory.html">
+        <li class="prev" ><span></span></li></a>
+        <a href="../westtb.html">
+        <li class="next" ><span></span></li></a>
+    </ul>        
+    <div id="backtop"><a href="#top">回到顶部</a></div>
+    <div id="a1">
+        <a href="#1">西一</a>
+        </div>
+        <div id="a2">
+        <a href="#2">西二</a>
+        </div>
+        <div id="a3">
+        <a href="#3">西三</a>
+        </div>
+        <div id="a4">
+        <a href="#4">西四</a>
+        </div>
+        <div id="a5">
+        <a href="#5">西五</a>
+    </div>
+    <div class="body">
+        <div class="week">
+            <div class="day" id="1">
+                <div class="dayleft">西一</div>
+                <div class="dayright">
+                    <div id="info11" class="info">714 </div>
+                    <div id="info12" class="info">1011 </div>
+                    <div id="info14" class="info">2019 </div>
+                </div>
+            </div>
+            <div class="day" id="2">
+                <div class="dayleft">西二</div>
+                <div class="dayright">
+                    <div id="info21" class="info">08:00-09:50 </div>
+                </div>
+            </div>
+            <div class="day" id="3">
+                <div class="dayleft">西三</div>
+                <div class="dayright">
+                    <div id="info31" class="info">08:00-09:50 </div>
+                    <div id="info32" class="info">10:00-11:40 </div>
+                    <div id="info34" class="info">16:15-17:50 </div>
+                </div>
+            </div>
+            <div class="day" id="4">
+                <div class="dayleft">西四</div>
+                <div class="dayright">
+                    <div id="info42" class="info">10:00-11:40 </div>
+                </div>
+            </div>
+            <div class="day" id="5">
+                <div class="dayleft">西五</div>
+                <div class="dayright">
+                    <div id="info52" class="info">10:00-11:40 </div>
+                </div>
+            </div>
+            <div class="day" id="6">
+                <div class="dayleft">研究生宿舍</div>
+                <div class="dayright">
+                    <div class="infos"> </div>
+                </div>
+            </div>
+            <div class="day" id="0">
+                <div class="dayleft">教师宿舍</div>
+                <div class="dayright">
+                    <div class="infos"> </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <script src="js/infos.js"></script>
+    <script>
+        var d = new Date();
+        var day = d.getDay();
+        console.log("Today's " + day + 2);
+        document.getElementById(day + 2).style.display = "flex";
+        setstyle();
+    </script>
+</body>
+
+</html>
