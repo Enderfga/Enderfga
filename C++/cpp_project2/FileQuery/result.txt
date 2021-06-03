@@ -1,1 +1,150 @@
-
+以下是按行打印出来的原文
+It was the best of times,
+it was the worst of times,
+it was the age of wisdom,
+it was the age of foolishness,
+it was the epoch of belief,
+it was the epoch of incredulity,
+it was the season of Light,
+it was the season of Darkness,
+it was the spring of hope,
+it was the winter of despair,
+we had everything before us,
+we had nothing before us,
+we were all going direct to heaven,
+we were all going direct the other way -
+in short, the period was so far like the present period,
+that some of its noisiest authorities insisted on its being received,
+for good or for evil,
+in the superlative degree of comparison only.
+-- Charles Dickens, A Tale of Two Cities.
+以下是升序排列后按行打印出来的内容
+-- Charles Dickens, A Tale of Two Cities.
+It was the best of times,
+for good or for evil,
+in short, the period was so far like the present period,
+in the superlative degree of comparison only.
+it was the age of foolishness,
+it was the age of wisdom,
+it was the epoch of belief,
+it was the epoch of incredulity,
+it was the season of Darkness,
+it was the season of Light,
+it was the spring of hope,
+it was the winter of despair,
+it was the worst of times,
+that some of its noisiest authorities insisted on its being received,
+we had everything before us,
+we had nothing before us,
+we were all going direct the other way -
+we were all going direct to heaven,
+以下是所有词汇及其出现次数
+-:1
+--:1
+A:1
+Charles:1
+Cities:1
+Darkness:1
+Dickens:1
+It:1
+Light:1
+Tale:1
+Two:1
+age:2
+all:2
+authorities:1
+before:2
+being:1
+belief:1
+best:1
+comparison:1
+degree:1
+despair:1
+direct:2
+epoch:2
+everything:1
+evil:1
+far:1
+foolishness:1
+for:2
+going:2
+good:1
+had:2
+heaven:1
+hope:1
+in:2
+incredulity:1
+insisted:1
+it:9
+its:2
+like:1
+noisiest:1
+nothing:1
+of:13
+on:1
+only:1
+or:1
+other:1
+period:2
+present:1
+received:1
+season:2
+short:1
+so:1
+some:1
+spring:1
+superlative:1
+that:1
+the:14
+times:2
+to:1
+us:2
+was:11
+way:1
+we:4
+were:2
+winter:1
+wisdom:1
+worst:1
+以下是出现次数最多的前n个词及上下文
+the:14
+1  前一个单词：was ; 后一个单词：best
+2  前一个单词：was ; 后一个单词：worst
+3  前一个单词：was ; 后一个单词：age
+4  前一个单词：was ; 后一个单词：age
+5  前一个单词：was ; 后一个单词：epoch
+6  前一个单词：was ; 后一个单词：epoch
+7  前一个单词：was ; 后一个单词：season
+8  前一个单词：was ; 后一个单词：season
+9  前一个单词：was ; 后一个单词：spring
+10  前一个单词：was ; 后一个单词：winter
+11  前一个单词：direct ; 后一个单词：other
+12  前一个单词：short ; 后一个单词：period
+13  前一个单词：like ; 后一个单词：present
+14  前一个单词：in ; 后一个单词：superlative
+of:13
+1  前一个单词：best ; 后一个单词：times
+2  前一个单词：worst ; 后一个单词：times
+3  前一个单词：age ; 后一个单词：wisdom
+4  前一个单词：age ; 后一个单词：foolishness
+5  前一个单词：epoch ; 后一个单词：belief
+6  前一个单词：epoch ; 后一个单词：incredulity
+7  前一个单词：season ; 后一个单词：Light
+8  前一个单词：season ; 后一个单词：Darkness
+9  前一个单词：spring ; 后一个单词：hope
+10  前一个单词：winter ; 后一个单词：despair
+11  前一个单词：some ; 后一个单词：its
+12  前一个单词：degree ; 后一个单词：comparison
+13  前一个单词：Tale ; 后一个单词：Two
+was:11
+1  前一个单词：It ; 后一个单词：the
+2  前一个单词：it ; 后一个单词：the
+3  前一个单词：it ; 后一个单词：the
+4  前一个单词：it ; 后一个单词：the
+5  前一个单词：it ; 后一个单词：the
+6  前一个单词：it ; 后一个单词：the
+7  前一个单词：it ; 后一个单词：the
+8  前一个单词：it ; 后一个单词：the
+9  前一个单词：it ; 后一个单词：the
+10  前一个单词：it ; 后一个单词：the
+11  前一个单词：period ; 后一个单词：so
