@@ -9,13 +9,13 @@
 #include <fstream>
 #include <sstream>
 using namespace std;
-//Í·ÎÄ¼şÖĞ½øĞĞÏà¹ØÉùÃ÷£¬¾ßÌåÊµÏÖÔÚcppÔ´ÎÄ¼şÖĞ
+//å¤´æ–‡ä»¶ä¸­è¿›è¡Œç›¸å…³å£°æ˜ï¼Œå…·ä½“å®ç°åœ¨cppæºæ–‡ä»¶ä¸­
 typedef pair<string, int> PAIR;
 bool cmp_by_value(const PAIR& lhs, const PAIR& rhs);
-//ÒÔÉÏÁ½ĞĞÊÇÎªmap°´ÕÕvalueÅÅĞò×ö×¼±¸
+//ä»¥ä¸Šä¸¤è¡Œæ˜¯ä¸ºmapæŒ‰ç…§valueæ’åºåšå‡†å¤‡
 class FileQuery
 {
-    typedef map<string, int>::iterator mit;//µü´úÆ÷ÖØÃüÃû
+    typedef map<string, int>::iterator mit;//è¿­ä»£å™¨é‡å‘½å
 public:
     FileQuery(ifstream& file);
     void PrintSentences();
@@ -23,10 +23,10 @@ public:
     void PrintWordCount();
     void PrintTopWordContext(int n);
 private:
-    map<string, int> ma;//´æ´¢´Ê»ã¼°Æä³öÏÖ´ÎÊı
-    mit it;//µü´úÆ÷
-    vector<string> sentences;//°´ĞĞ·Ö¸îµÄ¾ä×Ó
-    vector<string> words;//°´Ë³Ğò´æÈëµÄ´Ê»ã
+    map<string, int> ma;//å­˜å‚¨è¯æ±‡åŠå…¶å‡ºç°æ¬¡æ•°
+    mit it;//è¿­ä»£å™¨
+    vector<string> sentences;//æŒ‰è¡Œåˆ†å‰²çš„å¥å­
+    vector<string> words;//æŒ‰é¡ºåºå­˜å…¥çš„è¯æ±‡
 };
 
 #endif

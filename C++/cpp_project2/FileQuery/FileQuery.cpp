@@ -12,12 +12,12 @@ bool cmp_by_value(const PAIR& lhs, const PAIR& rhs)
 {
     return lhs.second > rhs.second;
 }
-//mapÄ¬ÈÏÓÃkeyÅÅĞò£¬¹ÊÍ¨¹ı¸Ãº¯Êı½øĞĞvalueÅÅĞò£¨¡°>¡±ÎªÉıĞò£¬·´Ö®½µĞò£©
+//mapé»˜è®¤ç”¨keyæ’åºï¼Œæ•…é€šè¿‡è¯¥å‡½æ•°è¿›è¡Œvalueæ’åºï¼ˆâ€œ>â€ä¸ºå‡åºï¼Œåä¹‹é™åºï¼‰
 
 FileQuery::FileQuery(ifstream& file)
 {
-    string str;//´æ¡°ĞĞ¡±×Ö·û´®
-    string st;//´æ¡°´Ê¡±×Ö·û´®
+    string str;//å­˜â€œè¡Œâ€å­—ç¬¦ä¸²
+    string st;//å­˜â€œè¯â€å­—ç¬¦ä¸²
     while (getline(file, str))
     {
         sentences.push_back(str);
@@ -29,11 +29,11 @@ FileQuery::FileQuery(ifstream& file)
             idx1 = st.find(',');
             idx2 = st.find('.');
             if (idx1 != string::npos || idx2 != string::npos)
-                st = st.substr(0, st.length() - 1);//Èç¹û¶ÁÈ¡µ½¾ä»°»òÕß¶ººÅÔò½«ÆäÏû³ı
+                st = st.substr(0, st.length() - 1);//å¦‚æœè¯»å–åˆ°å¥è¯æˆ–è€…é€—å·åˆ™å°†å…¶æ¶ˆé™¤
             words.push_back(st);
             it = ma.find(st);
             if (it != ma.end())
-                ++(*it).second;//¼ÇÂ¼´ÊÆµ
+                ++(*it).second;//è®°å½•è¯é¢‘
             else
                 ma[st] = 1;
         }
@@ -47,38 +47,38 @@ void FileQuery::PrintSentences()
 void FileQuery::PrintSentencesAscend()
 {
     sort(sentences.begin(), sentences.end(), less<string>());
-    //less<string>()·â×°ÓÚfunctionalÖĞ£¬ÓÃÓÚstringµÄÉıĞòÅÅÁĞ
+    //less<string>()å°è£…äºfunctionalä¸­ï¼Œç”¨äºstringçš„å‡åºæ’åˆ—
     for (unsigned i = 0; i < sentences.size(); i++)
         cout << sentences.at(i) << endl;
 }
 void FileQuery::PrintWordCount()
 {
-    //ÀûÓÃµü´úÆ÷½«mapÖĞµÄkey£¨´Ê»ã£©ºÍvalue£¨ÆµÂÊ£©´òÓ¡³öÀ´
+    //åˆ©ç”¨è¿­ä»£å™¨å°†mapä¸­çš„keyï¼ˆè¯æ±‡ï¼‰å’Œvalueï¼ˆé¢‘ç‡ï¼‰æ‰“å°å‡ºæ¥
     for (it = ma.begin(); it != ma.end(); ++it)
         cout << (*it).first << ":" << (*it).second << endl;
 }
 void FileQuery::PrintTopWordContext(int n)
 {
-    vector<PAIR> ma(ma.begin(), ma.end());//½«mapÏÈ×ª»»Îªvector
-    sort(ma.begin(), ma.end(), cmp_by_value);//ÀûÓÃÊÂÏÈĞ´ºÃµÄº¯ÊıÅÅĞò
-    for (int i = 0; i < n; ++i)  //Êä³öÇ°n¸ö´ÊÆµ×î¸ß´Ê»ã
+    vector<PAIR> va(ma.begin(), ma.end());//å°†mapå…ˆè½¬æ¢ä¸ºvector
+    sort(va.begin(), va.end(), cmp_by_value);//åˆ©ç”¨äº‹å…ˆå†™å¥½çš„å‡½æ•°æ’åº
+    for (int i = 0; i < n; ++i)  //è¾“å‡ºå‰nä¸ªè¯é¢‘æœ€é«˜è¯æ±‡
     {
-        cout << ma[i].first << ":" << ma[i].second << endl;
-        int flag = 1;//Ñ­»·ÆğÊ¼±êÖ¾
-        int j = 1;//´Ê»ã³öÏÖÎ»ÖÃµÄĞòºÅ
+        cout << va[i].first << ":" << va[i].second << endl;
+        int flag = 1;//å¾ªç¯èµ·å§‹æ ‡å¿—
+        int j = 1;//è¯æ±‡å‡ºç°ä½ç½®çš„åºå·
         vector<string>::iterator begin = words.begin();
         while (flag)
         {
-            auto index = find(begin, words.end(), ma[i].first);
+            auto index = find(begin, words.end(), va[i].first);
             if (index != words.end())
             {
-                cout << j << "  Ç°Ò»¸öµ¥´Ê£º" << *(index - 1) << " ; "  << "ºóÒ»¸öµ¥´Ê£º" << *(index + 1) << endl;
-                begin = index + 1;//´ÓÏÂÒ»¸öÎ»ÖÃ¿ªÊ¼¼ÌĞøÑ°ÕÒËù²é´Ê»ã
+                cout << j << "  å‰ä¸€ä¸ªå•è¯ï¼š" << *(index - 1) << " ; "  << "åä¸€ä¸ªå•è¯ï¼š" << *(index + 1) << endl;
+                begin = index + 1;//ä»ä¸‹ä¸€ä¸ªä½ç½®å¼€å§‹ç»§ç»­å¯»æ‰¾æ‰€æŸ¥è¯æ±‡
                 j++;
             }
             else
             {
-                flag = 0;//flagÎª0£¬Ñ­»·½áÊø
+                flag = 0;//flagä¸º0ï¼Œå¾ªç¯ç»“æŸ
             }
         }
     }

@@ -7,12 +7,12 @@ int main()
     string filename = "./TwoCities.txt";
     ifstream inputfile(filename);
     FileQuery text(inputfile);
-    cout << "ÒÔÏÂÊÇ°´ÐÐ´òÓ¡³öÀ´µÄÔ­ÎÄ" << endl;
+    cout << "ä»¥ä¸‹æ˜¯æŒ‰è¡Œæ‰“å°å‡ºæ¥çš„åŽŸæ–‡" << endl;
     text.PrintSentences();
-    cout << "ÒÔÏÂÊÇÉýÐòÅÅÁÐºó°´ÐÐ´òÓ¡³öÀ´µÄÄÚÈÝ" << endl;
+    cout << "ä»¥ä¸‹æ˜¯å‡åºæŽ’åˆ—åŽæŒ‰è¡Œæ‰“å°å‡ºæ¥çš„å†…å®¹" << endl;
     text.PrintSentencesAscend();
-    cout << "ÒÔÏÂÊÇËùÓÐ´Ê»ã¼°Æä³öÏÖ´ÎÊý" << endl;
+    cout << "ä»¥ä¸‹æ˜¯æ‰€æœ‰è¯æ±‡åŠå…¶å‡ºçŽ°æ¬¡æ•°" << endl;
     text.PrintWordCount();
-    cout << "ÒÔÏÂÊÇ³öÏÖ´ÎÊý×î¶àµÄÇ°n¸ö´Ê¼°ÉÏÏÂÎÄ" << endl;
+    cout << "ä»¥ä¸‹æ˜¯å‡ºçŽ°æ¬¡æ•°æœ€å¤šçš„å‰nä¸ªè¯åŠä¸Šä¸‹æ–‡" << endl;
     text.PrintTopWordContext(3);
 }
