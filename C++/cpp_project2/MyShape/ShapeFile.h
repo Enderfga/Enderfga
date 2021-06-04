@@ -1,57 +1,57 @@
-#ifndef _SHAPEFILE_H_   //·ÀÖ¹Í·ÎÄ¼ş±»ÖØ¸´°üº¬ºÍ±àÒë
+#ifndef _SHAPEFILE_H_   //é˜²æ­¢å¤´æ–‡ä»¶è¢«é‡å¤åŒ…å«å’Œç¼–è¯‘
 #define _SHAPEFILE_H_
 #include<iostream>
 #include"Edge.h"
 #include"Shape.h"
-#include<fstream>//ÓÃÓÚ¶ÁÈ¡ÎÄ¼ş
-#include<string>//ÓÃÓÚ×Ö·û´®½âÎö
+#include<fstream>//ç”¨äºè¯»å–æ–‡ä»¶
+#include<string>//ç”¨äºå­—ç¬¦ä¸²è§£æ
 #include<vector>
 #include<memory>
 using namespace std;
 class ShapeFile
 {
 public:
-    ShapeFile() //¸Ã¹¹Ôìº¯Êı¸ù¾İshapes.txt±àĞ´£¬²»¾ßÓĞÆÕ±éĞÔ
+    ShapeFile() //è¯¥æ„é€ å‡½æ•°æ ¹æ®shapes.txtç¼–å†™ï¼Œä¸å…·æœ‰æ™®éæ€§
     {
         string cd1 = "#Prepresents Point, format: (x, y)";
         string cd2 = "#circle format: center, radius (int)";
         string cd3 = "#polygon format: sequence of vertices";
-        //Èı¾ä×¢ÊÍ¿ÉÒÔÓÃÀ´×÷ÎªÅĞ¶ÏÌõ¼ş
-        ifstream in("shapes.txt");//¶ÁÈ¡Í¬Ò»¸ùÄ¿Â¼ÏÂµÄshapes.txt
+        //ä¸‰å¥æ³¨é‡Šå¯ä»¥ç”¨æ¥ä½œä¸ºåˆ¤æ–­æ¡ä»¶
+        ifstream in("./shapes.txt");//è¯»å–åŒä¸€æ ¹ç›®å½•ä¸‹çš„shapes.txt
         string line;
-        vector<Point> ps;//´¢´æ¶ÁÈ¡µÄµã¼¯
+        vector<Point> ps;//å‚¨å­˜è¯»å–çš„ç‚¹é›†
         int j, k;
         j = k = 0;
-        if (in) // ÓĞ¸ÃÎÄ¼ş
+        if (in.is_open()) // æœ‰è¯¥æ–‡ä»¶
         {
-            while (getline(in, line)) // lineÖĞ²»°üÀ¨Ã¿ĞĞµÄ»»ĞĞ·û
+            while (getline(in, line)) // lineä¸­ä¸åŒ…æ‹¬æ¯è¡Œçš„æ¢è¡Œç¬¦
             {
-                if (line == cd1)
-                    continue;//Èç¹û¶ÁÈ¡µ½µÚÒ»¸ö×¢ÊÍ£¬Ôò½øÈëÏÂÒ»´ÎÑ­»·
-                if (line == cd2)
-                    break;//Èç¹û¶ÁÈ¡µ½µÚ¶ş¸ö×¢ÊÍ£¬Ôò½øÈëÏÂÒ»¸öÑ­»·
+                if (line.find(cd1) != string::npos)
+                    continue;//å¦‚æœè¯»å–åˆ°ç¬¬ä¸€ä¸ªæ³¨é‡Šï¼Œåˆ™è¿›å…¥ä¸‹ä¸€æ¬¡å¾ªç¯
+                if (line.find(cd2) != string::npos)
+                    break;//å¦‚æœè¯»å–åˆ°ç¬¬äºŒä¸ªæ³¨é‡Šï¼Œåˆ™è¿›å…¥ä¸‹ä¸€ä¸ªå¾ªç¯
                 Point temp((line[5] - (double)'0'), ((double)line[7] - '0'));
-                //½«¶ÁÈ¡µÄ×Ö·û¼õÈ¥'0'£¬ÇÒ½øĞĞÇ¿ÖÆÀàĞÍ×ª»»£¬ÕâÑù¼´¿É×ª»¯ÎªËùĞèµÄÊı×Ö£¬¸Ã·½·¨ÊÊÓÃÓÚASCIIÂë£¬utf-8µÈ
+                //å°†è¯»å–çš„å­—ç¬¦å‡å»'0'ï¼Œä¸”è¿›è¡Œå¼ºåˆ¶ç±»å‹è½¬æ¢ï¼Œè¿™æ ·å³å¯è½¬åŒ–ä¸ºæ‰€éœ€çš„æ•°å­—ï¼Œè¯¥æ–¹æ³•é€‚ç”¨äºASCIIç ï¼Œutf-8ç­‰
                 ps.push_back(temp);
             }
-            while (getline(in, line)) // lineÖĞ²»°üÀ¨Ã¿ĞĞµÄ»»ĞĞ·û
+            while (getline(in, line)) // lineä¸­ä¸åŒ…æ‹¬æ¯è¡Œçš„æ¢è¡Œç¬¦
             {
-                if (line == cd2)
-                    continue;//Èç¹û¶ÁÈ¡µ½µÚ¶ş¸ö×¢ÊÍ£¬Ôò½øÈëÏÂÒ»´ÎÑ­»·
-                if (line == cd3)
-                    break;//Èç¹û¶ÁÈ¡µ½µÚÈı¸ö×¢ÊÍ£¬Ôò½øÈëÏÂÒ»¸öÑ­»·
+                if (line.find(cd2) != string::npos)
+                    continue;//å¦‚æœè¯»å–åˆ°ç¬¬äºŒä¸ªæ³¨é‡Šï¼Œåˆ™è¿›å…¥ä¸‹ä¸€æ¬¡å¾ªç¯
+                if (line.find(cd3) != string::npos)
+                    break;//å¦‚æœè¯»å–åˆ°ç¬¬ä¸‰ä¸ªæ³¨é‡Šï¼Œåˆ™è¿›å…¥ä¸‹ä¸€ä¸ªå¾ªç¯
                 Circle temp(ps[((int)line[9] - '0')], ((double)line[11] - '0'));
                 c.push_back(temp);
                 shared_ptr<Shape> p1;
-                shared_ptr<Circle> Ptr1 = make_shared<Circle>(temp);//ÀàËÆ¶ÁÈ¡µãµÄ·½·¨¹¹Ôìshape£¬²¢½«ÆäÖ¸Õë´æÈëshapes
+                shared_ptr<Circle> Ptr1 = make_shared<Circle>(temp);//ç±»ä¼¼è¯»å–ç‚¹çš„æ–¹æ³•æ„é€ shapeï¼Œå¹¶å°†å…¶æŒ‡é’ˆå­˜å…¥shapes
                 p1 = dynamic_pointer_cast<Shape>(Ptr1);
                 shapes.push_back(p1);
             }
-            int flag = 0;//Ö»¹¹ÔìÁËÒ»¸öÈı±ßĞÎ£¬ÆäÓàÎªËÄ±ßĞÎ£¬¹ÊÉèÖÃÁËflag¼ÓÒÔÇø·Ö
-            while (getline(in, line)) // lineÖĞ²»°üÀ¨Ã¿ĞĞµÄ»»ĞĞ·û
+            int flag = 0;//åªæ„é€ äº†ä¸€ä¸ªä¸‰è¾¹å½¢ï¼Œå…¶ä½™ä¸ºå››è¾¹å½¢ï¼Œæ•…è®¾ç½®äº†flagåŠ ä»¥åŒºåˆ†
+            while (getline(in, line)) // lineä¸­ä¸åŒ…æ‹¬æ¯è¡Œçš„æ¢è¡Œç¬¦
             {
-                if (line == cd3)
-                    continue;//Èç¹û¶ÁÈ¡µ½µÚÈı¸ö×¢ÊÍ£¬Ôò½øÈëÏÂÒ»´ÎÑ­»·
+                if (line.find(cd3) != string::npos)
+                    continue;//å¦‚æœè¯»å–åˆ°ç¬¬ä¸‰ä¸ªæ³¨é‡Šï¼Œåˆ™è¿›å…¥ä¸‹ä¸€æ¬¡å¾ªç¯
                 vector<shared_ptr<Edge>> e;
                 vector<Point> v;
                 if (flag == 0)
@@ -73,28 +73,28 @@ public:
                     Edge tmp(v[i], v[i + 1]);
                     shared_ptr<Edge> ptr = make_shared<Edge>(tmp);
                     e.push_back(ptr);
-                }//ÒÔµã¼¯¹¹Ôì±ß¼¯£¬ÔÙ¹¹Ôìshape
+                }//ä»¥ç‚¹é›†æ„é€ è¾¹é›†ï¼Œå†æ„é€ shape
                 Edge tmp(v.back(), v[0]);
                 shared_ptr<Edge> ptr = make_shared<Edge>(tmp);
-                e.push_back(ptr);//×îºóÒª½«Í¼Ïñ±ÕºÏ£¬¹ÊÑ­»·Íâ¶àÒ»²½½«ÖÕµãÁ¬ÏòÆğµã
+                e.push_back(ptr);//æœ€åè¦å°†å›¾åƒé—­åˆï¼Œæ•…å¾ªç¯å¤–å¤šä¸€æ­¥å°†ç»ˆç‚¹è¿å‘èµ·ç‚¹
                 Polygon temp(e);
                 p.push_back(temp);
                 shared_ptr<Shape> p2;
                 shared_ptr<Polygon> Ptr2 = make_shared<Polygon>(temp);
                 p2 = dynamic_pointer_cast<Shape>(Ptr2);
-                shapes.push_back(p2);//ÀàËÆ¶ÁÈ¡µãµÄ·½·¨¹¹Ôìshape£¬²¢½«ÆäÖ¸Õë´æÈëshapes
+                shapes.push_back(p2);//ç±»ä¼¼è¯»å–ç‚¹çš„æ–¹æ³•æ„é€ shapeï¼Œå¹¶å°†å…¶æŒ‡é’ˆå­˜å…¥shapes
             }
         }
-        else // Ã»ÓĞ¸ÃÎÄ¼ş
+        else // æ²¡æœ‰è¯¥æ–‡ä»¶
         {
             cout << "no such file" << endl;
         }
-        this->Generate();//¶ÁÈ¡½âÎöÍêtxtÎÄ¼şÖ®ºó£¬Ö´ĞĞGenerate£¬Éú³ÉcompositeShapes
+        this->Generate();//è¯»å–è§£æå®Œtxtæ–‡ä»¶ä¹‹åï¼Œæ‰§è¡ŒGenerateï¼Œç”ŸæˆcompositeShapes
     }
     ~ShapeFile() {}
     void Generate()
     {
-        //½«¸÷¸ö¶ÔÏó½øĞĞ²¢ºÍ½»£¬ÅĞ¶ÏÊÇ·ñºÏ·¨£¬½«ºÏ·¨µÄ¶ÔÏópush½øcompositeShapesÖĞ
+        //å°†å„ä¸ªå¯¹è±¡è¿›è¡Œå¹¶å’Œäº¤ï¼Œåˆ¤æ–­æ˜¯å¦åˆæ³•ï¼Œå°†åˆæ³•çš„å¯¹è±¡pushè¿›compositeShapesä¸­
         Circle temp;
         if ((c[0] | c[1]).IsValid())
             temp = (c[0] | c[1]);
@@ -126,7 +126,7 @@ public:
                     compositeShapes.push_back(p2);
                 }
             }
-        //Ë«²ãÑ­»·£¬ÈÃËùÓĞshapes³ÉÔ±¶¼»¥Ïà½»»ò²¢
+        //åŒå±‚å¾ªç¯ï¼Œè®©æ‰€æœ‰shapesæˆå‘˜éƒ½äº’ç›¸äº¤æˆ–å¹¶
     }
     void Print()
     {
@@ -134,12 +134,12 @@ public:
             shapes.at(i)->Print();
         for (unsigned i = 0; i < compositeShapes.size(); i++)
             compositeShapes.at(i)->Print();
-        //½«shapes£¬compositeShapesËùÓĞÖ¸Õë³ÉÔ±µ÷ÓÃ¶ÔÓ¦µÄprintº¯Êı´òÓ¡
+        //å°†shapesï¼ŒcompositeShapesæ‰€æœ‰æŒ‡é’ˆæˆå‘˜è°ƒç”¨å¯¹åº”çš„printå‡½æ•°æ‰“å°
     }
 private:
     vector<shared_ptr<Shape>> shapes;
     vector<shared_ptr<Shape>> compositeShapes;
-    vector<Circle> c;//ÊÂÏÈ½«Circle/PolygonÓÃvector´æ´¢£¬±ãÓÚGenerate
+    vector<Circle> c;//äº‹å…ˆå°†Circle/Polygonç”¨vectorå­˜å‚¨ï¼Œä¾¿äºGenerate
     vector<Polygon> p;
 };
 #endif

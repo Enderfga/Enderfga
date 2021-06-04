@@ -7,7 +7,7 @@ using namespace std;
 int main()
 {
     Edge e1;
-    e1.Print();//ÎŞ²ÎÊıÄ¬ÈÏ¹¹ÔìµÄ±ß
+    e1.Print();//æ— å‚æ•°é»˜è®¤æ„é€ çš„è¾¹
     Point p1(5.32, 3.23);
     Point p2(3.12, 6.33);
     Point p3(-1, -1);
@@ -17,7 +17,7 @@ int main()
     Circle c1;
     c1.set(p3, 1);
     if (c1.IsValid())
-        c1.Print();//ÈôÔ²c1ºÏ·¨£¬Ôò´òÓ¡Ïà¹ØĞÅÏ¢
+        c1.Print();//è‹¥åœ†c1åˆæ³•ï¼Œåˆ™æ‰“å°ç›¸å…³ä¿¡æ¯
     Point p4(0, 3);
     Point p5(4, 0);
     vector<shared_ptr<Edge>> f;
@@ -32,11 +32,11 @@ int main()
     f.push_back(ptr3);
     Polygon P(f);
     if (P.IsValid())
-        P.Print();//ÈôÈı½ÇĞÎPºÏ·¨£¬Ôò´òÓ¡Ïà¹ØĞÅÏ¢
+        P.Print();//è‹¥ä¸‰è§’å½¢Påˆæ³•ï¼Œåˆ™æ‰“å°ç›¸å…³ä¿¡æ¯
     Circle c2(p5, 1);
     (c1 & c2).Print();
     (c1 | c2).Print();
-    (c1 & c2 | c2).Print();//ÈÃÁ½¸öÔ²²¢»ò½»£¬²¢ÍêÖ®ºó½»
+    (c1 & c2 | c2).Print();//è®©ä¸¤ä¸ªåœ†å¹¶æˆ–äº¤ï¼Œå¹¶å®Œä¹‹åäº¤
     Point t1(4, 0);
     Point t2(5, 0);
     Point t3(5, 1);
@@ -56,9 +56,9 @@ int main()
     g.push_back(ptr7);
     Polygon T(g);
     if (T.IsValid())
-        T.Print();//ÈôËÄ±ßĞÎTºÏ·¨£¬Ôò´òÓ¡Ïà¹ØĞÅÏ¢
+        T.Print();//è‹¥å››è¾¹å½¢Tåˆæ³•ï¼Œåˆ™æ‰“å°ç›¸å…³ä¿¡æ¯
     (P & T).Print();
-    (P | T).Print();//ÈÃÁ½¸ö¶à±ßĞÎ²¢»ò½»
-    ShapeFile sfile;//¹¹ÔìShapeFileµÄ¶ÔÏó£¬Ïà¹ØÎÄ¼ş¶ÁÈ¡ºÍ³ÉÔ±Éú³É¶¼ÒÑÔÚ¹¹Ôìº¯ÊıÖĞÍê³É
-    sfile.Print();//µ÷ÓÃPrintº¯Êı£¬´òÓ¡ËùÓĞ¶ÔÏó
+    (P | T).Print();//è®©ä¸¤ä¸ªå¤šè¾¹å½¢å¹¶æˆ–äº¤
+    ShapeFile sfile;//æ„é€ ShapeFileçš„å¯¹è±¡ï¼Œç›¸å…³æ–‡ä»¶è¯»å–å’Œæˆå‘˜ç”Ÿæˆéƒ½å·²åœ¨æ„é€ å‡½æ•°ä¸­å®Œæˆ
+    sfile.Print();//è°ƒç”¨Printå‡½æ•°ï¼Œæ‰“å°æ‰€æœ‰å¯¹è±¡
 }

@@ -1,11 +1,11 @@
-#ifndef _SHAPE_H_   //·ÀÖ¹Í·ÎÄ¼ş±»ÖØ¸´°üº¬ºÍ±àÒë
+#ifndef _SHAPE_H_   //é˜²æ­¢å¤´æ–‡ä»¶è¢«é‡å¤åŒ…å«å’Œç¼–è¯‘
 #define _SHAPE_H_
 #include<iostream>
-#include<cmath>//¼ÆËãÃæ»ıÖÜ³¤ĞèÒªÊ¹ÓÃ
+#include<cmath>//è®¡ç®—é¢ç§¯å‘¨é•¿éœ€è¦ä½¿ç”¨
 #include"Edge.h"
 #include<vector>
 #include<memory>
-constexpr double pi = 3.1415926;//ÏŞ¶¨ÔÚ±àÒëÆÚµÄ³£Á¿¦Ğ
+constexpr double pi = 3.1415926;//é™å®šåœ¨ç¼–è¯‘æœŸçš„å¸¸é‡Ï€
 using namespace std;
 class Shape
 {
@@ -21,7 +21,7 @@ public:
     }
 protected:
     static const int UnknownValue = -1;
-};//Ö»ÓĞ´¿Ğéº¯Êı£¬Ğéº¯ÊıµÄ³éÏóÀàshape
+};//åªæœ‰çº¯è™šå‡½æ•°ï¼Œè™šå‡½æ•°çš„æŠ½è±¡ç±»shape
 class Circle : public Shape
 {
 public:
@@ -35,23 +35,23 @@ public:
         this->center = p;
         this->radius = r;
         if (!this->IsValid())
-            cout << "Warning,your shape is invalid. " << endl;//¹¹ÔìÖ®ºó½øĞĞºÏ·¨ĞÔÅĞ¶Ï
+            cout << "Warning,your shape is invalid. " << endl;//æ„é€ ä¹‹åè¿›è¡Œåˆæ³•æ€§åˆ¤æ–­
     }
     Circle(const Circle& c)
     {
         this->center = c.center;
         this->radius = c.radius;
     }
-    ~Circle() {} //ÒÔÉÏÎªÓĞÎŞ²ÎÊıµÄ¹¹Ôìº¯Êı£¬¸´ÖÆ¹¹Ôìº¯ÊıºÍÎö¹¹º¯Êı£¬ÎŞĞèÎö¹¹ÄÚÈİ¹ÊÎª¿Õ
+    ~Circle() {} //ä»¥ä¸Šä¸ºæœ‰æ— å‚æ•°çš„æ„é€ å‡½æ•°ï¼Œå¤åˆ¶æ„é€ å‡½æ•°å’Œææ„å‡½æ•°ï¼Œæ— éœ€ææ„å†…å®¹æ•…ä¸ºç©º
     double Circumference() const  override
     {
         if (!this->IsValid())
-            return UnknownValue; //Èô²»ºÏ·¨£¬·µ»Ø-1
+            return UnknownValue; //è‹¥ä¸åˆæ³•ï¼Œè¿”å›-1
         return 2 * pi * radius;
-    }//°´ÕÕÃæ»ı¹«Ê½¼ÆËã
+    }//æŒ‰ç…§é¢ç§¯å…¬å¼è®¡ç®—
     double Area() const  override
     {
-        return pi * pow(radius, 2);    //°´ÕÕÖÜ³¤¹«Ê½¼ÆËã
+        return pi * pow(radius, 2);    //æŒ‰ç…§å‘¨é•¿å…¬å¼è®¡ç®—
     }
     void set(Point p, double r)
     {
@@ -65,17 +65,17 @@ public:
             printf("This is a circle with a radius of %f at the center of ", radius);
             center.Print();
             cout << " The circumference is: " << Circumference() << ",the area is: " << Area() << endl;
-        }//ÈôºÏ·¨£¬´òÓ¡³öËùÓĞÍ¼ĞÎĞÅÏ¢£ºÔ²ĞÄ£¬°ë¾¶£¬ÖÜ³¤£¬Ãæ»ı
+        }//è‹¥åˆæ³•ï¼Œæ‰“å°å‡ºæ‰€æœ‰å›¾å½¢ä¿¡æ¯ï¼šåœ†å¿ƒï¼ŒåŠå¾„ï¼Œå‘¨é•¿ï¼Œé¢ç§¯
     }
     virtual bool IsValid()const override
     {
         if (radius > 0)
             return true;
         else return false;
-    }//Ô²ĞÎÒÔ°ë¾¶ÊÇ·ñ´óÓÚ0ÎªÅĞ¶ÏºÏ·¨Óë·ñ±ê×¼
+    }//åœ†å½¢ä»¥åŠå¾„æ˜¯å¦å¤§äº0ä¸ºåˆ¤æ–­åˆæ³•ä¸å¦æ ‡å‡†
     Circle operator&(const Circle& c)
     {
-        if (typeid(*this) == typeid(c)) //ÅĞ¶ÏÊÇ·ñÎªÍ¬Ò»Àà
+        if (typeid(*this) == typeid(c)) //åˆ¤æ–­æ˜¯å¦ä¸ºåŒä¸€ç±»
         {
             Point center_(0.5 * (this->center.getx() + c.center.getx()), 0.5 * (this->center.gety() + c.center.gety()));
             Edge diam(this->center, c.center);
@@ -92,7 +92,7 @@ public:
     }
     Circle operator|(const Circle& c)
     {
-        if (typeid(*this) == typeid(c)) //ÅĞ¶ÏÊÇ·ñÎªÍ¬Ò»Àà
+        if (typeid(*this) == typeid(c)) //åˆ¤æ–­æ˜¯å¦ä¸ºåŒä¸€ç±»
         {
             Point center_(0.5 * (this->center.getx() + c.center.getx()), 0.5 * (this->center.gety() + c.center.gety()));
             Edge diam(this->center, c.center);
@@ -106,7 +106,7 @@ public:
         }
         Circle result;
         return result;
-    }//Ô²ĞÎµÄ²¢ºÍ½»¶¼·µ»ØÁËÒÔÁ½Ô²ĞÄÎª¶ËµãµÄÖ±¾¶dµÄÔ²£¬Çø±ğÔÚÓÚ²¢±ØĞëd>r1+r2 ½»±ØĞëd<r1+r2
+    }//åœ†å½¢çš„å¹¶å’Œäº¤éƒ½è¿”å›äº†ä»¥ä¸¤åœ†å¿ƒä¸ºç«¯ç‚¹çš„ç›´å¾„dçš„åœ†ï¼ŒåŒºåˆ«åœ¨äºå¹¶å¿…é¡»d>r1+r2 äº¤å¿…é¡»d<r1+r2
 private:
     Point center;
     double radius;
@@ -114,7 +114,7 @@ private:
 double LinearIntegration(const Point& p1, const Point& p2)
 {
     return 0.5 * (p2.getx() - p1.getx()) * (p2.gety() + p1.gety());
-}//¸Ãº¯Êı·ÇÀàÄÚ³ÉÔ±º¯Êı£¬ÓÃÓÚ¸¨Öú¼ÆËãn±ßĞÎÃæ»ı
+}//è¯¥å‡½æ•°éç±»å†…æˆå‘˜å‡½æ•°ï¼Œç”¨äºè¾…åŠ©è®¡ç®—nè¾¹å½¢é¢ç§¯
 class Polygon : public Shape
 {
 public:
@@ -128,14 +128,14 @@ public:
         this->edges = es;
         this->sides = edges.size();
         if (!this->IsValid())
-            cout << "Warning,your shape is invalid. " << endl;//¹¹ÔìÖ®ºó½øĞĞºÏ·¨ĞÔÅĞ¶Ï
+            cout << "Warning,your shape is invalid. " << endl;//æ„é€ ä¹‹åè¿›è¡Œåˆæ³•æ€§åˆ¤æ–­
     }
     Polygon(const Polygon& p)
     {
         this->edges = p.edges;
         this->sides = edges.size();
     }
-    ~Polygon() {} //ÒÔÉÏÎªÓĞÎŞ²ÎÊıµÄ¹¹Ôìº¯Êı£¬¸´ÖÆ¹¹Ôìº¯ÊıºÍÎö¹¹º¯Êı£¬ÎŞĞèÎö¹¹ÄÚÈİ¹ÊÎª¿Õ
+    ~Polygon() {} //ä»¥ä¸Šä¸ºæœ‰æ— å‚æ•°çš„æ„é€ å‡½æ•°ï¼Œå¤åˆ¶æ„é€ å‡½æ•°å’Œææ„å‡½æ•°ï¼Œæ— éœ€ææ„å†…å®¹æ•…ä¸ºç©º
     vector<Point> getpoints(vector<shared_ptr<Edge>> edges, int length) const
     {
         vector<Point> points;
@@ -144,7 +144,7 @@ public:
             points.push_back((*edges[i]).getp1());
         }
         return points;
-    }//¸Ãº¯ÊıÓÃÓÚ»ñµÃ¶à±ßĞÎµÄËùÓĞµã£¬ÓÉÓÚÊ×Î²Ïà½Ó£¬¹ÊÖ»ĞèÈ«²¿È¡µÚÒ»¸öµã¼´¿É
+    }//è¯¥å‡½æ•°ç”¨äºè·å¾—å¤šè¾¹å½¢çš„æ‰€æœ‰ç‚¹ï¼Œç”±äºé¦–å°¾ç›¸æ¥ï¼Œæ•…åªéœ€å…¨éƒ¨å–ç¬¬ä¸€ä¸ªç‚¹å³å¯
     double Circumference() const  override
     {
         double sum = 0;
@@ -153,7 +153,7 @@ public:
             sum += (*edges[i]).getlen();
         }
         return sum;
-    } //ÖÜ³¤ÒÔËùÓĞ±ßµ÷ÓÃgetlenº¯ÊıÀÛ¼ÓµÃÀ´
+    } //å‘¨é•¿ä»¥æ‰€æœ‰è¾¹è°ƒç”¨getlenå‡½æ•°ç´¯åŠ å¾—æ¥
     double Area() const  override
     {
         if (!this->IsValid())
@@ -168,7 +168,7 @@ public:
         }
         area += LinearIntegration(points[length - 1], points[0]);
         return area >= 0.0 ? area : -area;
-    } //¸Ã²¿·Öº¯Êı²Î¿¼×ÔÍøÉÏÒ»ÖÖn±ßĞÎµÄÃæ»ıÇó·¨£¬Í¨¹ıÓĞĞòµãÊı×éÇóµÃÓĞÏòÃæ»ıÀÛ¼Ó
+    } //è¯¥éƒ¨åˆ†å‡½æ•°å‚è€ƒè‡ªç½‘ä¸Šä¸€ç§nè¾¹å½¢çš„é¢ç§¯æ±‚æ³•ï¼Œé€šè¿‡æœ‰åºç‚¹æ•°ç»„æ±‚å¾—æœ‰å‘é¢ç§¯ç´¯åŠ 
     void set(vector<shared_ptr<Edge>> es)
     {
         this->edges = es;
@@ -183,7 +183,7 @@ public:
             (*edges[i]).Print();
         }
         cout << "The circumference is: " << Circumference() << ",the area is: " << Area() << endl;
-    }//ÈôºÏ·¨£¬´òÓ¡³öËùÓĞÍ¼ĞÎĞÅÏ¢£º±ßÊı£¬ËùÓĞ±ßµÄÆğµãºÍÖÕµã£¬ÖÜ³¤£¬Ãæ»ı
+    }//è‹¥åˆæ³•ï¼Œæ‰“å°å‡ºæ‰€æœ‰å›¾å½¢ä¿¡æ¯ï¼šè¾¹æ•°ï¼Œæ‰€æœ‰è¾¹çš„èµ·ç‚¹å’Œç»ˆç‚¹ï¼Œå‘¨é•¿ï¼Œé¢ç§¯
     virtual bool IsValid()const override
     {
         if (sides < 3)
@@ -196,8 +196,8 @@ public:
                 return false;
         }
         return true;
-    } //¶à±ßĞÎ°´ÕÕ±ßÊı±ØĞë´óÓÚ2£¬ÇÒÃ¿Ò»Ìõ±ßµÄÖÕµã¸úÏÂÒ»±ßµÄÆğµãÏà½ÓÀ´ÅĞ¶ÏºÏ·¨Óë·ñ
-    Polygon operator|(const Polygon& p) //ÅĞ¶ÏÊÇ·ñÎªÍ¬Ò»Àà
+    } //å¤šè¾¹å½¢æŒ‰ç…§è¾¹æ•°å¿…é¡»å¤§äº2ï¼Œä¸”æ¯ä¸€æ¡è¾¹çš„ç»ˆç‚¹è·Ÿä¸‹ä¸€è¾¹çš„èµ·ç‚¹ç›¸æ¥æ¥åˆ¤æ–­åˆæ³•ä¸å¦
+    Polygon operator|(const Polygon& p) //åˆ¤æ–­æ˜¯å¦ä¸ºåŒä¸€ç±»
     {
         if (typeid(*this) == typeid(p))
         {
@@ -214,19 +214,19 @@ public:
             {
                 v.push_back(t2[i]);
             }
-            vector<Point> r;
+            /*vector<Point> r;
             for (int i = 0; i < 4; i++)
             {
                 r.push_back(v[(rand() % (v.size() + 1))]);
-            }
+            }*/
             vector<shared_ptr<Edge>> e;
-            for (unsigned i = 0; i < r.size() - 1; i++)
+            for (unsigned i = 0; i < v.size() - 1; i++)
             {
-                Edge temp(r[i], r[i + 1]);
+                Edge temp(v[i], v[i + 1]);
                 shared_ptr<Edge> ptr = make_shared<Edge>(temp);
                 e.push_back(ptr);
             }
-            Edge temp(r.back(), r[0]);
+            Edge temp(v.back(), v[0]);
             shared_ptr<Edge> ptr = make_shared<Edge>(temp);
             e.push_back(ptr);
             Polygon result(e);
@@ -235,7 +235,7 @@ public:
         Polygon result;
         return result;
     }
-    Polygon operator&(const Polygon& p) //ÅĞ¶ÏÊÇ·ñÎªÍ¬Ò»Àà
+    Polygon operator&(const Polygon& p) //åˆ¤æ–­æ˜¯å¦ä¸ºåŒä¸€ç±»
     {
         if (typeid(*this) == typeid(p))
         {
@@ -267,7 +267,7 @@ public:
         }
         Polygon result;
         return result;
-    }//ÓÉÓÚ±¾´Î×÷Òµ²»ÊÇ¿¼²ìÍ¹°üËã·¨µÈÄÚÈİ£¬¹Ê¶à±ßĞÎµÄ½»ÊÇ·µ»ØÒ»¸öÏÖÓĞµãÖĞµÄËæ»ú4±ßĞÎ£¬²¢ÊÇ·µ»ØËùÓĞµã×éºÏµÄn±ßĞÎ
+    }//ç”±äºæœ¬æ¬¡ä½œä¸šä¸æ˜¯è€ƒå¯Ÿå‡¸åŒ…ç®—æ³•ç­‰å†…å®¹ï¼Œæ•…å¤šè¾¹å½¢çš„äº¤æ˜¯è¿”å›ä¸€ä¸ªç°æœ‰ç‚¹ä¸­çš„éšæœº4è¾¹å½¢ï¼Œå¹¶æ˜¯è¿”å›æ‰€æœ‰ç‚¹ç»„åˆçš„nè¾¹å½¢
 private:
     vector<shared_ptr<Edge>> edges;
     int sides;

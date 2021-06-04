@@ -1,7 +1,7 @@
-#ifndef _EDGE_H_   //·ÀÖ¹Í·ÎÄ¼ş±»ÖØ¸´°üº¬ºÍ±àÒë
+#ifndef _EDGE_H_   //é˜²æ­¢å¤´æ–‡ä»¶è¢«é‡å¤åŒ…å«å’Œç¼–è¯‘
 #define _EDGE_H_
 #include<iostream>
-#include<cmath>   //ºóĞø¼ÆËã³¤¶È»áÓÃµ½
+#include<cmath>   //åç»­è®¡ç®—é•¿åº¦ä¼šç”¨åˆ°
 #include<memory>
 using namespace std;
 class Point
@@ -22,11 +22,11 @@ public:
         this->x = p.x;
         this->y = p.y;
     }
-    ~Point() {} //ÒÔÉÏÎªÓĞÎŞ²ÎÊıµÄ¹¹Ôìº¯Êı£¬¸´ÖÆ¹¹Ôìº¯ÊıºÍÎö¹¹º¯Êı£¬ÎŞĞèÎö¹¹ÄÚÈİ¹ÊÎª¿Õ
+    ~Point() {} //ä»¥ä¸Šä¸ºæœ‰æ— å‚æ•°çš„æ„é€ å‡½æ•°ï¼Œå¤åˆ¶æ„é€ å‡½æ•°å’Œææ„å‡½æ•°ï¼Œæ— éœ€ææ„å†…å®¹æ•…ä¸ºç©º
     virtual void Print() const
     {
         cout << "(" << x << "," << y << ")";
-    }//°´ÕÕ£¨x£¬y£©µÄĞÎÊ½´òÓ¡³öÀ´
+    }//æŒ‰ç…§ï¼ˆxï¼Œyï¼‰çš„å½¢å¼æ‰“å°å‡ºæ¥
     Point operator=(const Point& p)
     {
         this->x = p.x;
@@ -45,7 +45,7 @@ public:
     double gety() const
     {
         return this->y;
-    }//Á½¸ögetº¯Êı·½±ãºóĞø»ñÈ¡x£¬y×ø±ê
+    }//ä¸¤ä¸ªgetå‡½æ•°æ–¹ä¾¿åç»­è·å–xï¼Œyåæ ‡
     bool operator!=(const Point& p) const
     {
         if (this->x != p.x)
@@ -60,7 +60,7 @@ public:
             if (this->y == p.y)
                 return true;
         return false;
-    }//Á½¸öÔËËã·ûÖØÔØ±ãÓÚºóĞøÍ¼ĞÎÊÇ·ñºÏ·¨ÅĞ¶Ï
+    }//ä¸¤ä¸ªè¿ç®—ç¬¦é‡è½½ä¾¿äºåç»­å›¾å½¢æ˜¯å¦åˆæ³•åˆ¤æ–­
 protected:
     double x;
     double y;
@@ -83,7 +83,7 @@ public:
         this->p1 = e.p1;
         this->p2 = e.p2;
     }
-    ~Edge() {} //ÒÔÉÏÎªÓĞÎŞ²ÎÊıµÄ¹¹Ôìº¯Êı£¬¸´ÖÆ¹¹Ôìº¯ÊıºÍÎö¹¹º¯Êı£¬ÎŞĞèÎö¹¹ÄÚÈİ¹ÊÎª¿Õ
+    ~Edge() {} //ä»¥ä¸Šä¸ºæœ‰æ— å‚æ•°çš„æ„é€ å‡½æ•°ï¼Œå¤åˆ¶æ„é€ å‡½æ•°å’Œææ„å‡½æ•°ï¼Œæ— éœ€ææ„å†…å®¹æ•…ä¸ºç©º
     Edge operator=(const Edge& e)
     {
         this->p1 = e.p1;
@@ -102,15 +102,15 @@ public:
         cout << " to ";
         p2.Print();
         cout << endl;
-    }//°´ÕÕ¡°The edge is from £¨x£¬y£©to£¨x£¬y£©´òÓ¡
+    }//æŒ‰ç…§â€œThe edge is from ï¼ˆxï¼Œyï¼‰toï¼ˆxï¼Œyï¼‰æ‰“å°
     double getlen() const
     {
         return sqrt(pow((p1.getx() - p2.getx()), 2) + pow((p1.gety() - p2.gety()), 2));
-    }//¼ÆËã¸Ã±ßµÄ³¤¶È
+    }//è®¡ç®—è¯¥è¾¹çš„é•¿åº¦
     void Length() const
     {
         cout << "The length of this edge is " << this->getlen() << endl;
-    }//Õ¹Ê¾¸Ã±ßµÄ³¤¶È
+    }//å±•ç¤ºè¯¥è¾¹çš„é•¿åº¦
     Point getp1() const
     {
         return this->p1;
@@ -118,7 +118,7 @@ public:
     Point getp2() const
     {
         return this->p2;
-    }//Á½¸ögetº¯Êı·½±ã»ñÈ¡×ø±ê£¬ÎªºóĞø¼ÆËãÃæ»ı×ö×¼±¸
+    }//ä¸¤ä¸ªgetå‡½æ•°æ–¹ä¾¿è·å–åæ ‡ï¼Œä¸ºåç»­è®¡ç®—é¢ç§¯åšå‡†å¤‡
 private:
     Point p1;
     Point p2;
