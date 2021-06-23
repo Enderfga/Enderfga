@@ -1,0 +1,7 @@
+#id	name	sex	birthday	school_year	birthplace
+10905	xiaomei	Female	1994/2/1	2018	hunan
+10908	jianfa	Male	1995/7/2	2017	hunan
+10914	dahong	Male	1993/2/3	2018	guangdong
+10917	xingfeng	Male	1995/2/4	2017	jiangsu
+10919	xiaomi	Female	1993/2/5	2016	beijing
+10921	dabin	Male	1992/2/6	2015	hainan

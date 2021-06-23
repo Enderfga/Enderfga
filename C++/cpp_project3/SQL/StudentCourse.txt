@@ -1,0 +1,29 @@
+#id	course	credits	score
+10917	C Programming Language	3	73
+10919	C Programming Language	3	91
+10914	C Programming Language	3	59
+10908	C Programming Language	3	56
+10921	C Programming Language	3	83
+10905	C Programming Language	3	74
+10917	Advanced math	4	77
+10919	Advanced math	4	76
+10914	Advanced math	4	70
+10908	Advanced math	4	80
+10921	Advanced math	4	79
+10905	Advanced math	4	53
+10917	College English	3.5	90
+10919	College English	3.5	83
+10914	College English	3.5	79
+10908	College English	3.5	80
+10921	College English	3.5	81
+10905	College English	3.5	70
+10917	Control Theory	2	88
+10919	Control Theory	2	86
+10914	Control Theory	2	87
+10908	Control Theory	2	85
+10921	Control Theory	2	90
+10905	Control Theory	2	91
+10917	Python	2	72
+10919	Python	2	81
+10914	Python	2	69
+10908	Python	2	96

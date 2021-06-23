@@ -1,0 +1,6 @@
+(a) 打印2018级选修C语言且成绩小于60分的学生:
+10914	dahong    Male        1993/2/3     2018     guangdong ; 10914     C Programming Language    3     59
+(b) 统计课程平均分大于80的学生个人信息并输出:
+10919	xiaomi      Female      1993/2/5     2016     beijing    平均分：83
+10921	dabin        Male         1992/2/6     2015     hainan    平均分：83
+(c) 查询每个学生是否修满20学分:
