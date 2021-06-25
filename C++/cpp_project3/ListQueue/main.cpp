@@ -59,7 +59,8 @@ int main()
     ran.erase(ran.begin());
     for (int i = 0; i < 10000; i++)
     {
-        double temp = ran[-1];
+        double temp = ran[0];
+        //此处若为ran[-1]则可随机取值并删除，但通过阅读资料，“随机访问”不是指随机，而是任意
         ran.FindforErase(temp);
     }//随机访问并删除，直至被清空，类似于clear函数
     if (ran.empty())
@@ -75,5 +76,18 @@ int main()
     }//尝试进行类模板嵌套并以MAX为上限组织对象，
     但是会导致权限访问冲突，目前还未想出解决方法
     cout << list;*/
+    //反之则可行
+    static const auto MAX = 10;
+    MyVector<ListQueue<int>> list;
+    for (int i = 0; i < 1000; i++) {
+        ListQueue<int> temp;
+        for (int j = 0; j < MAX; j++) {
+            temp.push_back(i);
+        }
+        list.push_back(temp);
+    }
+    cout << list;
+    list.clear();
+    cout << list;
     return 0;
 }
