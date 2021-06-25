@@ -26,6 +26,9 @@ typedef pair<int, int> PAIR;
 #define Birthday get<3>
 #define School_year get<4>
 #define Birthplace get<5>
+#define Year get<0>
+#define Month get<1>
+#define Day get<2>
 vector<Info> txt1;
 vector<Course> txt2;
 map<int, int> TotalScore;
@@ -235,6 +238,26 @@ bool operator==(Info i, int x)
         return true;
     else return false;
 }
+bool operator>(Info i, int x)
+{
+    int int1, int2;
+    tie(int1, ignore, ignore, ignore, int2, ignore) = i;
+    if (int1 > x)
+        return true;
+    else if (int2 > x)
+        return true;
+    else return false;
+}
+bool operator<(Info i, int x)
+{
+    int int1, int2;
+    tie(int1, ignore, ignore, ignore, int2, ignore) = i;
+    if (int1 < x)
+        return true;
+    else if (int2 < x)
+        return true;
+    else return false;
+}
 bool operator==(Info i, string x)
 {
     string str1, str2, str3;
@@ -279,6 +302,17 @@ bool operator==(Course c, int x)
     if (s == x)
         return true;
     else return false;
+}
+//该函数可以从Info表的ID和课程查到对应的分数
+int GetScore(vector<Course> t,string c,int id) {
+    auto it = t.begin();
+    while (it!=t.end())
+    {
+        if (ID(*it) == id&& Courses(*it)==c)
+            return Score(*it);
+        it++;
+    }
+    return -1;
 }
 //Erase函数两种vector均可使用，用于删除==条件
 template<typename T1, typename T2>
