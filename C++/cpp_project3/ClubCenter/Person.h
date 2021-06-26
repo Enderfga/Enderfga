@@ -24,5 +24,5 @@ public:
 	void display() override;//重写，允许用基类的指针来调用子类的这个函数
 private:
 	std::string schoolName_;
-	double discount_;//不明确其含义，后续没有使用
+	double discount_=0;//不明确其含义，后续没有使用
 };

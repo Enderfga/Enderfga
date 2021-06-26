@@ -26,8 +26,8 @@ public:
 	void displayActivities() const;
 	void addMember(const Person& p);
 	void addActivity(const Activity& a);
+	enum interest_ { Running, Swimming, Basketball,Volleyball }used;//枚举变量
 private:
-	enum interest_ { Running, Swimming };//枚举变量
 	std::string coach_;
 };
 class MusicClub :public Club
@@ -41,8 +41,8 @@ public:
 	void displayActivities() const;
 	void addMember(const Person& p);
 	void addActivity(const Activity& a);
+	enum instrument_ { Piano, Violine, Songs }used;//枚举变量
 private:
-	enum instrument_ { Piano, Violine };//枚举变量
 	std::string musician_;
 };
 class ClubCenter

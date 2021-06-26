@@ -59,15 +59,19 @@ int main() {
 	set8.insert(ptr16);
 	ClubCenter clubcenter;
 	SportsClub sc1("排球俱乐部", set1, set5, "王老师");
+	sc1.used = (SportsClub::interest_)3;//即为排球
 	shared_ptr<SportsClub> ptr17 = make_shared<SportsClub>(sc1);
 	clubcenter.addClub(ptr17);
 	SportsClub sc2("篮球俱乐部", set2, set6, "李老师");
+	sc2.used = (SportsClub::interest_)2;//即为篮球
 	shared_ptr<SportsClub> ptr18 = make_shared<SportsClub>(sc2);
 	clubcenter.addClub(ptr18);
 	MusicClub mc1("合唱团", set3, set7, "方老师");
+	mc1.used = (MusicClub::instrument_)2;//即为歌曲
 	shared_ptr<MusicClub> ptr19 = make_shared<MusicClub>(mc1);
 	clubcenter.addClub(ptr19);
 	MusicClub mc2("话剧社", set4, set8, "赵老师");
+	mc2.used = (MusicClub::instrument_)0;//即为钢琴
 	shared_ptr<MusicClub> ptr20 = make_shared<MusicClub>(mc2);
 	clubcenter.addClub(ptr20);
 	clubcenter.displayClub();//展示以上所有信息
