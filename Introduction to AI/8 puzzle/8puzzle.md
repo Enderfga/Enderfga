@@ -1,9 +1,3 @@
----
-title: 使用搜索算法解决八数码问题
-date: 2021-10-19 21:50:21
-index_img: https://gitee.com/sysu_20354027/pic/raw/master/img/20211020204607.png
-tags: course
----
 人工智能导论作业记录。
 
 <!-- more -->
