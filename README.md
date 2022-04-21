@@ -1,11 +1,27 @@
-- 👋 Hi, I’m Enderfga
-- 👀 I study in Shenzhen Campus of Sun Yat sen University
-- 🌱 I’m currently learning C/C++/matlab/python···
-- 📫 How to reach me ：qq2639135175@gmail.com
-- ✨ This is my blog : https://enderfga.cn
-- ![](https://img.shields.io/badge/%E5%AD%A6%E6%9C%AF-%E5%9E%83%E5%9C%BE-red.svg)
+<h2 align="center"> Enderfga </h2>
 
-<!---
-Enderfga/Enderfga is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
-You can click the Preview link to take a look at your changes.
---->
+<h4 align="center">Nothing is true, everything is permitted. </h4>
+
+<h5 align="center">
+  <a href="mailto:qq2639135175@gmail.com">EMAIL</a>&emsp;•&emsp;
+  <a href="https://enderfga.cn/">BLOG</a>&emsp;•&emsp;
+  <a href="https://space.bilibili.com/11866023">BILIBILI</a>
+</h5>
+
+<div align="center">
+    <img src="https://metrics.lecoq.io/Enderfga?template=classic&config.timezone=Asia%2FShanghai">
+</div>
+
+
+<div align="center">
+    <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Enderfga&layout=compact">
+</div>
+<div align="center">
+    <img src="https://github-profile-trophy.vercel.app/?username=Enderfga&row=2&column=3">
+</div>
+<div align="center">
+    <img src="https://github-readme-stats.vercel.app/api?username=Enderfga">
+</div>
+<div align="center">
+    <img src="https://activity-graph.herokuapp.com/graph?username=Enderfga&theme=minimal">
+</div>
