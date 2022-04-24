@@ -72,7 +72,6 @@ jobs:
           plugin_people_size: 28
           plugin_people_types: followers, following
           plugin_repositories: 100
-          plugin_repositories: yes
           plugin_repositories_affiliations: owner
           plugin_repositories_batch: 100
           plugin_rss: yes
