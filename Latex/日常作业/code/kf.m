@@ -1,0 +1,1 @@
+KF = (lqr(A',C',Q,R))';   % matlab代码

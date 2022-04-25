@@ -1,5 +1,3 @@
-
-
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{thuemp}
               [2021/03/28 v1.0
@@ -167,7 +165,7 @@ The LaTeX template for Experiment Report in Modern Physics of Tsinghua Universit
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \fancypagestyle{plain}{ \fancyhf{}\vspace{10pt}
 \lhead{}
-\chead{\vspace{0.6cm}\centering{{\heiti\xiaowuhao 中\ 山\ 大\ 学\ 无\ 人\ 系\ 统\ 导\ 论}\\[-0.5ex]
+\chead{\vspace{0.6cm}\centering{{\heiti\xiaowuhao 中\ 山\ 大\ 学\ 认\ 知\ 科\ 学\ 基\ 础}\\[-0.5ex]
 {{\xiaowuhao Intelligent Systems Engineering, Sun Yat-sen University}}}}
 \rhead{}
 \lfoot{}
@@ -179,7 +177,7 @@ The LaTeX template for Experiment Report in Modern Physics of Tsinghua Universit
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \pagestyle{fancy} 
 \fancyhf{}
-\fancyhead[CE]{{\footnotesize 中山大学智能科学与技术}}
+\fancyhead[CE]{{\footnotesize 方桂安~~~20354027}}
 \fancyhead[LE,RO]{~~~\footnotesize\thepage ~~~}
 \lfoot{}
 \cfoot{}
