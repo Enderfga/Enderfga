@@ -80,5 +80,5 @@ jobs:
           plugin_stars: yes
           plugin_stars_limit: 4
           plugin_tweets: yes
-          plugin_tweets_limit: 2
+          plugin_tweets_limit: 1
           plugin_tweets_user: Enderfga
