@@ -1,4 +1,5 @@
 clc;clear;
+
 %% 求约束下的临界时间
 %使用了optimization toolbox
 q0 = [10,20];
