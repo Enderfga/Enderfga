@@ -1773,7 +1773,7 @@
                                     </svg>
                                     <div class="name">
                                         <span>TechXueXi/TechXueXi</span>
-                                        <span>starred 27 days ago</span>
+                                        <span>starred 28 days ago</span>
                                     </div>
                                 </div>
                                 <div class="field description">强国通 科技强国 学习强国 xuexiqiangguo 全网最好用开源网页学习强国助手：TechXueXi （懒人刷分工具 自动学习）技术强国，支持答题，支持 docker 45分/天</div>
@@ -2295,7 +2295,7 @@
                                     </defs>
                                     <svg xmlns="http://www.w3.org/2000/svg" class="gauge info">
                                         <circle class="gauge-base" r="25" cx="28" cy="28"/>
-                                        <circle class="gauge-arc" transform="rotate(-90 28 28)" r="25" cx="28" cy="28" stroke-dasharray="1.6974674880218994 155"/>
+                                        <circle class="gauge-arc" transform="rotate(-90 28 28)" r="25" cx="28" cy="28" stroke-dasharray="1.9096509240246347 155"/>
                                     </svg>
                                     <svg xmlns="http://www.w3.org/2000/svg" mask="url(#mask)">
                                         <g xmlns="http://www.w3.org/2000/svg" transform="translate(5 4)" fill="none" fill-rule="evenodd">
@@ -2470,7 +2470,7 @@
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
                                 <path fill-rule="evenodd" d="M1.5 8a6.5 6.5 0 1113 0 6.5 6.5 0 01-13 0zM8 0a8 8 0 100 16A8 8 0 008 0zm.5 4.75a.75.75 0 00-1.5 0v3.5a.75.75 0 00.471.696l2.5 1a.75.75 0 00.557-1.392L8.5 7.742V4.75z"/>
                             </svg>
-                            On 2 Jun 2022, 19:18:52
+                            On 2 Jun 2022, 16:33:28
                         </div>
                     </section>
                 </div>
@@ -2486,7 +2486,7 @@
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
                                 <path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm6.5-.25A.75.75 0 017.25 7h1a.75.75 0 01.75.75v2.75h.25a.75.75 0 010 1.5h-2a.75.75 0 010-1.5h.25v-2h-.25a.75.75 0 01-.75-.75zM8 6a1 1 0 100-2 1 1 0 000 2z"/>
                             </svg>
-                            <span class="code">36a7e6dd</span>
+                            <span class="code">631f1128</span>
                             <span class="code">.github/workflows/action.yml</span>
                             <span class="code"><span class="snippet additions">++1</span> <span class="snippet deletions">--1</span></span>
                         </div>
@@ -2495,14 +2495,14 @@
                 <div class="row">
                     <section class="snippet">
                         <div class="body markdown">
-                            <code class="language-diff" xml:space="preserve"><span class="token coord">@@ -10,7 +10,7 @@</span><br /><span class="token unchanged"><span class="token prefix unchanged">·</span><span class="token line">github-metrics:<br /></span><span class="token prefix unchanged">·</span><span class="token line">  runs-on: ubuntu-latest<br /></span><span class="token prefix unchanged">·</span><span class="token line">  steps:<br /></span></span><span class="token deleted-sign deleted"><span class="token prefix deleted">-</span><span class="token line">    - uses: lowlighter/metrics@3.24<br /></span></span><span class="token inserted-sign inserted"><span class="token prefix inserted">+</span><span class="token line">    - uses: lowlighter/metrics@latest<br /></span></span><span class="token unchanged"><span class="token prefix unchanged">·</span><span class="token line">      with:<br /></span><span class="token prefix unchanged">·</span><span class="token line">        # Your GitHub token<br /></span><span class="token prefix unchanged">·</span><span class="token line">        # The following scopes are required:</span></span></code>
+                            <code class="language-diff" xml:space="preserve"><span class="token coord">@@ -10,7 +10,7 @@</span><br /><span class="token unchanged"><span class="token prefix unchanged">·</span><span class="token line">github-metrics:<br /></span><span class="token prefix unchanged">·</span><span class="token line">  runs-on: ubuntu-latest<br /></span><span class="token prefix unchanged">·</span><span class="token line">  steps:<br /></span></span><span class="token deleted-sign deleted"><span class="token prefix deleted">-</span><span class="token line">    - uses: lowlighter/metrics@latest<br /></span></span><span class="token inserted-sign inserted"><span class="token prefix inserted">+</span><span class="token line">    - uses: lowlighter/metrics@3.23<br /></span></span><span class="token unchanged"><span class="token prefix unchanged">·</span><span class="token line">      with:<br /></span><span class="token prefix unchanged">·</span><span class="token line">        # Your GitHub token<br /></span><span class="token prefix unchanged">·</span><span class="token line">        # The following scopes are required:</span></span></code>
                         </div>
                     </section>
                 </div>
             </section>
             <footer>
                 <span>These metrics include private contributions</span>
-                <span>Last updated 3 Jun 2022, 00:28:24 (timezone Asia/Shanghai) with lowlighter/metrics@3.24.0</span>
+                <span>Last updated 3 Jun 2022, 01:27:55 (timezone Asia/Shanghai) with lowlighter/metrics@3.24.0</span>
             </footer>
         </div>
         <div xmlns="http://www.w3.org/1999/xhtml" id="metrics-end"></div>
