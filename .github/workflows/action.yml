@@ -10,7 +10,7 @@ jobs:
   github-metrics:
     runs-on: ubuntu-latest
     steps:
-      - uses: lowlighter/metrics@3.23
+      - uses: lowlighter/metrics@3.24
         with:
           # Your GitHub token
           # The following scopes are required:
