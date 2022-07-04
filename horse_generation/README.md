@@ -66,19 +66,19 @@
 
 #### 部分fake马
 
-<p> <img align="center" src="result/625.png"/></p>
+<p> <img align="center" src="https://img.enderfga.cn/img/625.png"/></p>
 
 #### 生成训练可视化
 
-<p> <img align="center" src="https://blogimg.coding.net/p/img/d/image1/git/raw/master/img/GAN_generate_animation.gif"/></p>
+<p> <img align="center" src="https://img.enderfga.cn/img/GAN_generate_animation.gif"/></p>
 
 #### 动态结果展示
 
-<p> <img align="center" src="https://blogimg.coding.net/p/img/d/image1/git/raw/master/img/lerp.gif"/></p>
+<p> <img align="center" src="https://img.enderfga.cn/img/lerp.gif"/></p>
 
 ### FID一览
 
-![](https://blogimg.coding.net/p/img/d/image1/git/raw/master/img/image-20220618194023873.png)
+![](https://img.enderfga.cn/img/image-20220618194023873.png)
 
 ### 代码说明
 
