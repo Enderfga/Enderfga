@@ -1656,7 +1656,7 @@
                                     </svg>
                                     <div class="name">
                                         <span>PolarisRisingWar/text_summarization_chinese</span>
-                                        <span>starred 2 days ago</span>
+                                        <span>starred 3 days ago</span>
                                     </div>
                                 </div>
                                 <div class="field description">各大文本摘要模型-中文文本可运行的解决方案</div>
@@ -1797,7 +1797,7 @@
                                     </svg>
                                     <div class="name">
                                         <span>potsawee/longsum0</span>
-                                        <span>starred 9 days ago</span>
+                                        <span>starred 10 days ago</span>
                                     </div>
                                 </div>
                                 <div class="field description">Long-Span Summarization</div>
@@ -2406,7 +2406,7 @@
             </section>
             <footer>
                 <span>These metrics include private contributions</span>
-                <span>Last updated 10 Aug 2022, 22:16:21 (timezone Asia/Shanghai) with lowlighter/metrics@3.26.0</span>
+                <span>Last updated 10 Aug 2022, 23:18:16 (timezone Asia/Shanghai) with lowlighter/metrics@3.26.0</span>
             </footer>
         </div>
         <div xmlns="http://www.w3.org/1999/xhtml" id="metrics-end"></div>
