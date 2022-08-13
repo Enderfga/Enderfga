@@ -1,0 +1,40 @@
+%implements "machineHeader" "C"
+%function CacheOutputs(block,system) void
+ %assign srcFileName = SLibGetFullFileNameForSystemCode("sys_src_incl", system.SystemIdx)
+%openfile typedefsBuf   
+            
+%closefile typedefsBuf
+%<SLibCacheCodeToFile("sf_machine_typedef",typedefsBuf)>
+%if !WHITE_SPACE(typedefsBuf)
+  %<SLibUpdateHeadersNeededByFile(srcFileName, SLibGetFullFileNameForCode("sf_machine_typedef"))>
+%endif
+%openfile definesBuf   
+%closefile definesBuf
+%<SLibCacheCodeToFile("sf_machine_data_define",definesBuf)>
+%if !WHITE_SPACE(definesBuf)
+  %<SLibUpdateHeadersNeededByFile(srcFileName, SLibGetFullFileNameForCode("sf_machine_data_define"))>
+%endif
+%openfile externDataBuf
+%closefile externDataBuf
+%<SLibCacheCodeToFile("sf_machine_extern_data_decl",externDataBuf)>
+%if !WHITE_SPACE(externDataBuf)
+  %<SLibUpdateHeadersNeededByFile(srcFileName, SLibGetFullFileNameForCode("sf_machine_extern_data_decl"))>
+%endif
+%openfile externDataBuf
+%closefile externDataBuf
+%<SLibCacheCodeToFile("sf_machine_public_extern_data_decl",externDataBuf)>
+%if !WHITE_SPACE(externDataBuf)
+  %<SLibUpdateHeadersNeededByFile(srcFileName, SLibGetFullFileNameForCode("sf_machine_public_extern_data_decl"))>
+%endif
+%openfile externDataBuf
+
+            
+            
+%closefile externDataBuf
+%<SLibCacheCodeToFile("sf_machine_extern_fcn_decl",externDataBuf)>
+%if !WHITE_SPACE(externDataBuf)
+  %<SLibUpdateHeadersNeededByFile(srcFileName, SLibGetFullFileNameForCode("sf_machine_extern_fcn_decl"))>
+%endif
+%endfunction %% CacheOutputs
+ 
+

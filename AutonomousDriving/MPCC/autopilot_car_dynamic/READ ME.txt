@@ -1,0 +1,6 @@
+run init_car_dynamic.m
+run car_sim.slx
+
+modify the controller and trajectory strategy to finish the track ASAP !!
+
+submit the code and report~~
