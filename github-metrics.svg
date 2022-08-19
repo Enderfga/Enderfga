@@ -1635,7 +1635,7 @@
                                     </svg>
                                     <div class="name">
                                         <span>renmada/t5-pegasus-pytorch</span>
-                                        <span>starred 24 hours ago</span>
+                                        <span>starred 1 day ago</span>
                                     </div>
                                 </div>
                                 <div class="field description">
@@ -1730,7 +1730,7 @@
                                     </svg>
                                     <div class="name">
                                         <span>fastnlp/CPT</span>
-                                        <span>starred 5 days ago</span>
+                                        <span>starred 6 days ago</span>
                                     </div>
                                 </div>
                                 <div class="field description">CPT: A Pre-Trained Unbalanced Transformer for Both Chinese Language Understanding and Generation</div>
@@ -1777,7 +1777,7 @@
                                     </svg>
                                     <div class="name">
                                         <span>yixinL7/BRIO</span>
-                                        <span>starred 5 days ago</span>
+                                        <span>starred 6 days ago</span>
                                     </div>
                                 </div>
                                 <div class="field description">ACL 2022: BRIO: Bringing Order to Abstractive Summarization</div>
@@ -2390,7 +2390,7 @@
             </section>
             <footer>
                 <span>These metrics include private contributions</span>
-                <span>Last updated 19 Aug 2022, 23:21:12 (timezone Asia/Shanghai) with lowlighter/metrics@3.27.0</span>
+                <span>Last updated 20 Aug 2022, 00:27:47 (timezone Asia/Shanghai) with lowlighter/metrics@3.27.0</span>
             </footer>
         </div>
         <div xmlns="http://www.w3.org/1999/xhtml" id="metrics-end"></div>
