@@ -1,0 +1,16 @@
+<launch>
+
+  <arg name="length" default="1.2" />
+  <arg name="width"  default="0.6" />
+
+  <include file="$(find show_trajectory)/launch/show_trajectory_rviz.launch" />
+
+  <param name="length" type="double" value="$(arg length)" />
+  <param name="width"  type="double" value="$(arg width)"  />
+
+  <node name="rectangle" pkg="trajectory_following" type="rectangle" output="screen" />
+  
+</launch>
+
+
+

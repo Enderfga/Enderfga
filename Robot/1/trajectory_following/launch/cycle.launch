@@ -1,0 +1,14 @@
+<launch>
+
+  <arg name="length" default="1.2" />
+
+  <include file="$(find show_trajectory)/launch/show_trajectory_rviz.launch" />
+
+  <param name="length" type="double" value="$(arg length)" />
+
+  <node name="cycle" pkg="trajectory_following" type="cycle" output="screen" />
+  
+</launch>
+
+
+
