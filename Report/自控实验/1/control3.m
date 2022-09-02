@@ -1,0 +1,10 @@
+z1 = [0;0;0];
+p1 = [-3];
+k1 = [1];
+[num1,den1] = zp2tf(z1,p1,k1);
+[r1,p1,k1] = residue(num1,den1);
+z2 = [-1+1i;-1-1i];
+p2 = [0 0 -5 1i -1i];
+k2 = [8];
+[num2,den2] = zp2tf(z2,p2,k2);
+[r2,p2,k2] = residue(num2,den2);
