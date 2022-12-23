@@ -1,0 +1,4 @@
+opencv-python
+omegaconf
+ftfy
+regex
