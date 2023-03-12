@@ -190,7 +190,7 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
                                         <path fill-rule="evenodd" d="M2.75 1.5a.25.25 0 00-.25.25v12.5c0 .138.112.25.25.25h10.5a.25.25 0 00.25-.25V4.664a.25.25 0 00-.073-.177l-2.914-2.914a.25.25 0 00-.177-.073H2.75zM1 1.75C1 .784 1.784 0 2.75 0h7.586c.464 0 .909.184 1.237.513l2.914 2.914c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0113.25 16H2.75A1.75 1.75 0 011 14.25V1.75zm7 1.5a.75.75 0 01.75.75v1.5h1.5a.75.75 0 010 1.5h-1.5v1.5a.75.75 0 01-1.5 0V7h-1.5a.75.75 0 010-1.5h1.5V4A.75.75 0 018 3.25zm-3 8a.75.75 0 01.75-.75h4.5a.75.75 0 010 1.5h-4.5a.75.75 0 01-.75-.75z"/>
                                     </svg>
-                                    61.9k added, 30.5k removed
+                                    66.2k added, 32.9k removed
                                 </div>
                             </section>
                             <section>
@@ -546,8 +546,8 @@
                         <div class="category column">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="50" height="50" class="gauge average">
                                 <circle class="gauge-base" r="53" cx="60" cy="60"/>
-                                <circle class="gauge-arc" transform="rotate(-90 60 60)" r="53" cx="60" cy="60" stroke-dasharray="289.52 329"/>
-                                <text x="60" y="60" dominant-baseline="central">88</text>
+                                <circle class="gauge-arc" transform="rotate(-90 60 60)" r="53" cx="60" cy="60" stroke-dasharray="286.23 329"/>
+                                <text x="60" y="60" dominant-baseline="central">87</text>
                             </svg>
                             <span class="title">Performance</span>
                         </div>
@@ -568,10 +568,10 @@
                             <span class="title">Best Practices</span>
                         </div>
                         <div class="category column">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="50" height="50" class="gauge high">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="50" height="50" class="gauge average">
                                 <circle class="gauge-base" r="53" cx="60" cy="60"/>
-                                <circle class="gauge-arc" transform="rotate(-90 60 60)" r="53" cx="60" cy="60" stroke-dasharray="299.39 329"/>
-                                <text x="60" y="60" dominant-baseline="central">91</text>
+                                <circle class="gauge-arc" transform="rotate(-90 60 60)" r="53" cx="60" cy="60" stroke-dasharray="269.78 329"/>
+                                <text x="60" y="60" dominant-baseline="central">82</text>
                             </svg>
                             <span class="title">SEO</span>
                         </div>
@@ -580,7 +580,7 @@
             </section>
             <div class="row">
                 <section>
-                    <img class="screenshot" src="data:image/jpeg;base64,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" width="452" height="315" />
+                    <img class="screenshot" src="data:image/jpeg;base64,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" width="452" height="315" />
                 </section>
             </div>
             <section>
@@ -1672,7 +1672,7 @@
                                     </svg>
                                     <div class="name">
                                         <span>Caldis/Mos</span>
-                                        <span>starred 7 hours ago</span>
+                                        <span>starred 8 hours ago</span>
                                     </div>
                                 </div>
                                 <div class="field description">一个用于在 macOS 上平滑你的鼠标滚动效果或单独设置滚动方向的小工具, 让你的滚轮爽如触控板  |  A lightweight tool used to smooth scrolling and set scroll direction independently for your mouse on macOS</div>
@@ -2495,7 +2495,7 @@
             </section>
             <footer>
                 <span>These metrics include private contributions</span>
-                <span>Last updated 12 Mar 2023, 23:14:24 (timezone Asia/Shanghai) with lowlighter/metrics@3.32.0</span>
+                <span>Last updated 13 Mar 2023, 00:18:53 (timezone Asia/Shanghai) with lowlighter/metrics@3.32.0</span>
             </footer>
         </div>
         <div xmlns="http://www.w3.org/1999/xhtml" id="metrics-end"></div>
