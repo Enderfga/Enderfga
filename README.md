@@ -1,6 +1,6 @@
 <h2 align="center">Hi 👋, I'm Enderfga </h2>
 <h4 align="center">Nothing is true, everything is permitted. </h4>
-<h3 align="center">An ordinary programmer from Sun Yat-sen University</h3>
+<h3 align="center">A CV Deep learner (with Ctrl)</h3>
 <h5 align="center">
   <a href="mailto:qq2639135175@gmail.com">EMAIL</a>&emsp;•&emsp;
   <a href="https://enderfga.cn/">BLOG</a>&emsp;•&emsp;
