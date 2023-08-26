@@ -10,7 +10,8 @@ on:
     types: [published]
   watch:
     types: [started]
-
+  workflow_dispatch:
+  push: {branches: ["master", "main"]}
 jobs: 
   Call-APi:
     runs-on: ubuntu-latest
