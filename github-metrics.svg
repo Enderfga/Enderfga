@@ -190,7 +190,7 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
                                         <path fill-rule="evenodd" d="M2.75 1.5a.25.25 0 00-.25.25v12.5c0 .138.112.25.25.25h10.5a.25.25 0 00.25-.25V4.664a.25.25 0 00-.073-.177l-2.914-2.914a.25.25 0 00-.177-.073H2.75zM1 1.75C1 .784 1.784 0 2.75 0h7.586c.464 0 .909.184 1.237.513l2.914 2.914c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0113.25 16H2.75A1.75 1.75 0 011 14.25V1.75zm7 1.5a.75.75 0 01.75.75v1.5h1.5a.75.75 0 010 1.5h-1.5v1.5a.75.75 0 01-1.5 0V7h-1.5a.75.75 0 010-1.5h1.5V4A.75.75 0 018 3.25zm-3 8a.75.75 0 01.75-.75h4.5a.75.75 0 010 1.5h-4.5a.75.75 0 01-.75-.75z"/>
                                     </svg>
-                                    2.09m added, 976k removed
+                                    413k added, 595k removed
                                 </div>
                             </section>
                             <section>
@@ -554,8 +554,8 @@
                         <div class="category column">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="50" height="50" class="gauge average">
                                 <circle class="gauge-base" r="53" cx="60" cy="60"/>
-                                <circle class="gauge-arc" transform="rotate(-90 60 60)" r="53" cx="60" cy="60" stroke-dasharray="286.23 329"/>
-                                <text x="60" y="60" dominant-baseline="central">87</text>
+                                <circle class="gauge-arc" transform="rotate(-90 60 60)" r="53" cx="60" cy="60" stroke-dasharray="250.04 329"/>
+                                <text x="60" y="60" dominant-baseline="central">76</text>
                             </svg>
                             <span class="title">Performance</span>
                         </div>
@@ -576,10 +576,10 @@
                             <span class="title">Best Practices</span>
                         </div>
                         <div class="category column">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="50" height="50" class="gauge high">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="50" height="50" class="gauge average">
                                 <circle class="gauge-base" r="53" cx="60" cy="60"/>
-                                <circle class="gauge-arc" transform="rotate(-90 60 60)" r="53" cx="60" cy="60" stroke-dasharray="299.39 329"/>
-                                <text x="60" y="60" dominant-baseline="central">91</text>
+                                <circle class="gauge-arc" transform="rotate(-90 60 60)" r="53" cx="60" cy="60" stroke-dasharray="269.78 329"/>
+                                <text x="60" y="60" dominant-baseline="central">82</text>
                             </svg>
                             <span class="title">SEO</span>
                         </div>
@@ -588,7 +588,7 @@
             </section>
             <div class="row">
                 <section>
-                    <img class="screenshot" src="data:image/jpeg;base64,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" width="452" height="315" />
+                    <img class="screenshot" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAFcAfQDASIAAhEBAxEB/8QAGgABAQADAQEAAAAAAAAAAAAAAAMCBAUBBv/EAC4QAQABAwQBAgUDBAMAAAAAAAABAgMSERRSkQQFIRMiMUFRMmFxFTOh0SOB8P/EABQBAQAAAAAAAAAAAAAAAAAAAAD/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwD7MAAAAHU9Br8ai75M+T8LX4X/AB/E00yyp/MTH01+wOWO3Ra9KuTT8e5jXNWVc01e366o00iNIjHGdYVv2fR66KqpuxTciLdONufaPlp1/n3y1n9gfPj6TxfH9O87TxvHte9NVyqNJmaqoypiJmYjXTSap/lo+qeN6fZ8Sdtey8iLs06Za/LrV/qnsHJAAAAAAAAAAAAAAAAAAAAAAAAAAHarq9Ij0LG3lPqE00zMzE/XL3iJ+n0jqf5Qivwdn40aURfiuPiTpM/L76/bT8A5gv51VqvyaqvHiItTpjGmmns2aK/C/pN2mumN57YTpOv6vf8Ab6A54616v02KfGimnKY/uYxPv7f70aHnVWavJrq8eIi1P0iImNOwQH0Xnx6F/RLceLXE+bTFE/SvWZ1+bXWNPy1vi+l3fJtTNvC1TlFUaTGX00n2/wCwcYV8v4UeVd2/vZynD+Ps+h9ev+heR6Xar8G38Py5jWaaaYpx/adI0B8yOrTd9Oqu2NaIpojTPWmZ1+X9vf6tHzptT5VyfH0+FM/LpExH+QQHc9Ts+BT6J4cePe8Sryrf9ybc1Z16/nWPs1a7vhbixNNFHw4jSuIiY1/f311/wDmjKqYquTMRjTM9Op6lX4FNux4/iRTXFMxNV6I99PfX7RM6+06fbT+Qckdmxc9KnzKpuW9LMxExE6+06+/2/wDf4ci5j8SrD9Gs6fwDEdDzNnV4dM+PNEXYmn5YiqKtNPfXX2mdfx+etTxJsx5VrdRVNjKM4p+un30BIbnq8+JV592fTqaqfG1+WKvq0wAAAAAAY5U8o7M6eUdpz41uZ96Ieba1wgFc6eUdmdPKO0tta4Qba1wgFc6eUdmdPKO0tta4Qba1wgFc6eUdmdPKO0tta4Qba1wgFc6eUdmdPKO0tta4Qba1wgFc6eUdmdPKO0tta4Qba1wgFc6eUdmdPKO0tta4Qba1wgFc6eUdmdPKO0tta4Qba1wgFc6eUdmdPKO0tta4Qba1wgFc6eUdmdPKO0tta4Qba1wgFc6eUdmdPKO0tta4Qba1wgFc6eUdmdPKO0tta4Qba1wgFc6eUdmdPKO0tta4Qba1wgFc6eUdmdPKO0tta4Qba1wgFc6eUdmdPKO0tta4Qba1wgFc6eUdmdPKO0tta4Qba1wgFc6eUdmdPKO0tta4Qba1wgFc6eUdmdPKO0tta4Qba1wgFc6eUdmdPKO0tta4Qba1wgFc6eUdmdPKO0tta4Qba1wgFc6eUdmdPKO0tta4Qba1wgFc6eUdmdPKO0tta4Qba1wgFc6eUdmdPKO0tta4Qba1wgFc6eUdmdPKO0tta4Qba1wgFc6eUdmdPKO0tta4Qba1wgFc6eUdmdPKO0tta4Qba1wgFc6eUdmdPKO0tta4Qba1wgFc6eUdmdPKO0tta4Qba1wgFc6eUdmdPKO0tta4Qba1wgFc6eUdmdPKO0tta4Qba1wgFc6eUdmdPKO0tta4Qba1wgFso/MCcWLcR7UwAqAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM7Fqq9dpt0aRVVOkazpC1zwb9q1cuXKcaaJ095+v8A1gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFb3kXr9NMXblVUU+0apAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPNXkySwmQZamSUzMMcpBfIyQykykF8jJDKTKQXyMkMpMpBfIyQykykF8jJDKTKQXyMkMpMpBfIyQykykF8jJDKTKQXyMkMpMpBfIyQykykF8jJDKTKQXyMkMpMpBfIyQykykF8jJDKTKQXyMkMpMpBfIyQykykF8jJDKTKQXyMkMpMpBfIyQykykF8jJDKTKQXyMkMpMpBfIyQykykF8jJDKTKQXyNUMpexVILxL2JRiWcAoPIegAAAA//Z" width="452" height="315" />
                 </section>
             </div>
             <section>
@@ -1676,7 +1676,7 @@
                                     </svg>
                                     <div class="name">
                                         <span>ultralytics/ultralytics</span>
-                                        <span>starred 21 hours ago</span>
+                                        <span>starred 22 hours ago</span>
                                     </div>
                                 </div>
                                 <div class="field description">NEW - YOLOv8 🚀 in PyTorch &gt; ONNX &gt; OpenVINO &gt; CoreML &gt; TFLite</div>
@@ -1803,7 +1803,7 @@
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
                                             <path fill-rule="evenodd" d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25zm0 2.445L6.615 5.5a.75.75 0 01-.564.41l-3.097.45 2.24 2.184a.75.75 0 01.216.664l-.528 3.084 2.769-1.456a.75.75 0 01.698 0l2.77 1.456-.53-3.084a.75.75 0 01.216-.664l2.24-2.183-3.096-.45a.75.75 0 01-.564-.41L8 2.694v.001z"/>
                                         </svg>
-                                        2.17k
+                                        2.18k
                                     </div>
                                     <div>
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
@@ -1835,7 +1835,7 @@
                                     </svg>
                                     <div class="name">
                                         <span>Whisky-App/Whisky</span>
-                                        <span>starred 2 days ago</span>
+                                        <span>starred 3 days ago</span>
                                     </div>
                                 </div>
                                 <div class="field description">A modern Wine wrapper for macOS built with SwiftUI</div>
@@ -2065,7 +2065,7 @@ mutlimodal -&gt; multimodal</div>
             </section>
             <footer>
                 <span>These metrics include private contributions</span>
-                <span>Last updated 17 Nov 2023, 23:14:50 (timezone Asia/Shanghai) with lowlighter/metrics@3.34.0</span>
+                <span>Last updated 18 Nov 2023, 00:19:56 (timezone Asia/Shanghai) with lowlighter/metrics@3.34.0</span>
             </footer>
         </div>
         <div xmlns="http://www.w3.org/1999/xhtml" id="metrics-end"></div>
