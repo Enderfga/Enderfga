@@ -190,7 +190,7 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
                                         <path fill-rule="evenodd" d="M2.75 1.5a.25.25 0 00-.25.25v12.5c0 .138.112.25.25.25h10.5a.25.25 0 00.25-.25V4.664a.25.25 0 00-.073-.177l-2.914-2.914a.25.25 0 00-.177-.073H2.75zM1 1.75C1 .784 1.784 0 2.75 0h7.586c.464 0 .909.184 1.237.513l2.914 2.914c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0113.25 16H2.75A1.75 1.75 0 011 14.25V1.75zm7 1.5a.75.75 0 01.75.75v1.5h1.5a.75.75 0 010 1.5h-1.5v1.5a.75.75 0 01-1.5 0V7h-1.5a.75.75 0 010-1.5h1.5V4A.75.75 0 018 3.25zm-3 8a.75.75 0 01.75-.75h4.5a.75.75 0 010 1.5h-4.5a.75.75 0 01-.75-.75z"/>
                                     </svg>
-                                    2.14m added, 1m removed
+                                    313k added, 532k removed
                                 </div>
                             </section>
                             <section>
@@ -554,8 +554,8 @@
                         <div class="category column">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="50" height="50" class="gauge average">
                                 <circle class="gauge-base" r="53" cx="60" cy="60"/>
-                                <circle class="gauge-arc" transform="rotate(-90 60 60)" r="53" cx="60" cy="60" stroke-dasharray="282.94 329"/>
-                                <text x="60" y="60" dominant-baseline="central">86</text>
+                                <circle class="gauge-arc" transform="rotate(-90 60 60)" r="53" cx="60" cy="60" stroke-dasharray="289.52 329"/>
+                                <text x="60" y="60" dominant-baseline="central">88</text>
                             </svg>
                             <span class="title">Performance</span>
                         </div>
@@ -576,10 +576,10 @@
                             <span class="title">Best Practices</span>
                         </div>
                         <div class="category column">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="50" height="50" class="gauge high">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="50" height="50" class="gauge average">
                                 <circle class="gauge-base" r="53" cx="60" cy="60"/>
-                                <circle class="gauge-arc" transform="rotate(-90 60 60)" r="53" cx="60" cy="60" stroke-dasharray="299.39 329"/>
-                                <text x="60" y="60" dominant-baseline="central">91</text>
+                                <circle class="gauge-arc" transform="rotate(-90 60 60)" r="53" cx="60" cy="60" stroke-dasharray="269.78 329"/>
+                                <text x="60" y="60" dominant-baseline="central">82</text>
                             </svg>
                             <span class="title">SEO</span>
                         </div>
@@ -588,7 +588,7 @@
             </section>
             <div class="row">
                 <section>
-                    <img class="screenshot" src="data:image/jpeg;base64,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" width="452" height="315" />
+                    <img class="screenshot" src="data:image/jpeg;base64,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" width="452" height="315" />
                 </section>
             </div>
             <section>
@@ -1702,7 +1702,7 @@
                                     </svg>
                                     <div class="name">
                                         <span>a16z-infra/ai-town</span>
-                                        <span>starred 16 hours ago</span>
+                                        <span>starred 17 hours ago</span>
                                     </div>
                                 </div>
                                 <div class="field description">A MIT-licensed, deployable starter kit for building and customizing your own version of AI town - a virtual town where AI characters live, chat and socialize.</div>
@@ -1755,7 +1755,7 @@
                                     </svg>
                                     <div class="name">
                                         <span>joonspk-research/generative_agents</span>
-                                        <span>starred 16 hours ago</span>
+                                        <span>starred 17 hours ago</span>
                                     </div>
                                 </div>
                                 <div class="field description">Generative Agents: Interactive Simulacra of Human Behavior</div>
@@ -2076,7 +2076,7 @@
             </section>
             <footer>
                 <span>These metrics include private contributions</span>
-                <span>Last updated 23 Nov 2023, 13:13:38 (timezone Asia/Shanghai) with lowlighter/metrics@3.34.0</span>
+                <span>Last updated 23 Nov 2023, 14:18:28 (timezone Asia/Shanghai) with lowlighter/metrics@3.34.0</span>
             </footer>
         </div>
         <div xmlns="http://www.w3.org/1999/xhtml" id="metrics-end"></div>
