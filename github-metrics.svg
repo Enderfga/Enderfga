@@ -190,7 +190,7 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
                                         <path fill-rule="evenodd" d="M2.75 1.5a.25.25 0 00-.25.25v12.5c0 .138.112.25.25.25h10.5a.25.25 0 00.25-.25V4.664a.25.25 0 00-.073-.177l-2.914-2.914a.25.25 0 00-.177-.073H2.75zM1 1.75C1 .784 1.784 0 2.75 0h7.586c.464 0 .909.184 1.237.513l2.914 2.914c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0113.25 16H2.75A1.75 1.75 0 011 14.25V1.75zm7 1.5a.75.75 0 01.75.75v1.5h1.5a.75.75 0 010 1.5h-1.5v1.5a.75.75 0 01-1.5 0V7h-1.5a.75.75 0 010-1.5h1.5V4A.75.75 0 018 3.25zm-3 8a.75.75 0 01.75-.75h4.5a.75.75 0 010 1.5h-4.5a.75.75 0 01-.75-.75z"/>
                                     </svg>
-                                    2.04m added, 941k removed
+                                    2.15m added, 1.01m removed
                                 </div>
                             </section>
                             <section>
@@ -554,8 +554,8 @@
                         <div class="category column">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="50" height="50" class="gauge average">
                                 <circle class="gauge-base" r="53" cx="60" cy="60"/>
-                                <circle class="gauge-arc" transform="rotate(-90 60 60)" r="53" cx="60" cy="60" stroke-dasharray="289.52 329"/>
-                                <text x="60" y="60" dominant-baseline="central">88</text>
+                                <circle class="gauge-arc" transform="rotate(-90 60 60)" r="53" cx="60" cy="60" stroke-dasharray="279.65 329"/>
+                                <text x="60" y="60" dominant-baseline="central">85</text>
                             </svg>
                             <span class="title">Performance</span>
                         </div>
@@ -576,10 +576,10 @@
                             <span class="title">Best Practices</span>
                         </div>
                         <div class="category column">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="50" height="50" class="gauge high">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="50" height="50" class="gauge average">
                                 <circle class="gauge-base" r="53" cx="60" cy="60"/>
-                                <circle class="gauge-arc" transform="rotate(-90 60 60)" r="53" cx="60" cy="60" stroke-dasharray="299.39 329"/>
-                                <text x="60" y="60" dominant-baseline="central">91</text>
+                                <circle class="gauge-arc" transform="rotate(-90 60 60)" r="53" cx="60" cy="60" stroke-dasharray="269.78 329"/>
+                                <text x="60" y="60" dominant-baseline="central">82</text>
                             </svg>
                             <span class="title">SEO</span>
                         </div>
@@ -588,7 +588,7 @@
             </section>
             <div class="row">
                 <section>
-                    <img class="screenshot" src="data:image/jpeg;base64,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" width="452" height="315" />
+                    <img class="screenshot" src="data:image/jpeg;base64,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" width="452" height="315" />
                 </section>
             </div>
             <section>
@@ -1670,7 +1670,7 @@
                                     </svg>
                                     <div class="name">
                                         <span>embodied-generalist/embodied-generalist</span>
-                                        <span>starred 14 hours ago</span>
+                                        <span>starred 15 hours ago</span>
                                     </div>
                                 </div>
                                 <div class="field description">Official code repository for 3D Embodied Generalist LEO</div>
@@ -1685,7 +1685,7 @@
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
                                             <path fill-rule="evenodd" d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25zm0 2.445L6.615 5.5a.75.75 0 01-.564.41l-3.097.45 2.24 2.184a.75.75 0 01.216.664l-.528 3.084 2.769-1.456a.75.75 0 01.698 0l2.77 1.456-.53-3.084a.75.75 0 01.216-.664l2.24-2.183-3.096-.45a.75.75 0 01-.564-.41L8 2.694v.001z"/>
                                         </svg>
-                                        32
+                                        33
                                     </div>
                                     <div>
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
@@ -2076,7 +2076,7 @@
             </section>
             <footer>
                 <span>These metrics include private contributions</span>
-                <span>Last updated 24 Nov 2023, 12:16:43 (timezone Asia/Shanghai) with lowlighter/metrics@3.34.0</span>
+                <span>Last updated 24 Nov 2023, 13:13:23 (timezone Asia/Shanghai) with lowlighter/metrics@3.34.0</span>
             </footer>
         </div>
         <div xmlns="http://www.w3.org/1999/xhtml" id="metrics-end"></div>
