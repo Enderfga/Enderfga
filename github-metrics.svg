@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="480" height="2984" class="">
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="2971" class="">
     <defs>
         <style/>
     </defs>
@@ -190,7 +190,7 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
                                         <path fill-rule="evenodd" d="M2.75 1.5a.25.25 0 00-.25.25v12.5c0 .138.112.25.25.25h10.5a.25.25 0 00.25-.25V4.664a.25.25 0 00-.073-.177l-2.914-2.914a.25.25 0 00-.177-.073H2.75zM1 1.75C1 .784 1.784 0 2.75 0h7.586c.464 0 .909.184 1.237.513l2.914 2.914c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0113.25 16H2.75A1.75 1.75 0 011 14.25V1.75zm7 1.5a.75.75 0 01.75.75v1.5h1.5a.75.75 0 010 1.5h-1.5v1.5a.75.75 0 01-1.5 0V7h-1.5a.75.75 0 010-1.5h1.5V4A.75.75 0 018 3.25zm-3 8a.75.75 0 01.75-.75h4.5a.75.75 0 010 1.5h-4.5a.75.75 0 01-.75-.75z"/>
                                     </svg>
-                                    2.18m added, 1m removed
+                                    2.09m added, 976k removed
                                 </div>
                             </section>
                             <section>
@@ -554,8 +554,8 @@
                         <div class="category column">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="50" height="50" class="gauge average">
                                 <circle class="gauge-base" r="53" cx="60" cy="60"/>
-                                <circle class="gauge-arc" transform="rotate(-90 60 60)" r="53" cx="60" cy="60" stroke-dasharray="282.94 329"/>
-                                <text x="60" y="60" dominant-baseline="central">86</text>
+                                <circle class="gauge-arc" transform="rotate(-90 60 60)" r="53" cx="60" cy="60" stroke-dasharray="292.81 329"/>
+                                <text x="60" y="60" dominant-baseline="central">89</text>
                             </svg>
                             <span class="title">Performance</span>
                         </div>
@@ -588,7 +588,7 @@
             </section>
             <div class="row">
                 <section>
-                    <img class="screenshot" src="data:image/jpeg;base64,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" width="452" height="315" />
+                    <img class="screenshot" src="data:image/jpeg;base64,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" width="452" height="315" />
                 </section>
             </div>
             <section>
@@ -1829,7 +1829,7 @@
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
                                             <path fill-rule="evenodd" d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25zm0 2.445L6.615 5.5a.75.75 0 01-.564.41l-3.097.45 2.24 2.184a.75.75 0 01.216.664l-.528 3.084 2.769-1.456a.75.75 0 01.698 0l2.77 1.456-.53-3.084a.75.75 0 01.216-.664l2.24-2.183-3.096-.45a.75.75 0 01-.564-.41L8 2.694v.001z"/>
                                         </svg>
-                                        100
+                                        101
                                     </div>
                                     <div>
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
@@ -1842,7 +1842,7 @@
                                             <path d="M8 9.5a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"/>
                                             <path fill-rule="evenodd" d="M8 0a8 8 0 100 16A8 8 0 008 0zM1.5 8a6.5 6.5 0 1113 0 6.5 6.5 0 01-13 0z"/>
                                         </svg>
-                                        18
+                                        19
                                     </div>
                                     <div>
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
@@ -2105,7 +2105,7 @@
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
                                 <path fill-rule="evenodd" d="M1.5 8a6.5 6.5 0 1113 0 6.5 6.5 0 01-13 0zM8 0a8 8 0 100 16A8 8 0 008 0zm.5 4.75a.75.75 0 00-1.5 0v3.5a.75.75 0 00.471.696l2.5 1a.75.75 0 00.557-1.392L8.5 7.742V4.75z"/>
                             </svg>
-                            On 11 Dec 2023, 14:21:19
+                            On 11 Dec 2023, 14:22:52
                         </div>
                     </section>
                 </div>
@@ -2115,14 +2115,14 @@
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
                                 <path fill-rule="evenodd" d="M10.5 7.75a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0zm1.43.75a4.002 4.002 0 01-7.86 0H.75a.75.75 0 110-1.5h3.32a4.001 4.001 0 017.86 0h3.32a.75.75 0 110 1.5h-3.32z"/>
                             </svg>
-                            Update single_model_cli.py
+                            Update multi_model_cli.py
                         </div>
                         <div class="field">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
                                 <path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm6.5-.25A.75.75 0 017.25 7h1a.75.75 0 01.75.75v2.75h.25a.75.75 0 010 1.5h-2a.75.75 0 010-1.5h.25v-2h-.25a.75.75 0 01-.75-.75zM8 6a1 1 0 100-2 1 1 0 000 2z"/>
                             </svg>
-                            <span class="code">6b7167e5</span>
-                            <span class="code">accessory/demos/single_model_cli.py</span>
+                            <span class="code">ee634a6c</span>
+                            <span class="code">accessory/demos/multi_model_cli.py</span>
                             <span class="code">
                                 <span class="snippet additions">++1</span>
                                 <span class="snippet deletions">--1</span>
@@ -2133,14 +2133,14 @@
                 <div class="row">
                     <section class="snippet">
                         <div class="body markdown">
-                            <code class="language-diff" xml:space="preserve"><span class="token coord">@@ -1,6 +1,6 @@</span><br /><span class="token unchanged"><span class="token prefix unchanged">·</span><span class="token line">import sys<br /></span><span class="token prefix unchanged">·</span><span class="token line">import argparse<br /></span></span><span class="token deleted-sign deleted"><span class="token prefix deleted">-</span><span class="token line">sys.path.append('..')<br /></span></span><span class="token inserted-sign inserted"><span class="token prefix inserted">+</span><span class="token line">sys.path.append(os.path.abspath(__file__).rsplit('/', 3)[0])<br /></span></span><span class="token unchanged"><span class="token prefix unchanged">·</span><span class="token line">from accessory.model.meta import MetaModel<br /></span><span class="token prefix unchanged">·</span><span class="token line">from accessory.data.system_prompt import format_prompt<br /></span><span class="token prefix unchanged">·</span></span></code>
+                            <code class="language-diff" xml:space="preserve"><span class="token coord">@@ -1,5 +1,5 @@</span><br /><span class="token unchanged"><span class="token prefix unchanged">·</span><span class="token line">import sys<br /></span></span><span class="token deleted-sign deleted"><span class="token prefix deleted">-</span><span class="token line">sys.path.append('..')<br /></span></span><span class="token inserted-sign inserted"><span class="token prefix inserted">+</span><span class="token line">sys.path.append(os.path.abspath(__file__).rsplit('/', 3)[0])<br /></span></span><span class="token unchanged"><span class="token prefix unchanged">·</span><span class="token line">import argparse<br /></span><span class="token prefix unchanged">·</span><span class="token line">from PIL import Image<br /></span><span class="token prefix unchanged">·</span><span class="token line">from accessory.model.meta import MetaModel</span></span></code>
                         </div>
                     </section>
                 </div>
             </section>
             <footer>
                 <span>These metrics include private contributions</span>
-                <span>Last updated 14 Dec 2023, 11:15:08 (timezone Asia/Shanghai) with lowlighter/metrics@3.34.0</span>
+                <span>Last updated 14 Dec 2023, 12:17:22 (timezone Asia/Shanghai) with lowlighter/metrics@3.34.0</span>
             </footer>
         </div>
         <div xmlns="http://www.w3.org/1999/xhtml" id="metrics-end"></div>
