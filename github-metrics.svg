@@ -1638,7 +1638,7 @@
                                     </svg>
                                     <div class="name">
                                         <span>Human3DAIGC/Make-A-Character</span>
-                                        <span>starred 3 hours ago</span>
+                                        <span>starred 4 hours ago</span>
                                     </div>
                                 </div>
                                 <div class="field description">Official repo for Make-A-Character: High Quality Text-to-3D Character Generation within Minutes</div>
@@ -2017,7 +2017,7 @@ pretrained_path argument now supports path on huggingface</div>
             </section>
             <footer>
                 <span>These metrics include private contributions</span>
-                <span>Last updated 9 Jan 2024, 18:15:49 (timezone Asia/Shanghai) with lowlighter/metrics@3.34.0</span>
+                <span>Last updated 9 Jan 2024, 19:12:31 (timezone Asia/Shanghai) with lowlighter/metrics@3.34.0</span>
             </footer>
         </div>
         <div xmlns="http://www.w3.org/1999/xhtml" id="metrics-end"></div>
