@@ -1637,7 +1637,7 @@
                                     </svg>
                                     <div class="name">
                                         <span>tencent-ailab/IP-Adapter</span>
-                                        <span>starred 4 hours ago</span>
+                                        <span>starred 5 hours ago</span>
                                     </div>
                                 </div>
                                 <div class="field description">The image prompt adapter is designed to enable a pretrained text-to-image diffusion model to generate images with image prompt.</div>
@@ -1690,7 +1690,7 @@
                                     </svg>
                                     <div class="name">
                                         <span>zhang-zx/SINE</span>
-                                        <span>starred 5 hours ago</span>
+                                        <span>starred 6 hours ago</span>
                                     </div>
                                 </div>
                                 <div class="field description">This respository contains the code for the CVPR 2023 paper SINE: SINgle Image Editing with Text-to-Image Diffusion Models.</div>
@@ -2018,7 +2018,7 @@ pretrained_path argument now supports path on huggingface</div>
             </section>
             <footer>
                 <span>These metrics include private contributions</span>
-                <span>Last updated 10 Jan 2024, 21:17:37 (timezone Asia/Shanghai) with lowlighter/metrics@3.34.0</span>
+                <span>Last updated 10 Jan 2024, 22:13:48 (timezone Asia/Shanghai) with lowlighter/metrics@3.34.0</span>
             </footer>
         </div>
         <div xmlns="http://www.w3.org/1999/xhtml" id="metrics-end"></div>
