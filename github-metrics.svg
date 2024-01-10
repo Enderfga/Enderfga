@@ -1637,7 +1637,7 @@
                                     </svg>
                                     <div class="name">
                                         <span>ShieldMnt/invisible-watermark</span>
-                                        <span>starred 4 hours ago</span>
+                                        <span>starred 5 hours ago</span>
                                     </div>
                                 </div>
                                 <div class="field description">python library for invisible image watermark (blind image watermark)</div>
@@ -1690,7 +1690,7 @@
                                     </svg>
                                     <div class="name">
                                         <span>tencent-ailab/IP-Adapter</span>
-                                        <span>starred 11 hours ago</span>
+                                        <span>starred 12 hours ago</span>
                                     </div>
                                 </div>
                                 <div class="field description">The image prompt adapter is designed to enable a pretrained text-to-image diffusion model to generate images with image prompt.</div>
@@ -1743,7 +1743,7 @@
                                     </svg>
                                     <div class="name">
                                         <span>zhang-zx/SINE</span>
-                                        <span>starred 12 hours ago</span>
+                                        <span>starred 13 hours ago</span>
                                     </div>
                                 </div>
                                 <div class="field description">This respository contains the code for the CVPR 2023 paper SINE: SINgle Image Editing with Text-to-Image Diffusion Models.</div>
@@ -2001,7 +2001,7 @@
             </section>
             <footer>
                 <span>These metrics include private contributions</span>
-                <span>Last updated 11 Jan 2024, 04:15:51 (timezone Asia/Shanghai) with lowlighter/metrics@3.34.0</span>
+                <span>Last updated 11 Jan 2024, 05:12:08 (timezone Asia/Shanghai) with lowlighter/metrics@3.34.0</span>
             </footer>
         </div>
         <div xmlns="http://www.w3.org/1999/xhtml" id="metrics-end"></div>
