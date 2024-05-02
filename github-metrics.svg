@@ -1642,7 +1642,7 @@
                                     </svg>
                                     <div class="name">
                                         <span>graphdeco-inria/gaussian-splatting</span>
-                                        <span>starred 20 days ago</span>
+                                        <span>starred 21 days ago</span>
                                     </div>
                                 </div>
                                 <div class="field description">Original reference implementation of "3D Gaussian Splatting for Real-Time Radiance Field Rendering"</div>
@@ -1695,7 +1695,7 @@
                                     </svg>
                                     <div class="name">
                                         <span>dreamgaussian/dreamgaussian</span>
-                                        <span>starred 20 days ago</span>
+                                        <span>starred 21 days ago</span>
                                     </div>
                                 </div>
                                 <div class="field description">Generative Gaussian Splatting for Efficient 3D Content Creation</div>
@@ -2048,7 +2048,7 @@
             </section>
             <footer>
                 <span>These metrics include private contributions</span>
-                <span>Last updated 2 May 2024, 19:12:19 (timezone Asia/Shanghai) with lowlighter/metrics@3.34.0</span>
+                <span>Last updated 2 May 2024, 20:27:20 (timezone Asia/Shanghai) with lowlighter/metrics@3.34.0</span>
             </footer>
         </div>
         <div xmlns="http://www.w3.org/1999/xhtml" id="metrics-end"></div>
