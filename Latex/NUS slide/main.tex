@@ -1,0 +1,253 @@
+\documentclass[8pt]{beamer}
+\usepackage{graphicx}
+\usepackage {mathtools}
+% \usepackage{utopia} %font utopia imported
+\usetheme{CambridgeUS}
+\usecolortheme{dolphin}
+\usepackage{animate}
+% set colors
+\definecolor{myNewColorA}{RGB}{255,102,0}
+\definecolor{myNewColorB}{RGB}{255,163,102}
+\definecolor{myNewColorC}{RGB}{255,224,204}
+\setbeamercolor*{palette primary}{bg=myNewColorC}
+\setbeamercolor*{palette secondary}{bg=myNewColorB, fg = white}
+\setbeamercolor*{palette tertiary}{bg=myNewColorA, fg = white}
+\setbeamercolor*{titlelike}{fg=myNewColorA}
+\setbeamercolor*{title}{bg=myNewColorA, fg = white}
+\setbeamercolor*{item}{fg=myNewColorA}
+\setbeamercolor*{caption name}{fg=myNewColorA}
+\usefonttheme{professionalfonts}
+\usepackage{natbib}
+\usepackage{hyperref}
+%------------------------------------------------------------
+\titlegraphic{\includegraphics[height=2cm]{figures/nus_logo_full-horizontal.jpg}}
+
+\setbeamerfont{title}{size=\LARGE}
+\setbeamerfont{subtitle}{size=\normalsize}
+\setbeamerfont{author}{size=\normalsize}
+\setbeamerfont{date}{size=\normalsize}
+\setbeamerfont{institute}{size=\normalsize}
+\title[National University of Singapore]{\textbf{Generative AI and Model Alignment}}
+% \subtitle{Some Subtitle}
+\author[Guian Fang]{Guian Fang}
+\institute[fanggan@mail2.sysu.edu.cn]{National University of Singapore}
+\date[ECE interview]{\today}
+
+%------------------------------------------------------------
+\usepackage{tikz}
+\usepackage{wrapfig}
+\setbeamertemplate{caption}[numbered]
+% \usepackage{times}
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\setlength{\abovedisplayshortskip}{2pt}
+\setlength{\belowdisplayshortskip}{2pt}
+%------------------------------------------------------------
+
+\begin{document}
+
+%The next statement creates the title page.
+\frame{\titlepage}
+% \begin{frame}
+% \frametitle{Contents}
+% \tableofcontents
+% \end{frame}
+%------------------------------------------------------------
+
+\begin{frame}{Outline}
+  \tableofcontents
+\end{frame}
+\section{Personal Basic Information}
+
+\subsection{Education}
+\begin{frame}{SYSU}{Sun Yat-sen University}
+  \begin{itemize}
+  \item {
+    Led as \textbf{Student Council and Intelligent Technology Association President}, organized multiple algorithm programming competitions.
+  }
+  \item {
+    GPA: \textbf{3.7/4.0}, achieved outstanding academic performance, ranking \textbf{1st} in the last two semesters respectively. Also secured top positions in multiple key courses.
+  }
+  \item {Supervisor: \textbf{Xiaodan Liang}}
+  \end{itemize}
+\end{frame}
+
+\subsection{Skills}
+\begin{frame}{The technical knowledge}
+  \begin{itemize}
+  \item
+    \textbf{Frameworks:} % Category
+    {PyTorch, TensorFlow, Keras, scikit-learn, Mindspore, PaddlePaddle} % Skills
+
+%---------------------------------------------------------
+
+%---------------------------------------------------------
+  \item
+    \textbf{Programming:} % Category
+    {Python, C/C++, Matlab, LaTeX, HTML} % Skills
+
+%---------------------------------------------------------
+  \item
+    \textbf{Languages:} % Category
+    {Chinese (Mandarin, mother tongue), English (IELTS 6.5)} % Skills
+
+      \item
+    \textbf{Other:} % Category
+    {Git (version control system), Linux (operating system),\\ Docker (containerization tool), Spack (package management tool),\\ Slurm (cluster management and job scheduling system)} % Skills
+  \end{itemize}
+\end{frame}
+
+
+\section{Research Experience \& Rewards
+}
+\subsection{Research Experience}
+\begin{frame}{On-campus scientific research.}
+
+\textbf{Principal Investigator}, National Undergraduate Innovation and Entrepreneurship Training Program.\\
+\textit{Sun Yat-sen University}, Jun. 2021 - Mar. 2023
+\begin{itemize}
+\item Online Evidence Enhanced and Fine-Grained Fake News Detection in Long Text During the COVID-19 Pandemic.(\textbf{NCAA Major Revision})
+\item Alzheimer's disease diagnosis based on multimodal data including images, voiceprints, poses, and biomarkers (collaborative work with the University of Tokyo,\textbf{ submitted to LANCET})
+\item {IEEE UV 2022 Paper Publication: Wise in Vaccine Allocation}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Industry scientific research.}
+\textbf{Primary author}, Enhancing Generative AI Models for 2D or 3D Using RLHF.\\
+\textit{HUAWEI | NOAH'S ARK LAB}, Mar. 2023 - Nov. 2023
+\begin{itemize}
+\item {\textbf{RealignDiff}: Boosting Text-to-Image Diffusion Model with Coarse-to-fine Semantic Re-alignment(\href{https://arxiv.org/abs/2305.19599}{\textbf{under ECCV review, CVPR got 4332.}})}
+        \item {\textbf{HumanRefiner}: Benchmarking Abnormal Human Generation and Refining with Coarse-to-fine Pose-Reversible Guidance(\textbf{under ECCV review}, CVPR got 432.)}
+\end{itemize}
+
+% \textbf{Main participant}, Fine-tuning large language models \& Controllable image generation.\\
+% \textit{Shanghai AI Laboratory}, Jul. 2023 - Current
+% \begin{itemize}
+% \item \href{https://github.com/OpenGVLab/LLaMA-Adapter}{\textbf{LLaMA-Adapter(4.9k stars)}}, \href{https://github.com/Alpha-VLLM/LLaMA2-Accessory}{\textbf{LLaMA2-Accessory(1.6k stars)}}
+% \end{itemize}
+\end{frame}
+\begin{frame}{RealignDiff}
+    \begin{figure}
+        \centering
+\includegraphics[width=0.55\textwidth]{demo/framework.pdf}
+    \end{figure}
+    \begin{figure}
+        \centering
+\includegraphics[width=0.55\textwidth]{demo/framework_1.pdf}
+    \end{figure}
+\end{frame}
+\begin{frame}{HumanRefiner}
+    \begin{figure}
+        \centering
+\includegraphics[width=0.95\textwidth]{demo/framework_v4.pdf}
+    \end{figure}
+\end{frame}
+\begin{frame}{Industry scientific research.}
+
+\textbf{Main participant}, Fine-tuning large language models \& Controllable image generation.\\
+\textit{Shanghai AI Laboratory}, Jul. 2023 - Nov. 2023
+\begin{itemize}
+\item \href{https://github.com/OpenGVLab/LLaMA-Adapter}{\textbf{LLaMA-Adapter(5.5k stars)}}, \href{https://github.com/Alpha-VLLM/LLaMA2-Accessory}{\textbf{LLaMA2-Accessory(2.5k stars)}}
+\item {Improving Compositional Text-to-image Generation with Large Vision-Language Models}
+        \item {\textbf{FocusDiff}: Foreground Self-Decoupling Customization for Text-to-Image Generation}
+\end{itemize}
+\end{frame}
+\begin{frame}{LLaMA2-Accessory}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.85\textwidth]{demo/logo.png}
+    \end{figure}
+\end{frame}
+% \begin{frame}{Edited by LVLM}
+%     \begin{figure}
+%         \centering
+%         \includegraphics[width=0.75\textwidth]{demo/overview.pdf}
+%     \end{figure}
+% \end{frame}
+\begin{frame}{FocusDiff}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.95\textwidth]{demo/ppt-5.pdf}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Academic scientific research.}
+\textbf{Primary author}, Evaluation of text-to-video generation.\\
+\textit{NUS | SHOW LAB}, Jun. 2023 - Current
+\begin{itemize}
+\item \textbf{Score A Video}: Towards A Better Metric for Text-to-Video Generation\\\href{https://showlab.github.io/T2VScore/}{(\textbf{under ECCV review, CVPR got 332.})}
+\item Assisted in organizing the 4th International CVPR Workshop on Long-form Video Understanding: \textbf{Towards Multimodal AI Assistant and Copilot.}
+\end{itemize}
+\textbf{Main participant}, Moltimodel LLM \& Prompt engineering.\\
+\textit{Alibaba | DAMO Academy}, Aug. 2023 - Nov. 2023
+\begin{itemize}
+\item \textbf{ChartThinker}: A Contextual Chain-of-Thought Approach to Optimized Chart Summarization(\textbf{COLING accepted})
+\end{itemize}
+
+\end{frame}
+\begin{frame}{Overview}
+ \begin{figure}[h]
+        \begin{minipage}{0.35\textwidth}
+            \centering
+            \animategraphics[width=\linewidth,loop]{8}{demo/text_alignment/}{00}{16}
+        \end{minipage}\hfill
+        \begin{minipage}{0.48\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{demo/model.pdf}
+        \end{minipage}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Current position}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.93\textwidth]{demo/position.png}
+    \end{figure}
+\end{frame}
+
+\subsection{Honors \& Awards}
+\begin{frame}{International \& Domestic}
+\textbf{2nd Place}, Asia and Pacific Mathematical Contest in Modeling\\
+Beijing, China, 2022
+\bigskip
+
+\textbf{Silver Medal}, China Collegiate Algorithm Design \& Programming Challenge Contest\\
+Shanghai, China, 2022
+\bigskip
+
+\textbf{2nd Place}, The 2022 Social Computing Innovation Competition\\
+Hangzhou, China, 2022
+\bigskip
+
+\textbf{1st Place}, 4th National College Computer Ability Challenge\\
+Shenzhen, China, 2023
+\end{frame}
+
+\begin{frame}
+\frametitle{Scholarship}
+\textbf{1st Place}, Outstanding Student Scholarship(Top \textbf{5\%})\\
+Shenzhen, China, 2022
+\bigskip
+
+\textbf{Recipient}, Huawei Intelligent Foundation Scholarship\\
+Shenzhen, China, 2022
+\bigskip
+
+\textbf{Recipient}, National scholarship(Rank \textbf{1st})\\
+Shenzhen, China, 2023
+\bigskip
+
+\textbf{Recipient}, Li Xuerou Foundation Scholarship (Among the top \textbf{10} students in the college)\\
+Shenzhen, China, 2023
+
+\end{frame}
+
+
+\section*{Acknowledgement}  
+\begin{frame}
+\centering
+\textcolor{myNewColorA}{\fontsize{40pt}{50pt}\selectfont Thank You!}
+\end{frame}
+
+\end{document}

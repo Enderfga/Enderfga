@@ -1,0 +1,180 @@
+\chapter{实验结果与分析}
+\label{cha:usage-example}
+
+\section{实现细节} \label{sec:implementation-details}
+\textbf{数据分割:}
+数据集被分为训练和测试集，比例为4:1，分别包含52k和13k的图像-文本对。本文进一步开发了一个用于人类评估的测试分割（参见~\ref{sec:human-evaluation}节），其中提示来自HumanArt~\cite{ju2023humanART}，每个提示描述了人类执行困难动作，如杂技、舞蹈和戏剧。
+
+\textbf{模型和训练设置:}
+\begin{itemize}
+    \item 异常评分器：根据Laion~\cite{schuhmann2022laion}中概述的美学评估方法，本文开发了一个异常评分器。这个模型基于多层感知机（MLP）的架构，并建立在预训练的CLIP视觉变换器大型（ViT-L）模型~\cite{CLIP}的基础上。这种设计选择允许对图像数据中的异常进行鲁棒和细致的评估。
+    \item 异常检测器：本文在训练集上对YOLOv8 \cite{yolo_redmon2016you} 和 RT-DETR \cite{lv2023detrs}进行了100个周期的微调。随后，本文在测试集上进行相应的检测，获得了在异常肢体检测上一致稳定的结果。
+    \item 负面提示微调：本文对SDXL~\cite{SDXL}发布的检查点在1024 x 1024的分辨率上进行了10个周期的微调，学习率为1.0e-5，在训练分割上，总批量大小为32。图像与原始文本描述配对，后跟异常标题（例如，Ab.hand, Ab.leg）。
+\end{itemize}
+
+\subsection{异常检测器}
+本文将数据集分为训练集和测试集，比例为4:1。随后，本文对YOLOv8~\cite{yolo_redmon2016you}和RT-DETR~\cite{lv2023detrs}进行了微调，以作为本文的检测器。用于微调YOLOv8的模型参数详见表~\ref{tab_detection_para}。在测试集上获得的结果总结在表~\ref{tab_detection_res}中。其中，YOLOv8n和YOLOv8x是YOLOv8系列中的两个模型，YOLOv8x包含更多的层和参数。在追求提高检测性能的过程中，本文选择YOLOv8x作为本文流程中的主要检测器。
+
+
+\begin{table}[h]
+\footnotesize
+    \centering
+    \caption{YOLOv8模型的参数设置。}
+    \begin{tabular}{c|ccccccccc|cccccccc}
+    \hline
+    \textbf{参数} & \textbf{nc} & \textbf{batch} & \textbf{patience} & \textbf{pre-trained} & \textbf{lr0} & \textbf{weight\_decay} & \textbf{NMS} & \textbf{iou} \\
+     \textbf{值} & 18 & 32 & 50 & true & 0.01 & 0.0005 & false &0.7  \\
+     \hline
+     \textbf{参数} &\textbf{epochs} & \textbf{images} & \textbf{workers} & \textbf{optimizer} & \textbf{momentum} & \textbf{augment} & \textbf{conf} & \textbf{max\_det} \\
+      \textbf{值} & 120 & 640 & 8 & auto & 0.937 & false & null & 300 \\
+    \hline
+    \end{tabular}
+    \label{tab_detection_para}
+\end{table}
+
+\begin{table}[h]
+  \centering
+  \caption{AbHuman数据集测试集上异常肢体检测结果。}
+    \begin{tabular}{cccc}
+    \toprule
+    模型 & Yolov8n & Yolov8x & RT-DETR \\
+    \midrule
+    mAP50 $\uparrow$ & 0.333 & \textbf{0.426} & 0.331 \\
+    mAP50-95 $\uparrow$ & \textbf{0.282}  & 0.235  & 0.188 \\
+    \bottomrule
+    \end{tabular}%
+  \label{tab_detection_res}%
+\end{table}%
+
+\subsection{异常评分器}
+
+
+\textbf{训练细节：} 本文使用学习率1.0e-4，通过AdamW~\cite{loshchilov2017decoupled}优化器，在AbHuman训练分割上对异常评分器进行了30个周期的微调，批量大小为256。被分配了异常标签的图像为正样本，而正常的为负样本。最后的线性层后跟一个sigmoid层，使用二元交叉熵作为目标函数。
+
+异常肢体检测的微调结果展示在表 \ref{tab_detection_res} 中，一些可视化的检测结果展示在图 \ref{fig_detection_example} 中。YOLOv8 \cite{yolo_redmon2016you} 和 RT-DETR \cite{lv2023detrs} 都一致地达到了稳定的结果。然而，由于人类姿势和场景风格的多样性，微调后的检测结果低于原始模型在MS-COCO\cite{MSCOCO_lin2014microsoft}上的预测。
+
+\section{定量实验} \label{sec:exps-quantitative}
+
+
+
+表\ref{tab:quantitative}展示了本文的HumanRefiner与其他几种模型在处理AbHuman数据集上的表现。可以看到，本文的模型在异常分数、CLIP分数和FID分数上均优于其他模型，表明HumanRefiner在减少异常、保持内容相关性以及提高图像质量方面具有较强的能力。这些结果证实了本文方法的有效性，尤其是在处理复杂、多样化的人类姿态和场景时，能够有效地改善生成图像的质量和真实性。
+
+\begin{table*}[h]
+\centering
+\caption{在AbHuman完整测试集（来自LAION的提示）和困难测试集（来自HumanArt的提示）上的异常分数、CLIP分数和FID分数。}
+\resizebox{1\columnwidth}{!}{
+\begin{tabular}{c|ccc|ccc}
+\hline
+数据集 & \multicolumn{3}{c|}{LAION} & \multicolumn{3}{c}{HumanArt}\\
+\hline
+模型              & 异常分数$\downarrow$ & CLIP分数$\uparrow$& FID分数$\downarrow$ & 异常分数$\downarrow$ & CLIP分数$\uparrow$ &  FID分数$\downarrow$ \\ \hline
+SSD-1B\cite{segmind_ssd1b}  & 0.612 & 34.02& 16.465 & 0.832 & {33.37} & 13.304 \\
+PixArt-XL-2-1024-MS\cite{chen2023pixartalpha}  & 0.701 & 34.32& 19.604 & 0.807 & 32.68 & 15.452\\
+DeepFloyd-IF\cite{shonenkov2023deepfloyd} & 0.595 & 32.72& 25.926 & 0.849 & 32.67 &21.512\\
+LCM\cite{luo2023latent}  & 0.644 & 32.99& 25.175 & 0.831 & 32.40 & 21.179\\
+SDXL\cite{podell2023sdxl} & 0.659 & 34.13& 30.024 & 0.857 & 32.40 & 20.796\\
+Pose-ControlNet\cite{zhang2023adding} & 0.663 & 33.51& 15.368 & 0.838 & 31.88 & 13.047\\
+Pose-T2I-Adapter\cite{mou2023t2i} & 0.624 &  34.79 & 15.658 & 0.807 & 32.72 &12.582\\
+HumanSD\cite{ju2023humansd} & 0.661 & 33.78& 50.546 & 0.801 & 33.03 & 38.032\\
+HumanRefiner（本文的） & \textbf{0.590} & \textbf{34.85}& \textbf{13.634} & \textbf{0.778} & \textbf{33.90} &\textbf{9.145}\\
+\bottomrule
+\end{tabular}}
+\label{tab:quantitative}
+\end{table*}
+
+
+
+\textbf{评估设置:} 本文与包括SOTA文本到图像扩散模型SDXL~\cite{SDXL}，DeepFlyod-IF~\cite{shonenkov2023deepfloyd}，LCM~\cite{luo2023latent}在内的基线方法进行了定量比较。对于需要额外姿态条件输入的方法，如HumanSD~\cite{ju2023humansd}，Pose-ControlNet~\cite{controlnet}和Pose-T2I-Adapter~\cite{t2i_adapter}，本文首先从SDXL~\cite{SDXL}生成一个初始图像，然后用姿态检测器~\cite{openpose}从中生成姿态条件，这与本文的姿态引导生成操作类似。测试提示来自AbHuman完整测试分割（来自LAION的提示）和困难测试分割（来自HumanArt的提示）。本文分别用异常分数、CLIP分数和FID定量评估生成的图像。异常分数衡量异常的严重程度。CLIP分数通过计算输入文本和生成图像之间的特征距离来评估图像-文本对齐。FID在生成的图像和LAION或HumanArt的GT图像之间计算。
+
+\textbf{结果:} 如表~\ref{tab:quantitative}所示，HumanRefiner在异常分数、FID和CLIP分数方面始终达到最佳性能。此外，与在SDXL上应用的Pose-ControlNet~\cite{controlnet}和Pose-T2I-Adapter~\cite{t2i_adapter}相比，HumanRefiner展示了显著的改进，表明HumanRefiner在集成现成方法（如姿态检测器和T2I-adapter~\cite{t2i_adapter}）方面的有效性。
+
+\label{sec:human-evaluation}
+\begin{figure*}[htb]
+    \centering
+    \includegraphics[width=1\columnwidth]{fig/human-evaluation1.pdf}
+    \caption{基于HumanArt提示的人类评估。百分比表示人类偏好的频率。"Tie"意味着具有相似偏好水平。}
+    \label{fig:human evaluation}
+\end{figure*}
+
+
+\textbf{人类评估:} 本文对使用HumanArt~\cite{ju2023humanART}提示生成的图像进行了人类偏好研究，询问了38名用户在DALL-E 3~\cite{openai2023dalle3}、SDXL~\cite{SDXL}和提出的HumanRefiner之间进行偏好比较。每位用户分别从真实性和肢体质量两个方面对图像进行比较。用户也可以选择“平局”，意味着两幅图像处于同一水平。在整个评估过程中，用户不知道图像是由哪个模型生成的。图~\ref{fig:human evaluation} 显示，HumanRefiner在人类生成的真实性和肢体质量方面均超过了DALL-E 3和SDXL。在肢体质量方面，HumanRefiner获得了比SDXL高2.9倍的偏好(32.3\% 对比 11.20\%)，以及比DALL-E 3高1.4倍的偏好(51.42\% 对比 36.03\%)，表明HumanRefiner能够生成高质量的人类姿态。
+
+\textbf{推理速度：}HumanRefiner在单个V100 GPU上运行效率高。表~\ref{tab:infer-speed}比较了HumanRefiner与三个基线在生成单个1024 x 1024图像的推理时间。尽管HumanRefiner相比于SDXL和HumanSD需要额外的时间，但它仍然比引入额外网络模块用于人类生成的Pose-ControlNet有更好的效率。
+
+\begin{table*}[!h]
+\centering
+\caption{HumanRefiner与三个基线生成单个1024 x 1024图像的推理时间}
+\begin{tabular}{l|cccc}
+\toprule
+方法 & SDXL & Pose-ControlNet & HumanSD & HumanRefiner \\ 
+% \hline
+\midrule
+时间成本 (秒) & 15.96 & 36.03 & 9.39 & 28.13 \\ 
+\bottomrule
+\end{tabular}
+\vspace{-2mm}
+\label{tab:infer-speed}
+\end{table*}
+
+
+
+\begin{table*}[h!]
+\centering
+\caption{对提出的组件进行消融研究，在AbHuman测试集（来自Laion的提示）上使用异常分数进行评估。}
+\vspace{-2mm}
+\begin{tabular}{cccc|c}
+\toprule
+负面提示 & 异常引导 & 检测器修补 & 姿态引导 &    异常分数 $\downarrow$ \\
+\midrule
+\cxmark & \cxmark & \cxmark & \cxmark & 0.659 \\
+\checkmark & \cxmark & \cxmark & \cxmark & 0.614 \\
+\checkmark & \checkmark & \cxmark & \cxmark & 0.605 \\
+\checkmark & \checkmark & \checkmark & \cxmark & 0.601 \\
+\checkmark & \checkmark & \checkmark & \checkmark & \textbf{0.590} \\
+\bottomrule
+\end{tabular}
+\label{tab:ablation}
+\end{table*}
+
+\textbf{消融研究：}
+本文进行了组件分析，以评估每个元素的贡献，使用异常分数作为生成质量的度量。如表~\ref{tab:ablation}所示，每个组件对异常分数都有明显的贡献。例如，从AbHuman数据集学习到的负面提示的引入显著降低了异常分数，从0.659降低到了0.614。
+
+为了更清晰地展示HumanRefiner的修正成果，本文在图~\ref{fig:ablation_examples}中展示了几个消融实验的发现。\textbf{基线}代表SDXL模型未经修改的输出，而\textbf{异常引导}和\textbf{姿态引导}展示了通过应用不同引导模块实现的结果。如图中第一行所示，在人物轮廓上观察到了明显的增强。此外，第二行和第四行展示了手部细节改善的不同程度。值得注意的是，即使在手部细节通常显得模糊的场景中，本文的\textbf{异常引导}模块也展示了修正的效果。重要的是，本文的\textbf{异常引导}模块的消融类似于数据集的消融，强调了数据集在本文方法中的关键作用。
+
+\section{定性结果}
+本文还在困难测试分割中展示了示例，包括参与舞蹈或表演杂技等活动的人类。如图~\ref{fig:visualize-compare}所示，与基线方法相比，HumanRefiner展现了更优越的肢体质量。它准确捕捉了人体姿势，呈现了自然的肢体属性，并展现了视觉上令人愉悦的布局。
+\newpage
+
+\begin{figure}[t]
+    \centering
+\includegraphics[width=0.9\linewidth]{fig/visualize-compare.pdf}
+   \caption{在参与活动提示的人类上进行的与基线的定性比较。}
+    \label{fig:visualize-compare}
+    \vspace{-5mm}
+\end{figure}
+
+\begin{figure}[b]
+    \centering
+    \includegraphics[width=0.8\columnwidth]{fig/ablation_examples1.pdf}
+    \caption{消融实验的可视化结果。}
+    \label{fig:ablation_examples}
+\end{figure}
+
+\section{HumanRefiner的更多可视化}
+本节展示了本文的HumanRefiner流程的中间结果，包括异常引导的输出、检测到的姿态、姿态引导输出以及修补的输出，见图~\ref{fig:visualize-examples-1}。
+
+
+
+\begin{figure*}[htb]
+	\centering  %图片全局居中
+	\subfloat[运动, 一位穿着休闲装的年轻BMX骑手在滑板公园中腾空而起]{
+		\includegraphics[width=\linewidth]{./fig/316.png}} \\
+	\subfloat[战斗, 一位为彩弹比赛装备好的玩家正在森林中前进]{
+		\includegraphics[width=\linewidth]{./fig/368.png}} \\
+	\subfloat[瑜伽, 两个人在日落时分的沙滩上表演瑜伽姿势]{
+		\includegraphics[width=\linewidth]{./fig/370.png}} \\
+	\subfloat[舞蹈, 一位穿着白色连衣裙的芭蕾舞者站在墙前]{
+		\includegraphics[width=\linewidth]{./fig/ap4.png}}
+	\caption{HumanRefiner流程的中间输出，从左到右：(1) 异常引导，(2) 姿态检测，(3) 姿态引导的粗略修正，和 (4) 修补输出。用\textcolor{red}{红色}框突出所有异常部分，并用\textcolor{green}{绿色}框标记相应的修正后的正常部分。 }
+     \label{fig:visualize-examples-1}
+\end{figure*}

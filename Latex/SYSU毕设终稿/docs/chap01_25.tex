@@ -1,0 +1,84 @@
+
+\newcommand{\myparagraph}[1]{
+\vspace{0.2cm}\noindent
+\textbullet\hspace{0.1cm}\textbf{#1.}
+}
+\section{扩散模型控制机制的相关工作}
+\label{sec:control}
+
+在本节中，本文从分数视角出发，介绍扩散模型的控制机制~\cite{song2021scorebased}。遵循\cite{luo2022understanding}的研究，本文可以将扩散模型反向过程中的近似去噪过渡均值$\mu_{\theta}(x_t, t)$设置为：
+\begin{equation}
+\label{eq:mu}
+\mu_{\theta}(x_t, t) = \frac{1}{\sqrt{\alpha_t}} x_t - \frac{1 - \alpha_t}{\sqrt{\bar{\alpha}_t}} s_{\theta}(x_t, t) 
+\end{equation}
+其中，$s_{\theta}(x_t, t)$是一个用于学习预测得分函数$\nabla_{x_{t}}\log p_t(x)$的神经网络。在DDPM中，有如下关系：
+\begin{equation}
+\nabla_{x_{t}}\log p_t(x)=-\frac{1}{\sqrt{1-\bar{\alpha}_t}}\epsilon
+\end{equation}
+其中，$\epsilon \sim \mathcal{N}(0, \mathbf{I})$是在前向过程中使用的高斯噪声，$\alpha_t:=1-\beta_t$，且$\bar\alpha_t:=\prod_{s=0}^{t}\alpha_s$。因此，方程~\ref{eq:mu}可以改写为：
+\begin{equation}
+\label{eq:mu_epsilon}
+\mu_{\theta}(x_t, t) = \frac{1}{\sqrt{\alpha_t}} \left(x_t - \frac{1 - \alpha_t}{\sqrt{1 - \bar{\alpha}_t}} \hat\epsilon(x_t, t) \right)
+\end{equation}
+其中，$\hat\epsilon(x_t, t)$是对$\epsilon$的预测。
+
+在条件生成问题中（其中$c$表示条件），得分函数通过后验概率项$\nabla_{x_{t}}\log p_t(c|x)$进行扩展，并变为$\nabla_{x_{t}}\log \left (p_t(x)p_t^w(x|c) \right)$（$w$代表一个控制条件强度的超参数），参见\cite{dhariwal2021diffusion,ho2022classifier}。为了利用神经网络进行条件生成，分类器无导向方法(CFG)\cite{ho2022classifier}将其转化为：
+\begin{align}
+    \nabla_{x_{t}}\log &\left (p_t(x)p_t^w(x|c) \right) \nonumber\\
+    &= \nabla_{x_{t}}\log p_t(x)+w\nabla_{x_{t}}\log p_t(c|x) \nonumber \\
+    & = \nabla_{x_{t}}\log p_t(x) + w\nabla_{x_{t}}\log \frac{p_t(x|c)}{p_t(x)} \nonumber \\
+    & = (1-w)\nabla_{x_{t}}\log p_t(x) + w\nabla_{x_{t}}\log p_t(x|c)
+\end{align}
+其中，$\nabla_{x_{t}}\log p_t(x)$和$\nabla_{x_{t}}\log p_t(x|c)$可以通过训练模型$\epsilon_{\theta}(x_t, \cdot, t)$来预测，前者通过$\epsilon_{\theta}(x_t, \phi, t)$预测，后者通过$\epsilon_{\theta}(x_t, c, t)$预测。
+
+现有的文本到图像扩散模型通过随机丢弃文本提示的方式训练模型$\epsilon_{\theta}(x_t, \cdot, t)$，采用CFG的去噪过程如下所示：
+\begin{align}
+\label{eq:cfg}
+    \hat\epsilon(x_t, c_{text}, t)=(1-w)\epsilon_{\theta}(x_t, \phi, t)+w\epsilon_{\theta}(x_t, c_{text}, t)
+\end{align}
+并在方程~\ref{eq:mu}中使用$\hat\epsilon(x_t, c_{text}, t)$进行条件合成。
+因此，对带有新颖条件$c_{novel}$的文本到图像模型进行控制的关键在于建模得分$\nabla_{x_{t}}\log p_t(x|c_{text},c_{novel})$。遵循\cite{dhariwal2021diffusion,zhang2023text}的研究，存在两种主要机制，即条件得分预测与条件引导得分估计，下面本文将对此进行阐述。
+
+\subsection{条件得分预测}
+\label{sec:csp}
+
+\begin{figure}[htbp]
+    \centering
+    \subfloat[基于模型的条件得分预测]{
+        \includegraphics[width=\textwidth]{figures/mechanism_model.pdf}
+        \label{fig:csp_model}
+    }\\
+    \subfloat[基于调整的条件得分预测]{
+        \includegraphics[width=\textwidth]{figures/mechanism_tune.pdf}
+        \label{fig:csp_tune}
+    }\\
+    \subfloat[无需训练的条件得分预测]{
+        \includegraphics[width=\textwidth]{figures/mechanism_free.pdf}
+        \label{fig:csp_free}
+    }
+    \caption{\textbf{条件得分预测机制示意图}}
+    \label{fig:csp}
+\end{figure}
+
+尽管文本到图像扩散模型利用$\epsilon_{\theta}(x_t, c_{text}, t)$预测$\nabla_{x_{t}}\log p_t(x|c_{text})$，但在采样过程中通过条件得分预测来指导扩散模型是一种根本而强大的方式。这些方法引入$c_{novel}$至$\epsilon_{\theta}(x_t, c_{text}, t)$中，构建出$\tilde\epsilon(x_t, c_{text}, c_{novel}, t)$直接预测$\nabla_{x_{t}}\log p_t(x|c_{text},c_{novel})$。此时，条件得分预测方法结合CFG的去噪过程可表示为：
+\begin{align}
+    \label{eq:cfg_cond}
+    \hat\epsilon(x_t, c_{text}, c_{cond}, t)=(1-w)&\tilde\epsilon(x_t, \phi, t) \nonumber\\
+    +w&\tilde\epsilon(x_t, c_{text}, c_{cond}, t)
+\end{align}
+接下来，本文将展示几种获取$\tilde\epsilon(x_t, c_{text}, c_{novel}, t)$的主要途径。
+
+\myparagraph{基于模型的条件得分预测} 一些方法采用附加编码器$E$对新颖条件进行编码，并将编码后的特征输入到$\epsilon_\theta$中，其条件得分预测过程如下：
+\begin{align}
+\tilde\epsilon(x_t, c_{text}, c_{novel}, t)&=\epsilon_{\theta^*}(x_t, c_{text}, E(c_{novel}), t)
+\end{align}
+其中$E$和$\theta^*$是可训练的。该方案的示意图如图\ref{fig:csp_model}所示。
+
+\myparagraph{基于调整的条件得分预测} 调整型方法通常专注于适应特定条件，在数据有限的情况下尤为适用，例如单样本或少量样本场景。这类方法通过将文本条件$c_{text}$或模型参数$\theta$转换为针对给定条件的形式实现条件预测，如图\ref{fig:csp_tune}所示。这可以表达为：
+\begin{align}
+\tilde\epsilon(x_t, c_{text}, c_{novel}, t)&=\epsilon_{\theta^*}(x_t, c^*_{text}, t)
+\end{align}
+其中条件信息被存储在$c_{text}$和$\theta$之中。
+
+\myparagraph{无需训练的条件得分预测} 
+与上述需要训练过程的技术不同，有些方法设计为无需训练的方式（参考图\ref{fig:csp_free}）。它们利用UNet结构的内在能力，直接通过引入条件来控制生成过程，比如调节交叉注意力映射以控制布局\cite{he2023localized,zhao2023loco}，或在自注意力中引入参考图像特征以控制风格\cite{hertz2023style}。

@@ -1,0 +1,191 @@
+\chapter{相关技术概述}
+
+\section{基于扩散模型的方法及其进展}
+\label{diffusion}
+
+近年来，扩散模型，如去噪扩散概率模型（DDPMs）\cite{ho2020denoising, sohl2015deep}，在生成式图像建模的研究中获得了显著突破，相关工作包括但不限于\cite{song2020denoising, song2020score, jolicoeur2020adversarial}。
+
+DDPMs作为一类潜在变量模型，设计了一个双阶段机制——正向扩散过程和反向扩散过程。正向过程中，通过一系列马尔可夫链步骤，在时间步长$t = 1, \cdots, T$下，逐步对潜变量$\x_t$施加高斯噪声，具体表达为$q(\x_t | \x_{t-1}) := \mathcal{N}(\sqrt{1-\beta_t}\x_{t-1}, \beta_t\mathbf{I})$，其中$\{\beta_t\}^T_{t=0}$代表预先设定或学习得到的方差时间序列。
+
+反向过程$q(\x_{t-1} | \x_{t})$同样采用高斯转移模型进行参数化，定义为$p(\x_{t-1}|\x_{t}) := \mathcal{N}(\x_{t-1}; \mu(\x_t), \sigma_t^2\mathbf{I})$。这里，$\mu(\x_t)$可以通过线性组合方式分解，其中包括待学习的噪声逼近模型$\epsilon_\theta(\x_t, t)$。一旦训练好$\epsilon_\theta(\x, t)$，DDPM的采样即可沿逆向扩散路径执行，逐步还原潜变量至原始图像状态。
+
+Song等人\cite{song2020denoising}进一步提出了非马尔可夫噪声过程的替代方案，该过程虽然具有与DDPM相同的正向边缘分布，但允许通过调整噪声方差使用不同的采样算法。例如，当噪声被设置为0时（即DDIM采样\cite{song2020denoising}），采样过程转变为确定性，从而显著减少潜变量恢复原始图像所需的步骤量，这一成果也在后续研究\cite{dhariwal2021diffusion}中得到证实。
+
+当前，扩散模型在图像合成任务上的表现已超越了诸多传统方法，如变分自编码器(VAEs)\cite{kingma2013auto}、流模型\cite{rezende2015variational, dinh2016density}、自回归模型\cite{menick2018generating, van2016pixel}以及生成对抗网络(GANs)\cite{goodfellow2014generative, karras2019style}\cite{dhariwal2021diffusion}。
+
+针对条件图像生成与编辑的需求，目前主要集中在两大研究方向：一是利用预训练模型结合指引函数或微调技术\cite{liu2021more}；二是直接从头训练有条件扩散模型\cite{rombach2022high}。然而，指引函数方法的一大局限在于需要额外的指导模型，这可能增加训练流程的复杂度。
+
+近期的研究进展中，Ho等人\cite{ho2022classifier}提出了一种新颖的无额外指引模型的策略，通过在带标签和无标签扩散模型预测间插值以实现有效指引，实验结果表现出色。此外，GLIDE\cite{nichol2021glide}对比分析了CLIP引导的扩散模型与有条件扩散模型在文本到图像合成任务中的表现，揭示了训练有条件扩散模型对于提升生成性能的重要性。
+
+
+
+
+
+\section{有条件扩散模型的应用与发展}
+\label{conditional_diffusion_models}
+
+为了应对多模态图像生成与编辑挑战，研究人员通过将条件信息无缝融入去噪过程中构建了有条件的扩散模型。这一节将探讨条件整合机制、潜在空间扩散以及模型架构的发展。
+
+\subsection{条件信息整合}
+\label{condition_integration}
+
+在构建有条件扩散模型的标准框架中，通常采用特定的条件编码器将多模态条件转换为嵌入向量，并如图~\ref{diffusion_conditional}所示将其集成至模型内部。这些条件编码器可以随模型一同学习，也可以利用预训练模型获得。
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\linewidth]{figures/diffusion_conditional.pdf}
+\caption{有条件扩散模型的整体框架。通过某种潜在表示模型,扩散过程在某种指引(如语义图、深度图和文本)的条件下,对潜在空间进行建模,逆向进行正向扩散过程。图像据 \cite{rombach2022high} 重现。}
+\label{diffusion_conditional}
+\end{figure}
+
+CLIP常作为文本嵌入的首选，例如在DALL-E 2系统中所采用\cite{ramesh2022hierarchical}。此外，通用的大规模语言模型（如预训练文本库T5\cite{raffel2020exploring}）也展现出在将文本转化为用于图像合成的有效编码方面的突出性能，这一点在Imagen项目中得到了验证\cite{saharia2022photorealistic}。
+
+获取条件嵌入后，采用多种机制将其融入扩散模型。例如，条件嵌入可以直接与扩散时间步嵌入串联或相加\cite{dhariwal2021diffusion, ho2022cascaded}。在LDM\cite{rombach2022high}中，则采用了交叉注意力机制将条件嵌入映射至扩散模型的中间层级。
+
+相较于直接融合，Imagen\cite{saharia2022photorealistic}比较了使用交叉注意力机制的不同池化方法，如均值池化和注意力池化，并发现两者效果均逊色于无池化的方案。
+
+Wang等人\cite{wang2022semantic}为进一步提升生成图像的质量和语义一致性，提出了通过空间自适应归一化将视觉指南融入模型的方法。而ControlNet\cite{zhang2023adding}则是专注于将条件信息添加至预训练扩散模型以实现可控生成，为此设计了“零卷积”，允许卷积权重从零开始逐渐学习至最优参数，以整合指导信息。
+
+\subsection{潜在空间扩散}
+\label{latent_diffusion}
+
+为了在有限计算资源上训练扩散模型，同时保持其质量和灵活性，若干研究致力于在学习到的潜在空间中实施扩散过程，参见图~\ref{diffusion_conditional}。
+
+通常借助自编码模型学习与图像空间语义等价的潜在空间。然而，这样的潜在空间可能存在较高方差问题，因此需要对其进行正则化。
+
+一种常见的正则化手段是运用KL散度使其接近标准正态分布。另一种途径则是采用VQGAN\cite{esser2020taming}变体，如\cite{rombach2022high}中提出的吸收量化层，通过对潜在空间进行向量量化来实现正则化。
+
+此外，VQGAN还可直接学习一个离散的潜在空间（即量化层不被吸收），并在这样的离散空间内建立离散扩散过程模型\cite{gu2021vector}。Tang等人\cite{tang2022improved}通过引入高效的推理策略改进了VQ-Diffusion，以解决联合分布问题。
+
+\subsection{模型架构革新}
+\label{model_architectures}
+
+扩散模型最初的架构革新始于Ho等人\cite{ho2020denoising}引入U-Net架构，它能够将CNN的归纳偏置融入扩散过程。此后，U-Net结构经历了系列优化，包括加入注意力模块\cite{dhariwal2021diffusion}、上下采样激活的残差块设计\cite{song2020score}以及自适应组归一化\cite{dhariwal2021diffusion}。
+
+尽管U-Net架构已被顶级扩散模型广泛应用，Chahal\cite{chahal2022exploring}指出，基于Transformer的LDM\cite{rombach2022high}凭借其多头注意力机制能更好地处理多模态条件，并达到与基于U-Net的LDM相似甚至相媲美的性能。特别是在离散潜在空间场景下（如\cite{jiang2022text2human, gu2021vector}），Transformer架构更为受青睐。
+
+DALL-E 2\cite{ramesh2022hierarchical}提出了两阶段结构，首先在CLIP潜在空间中将文本转换为中间图像嵌入，然后再通过有条件扩散模型生成最终图像，这种方式提高了生成图像的多样性\cite{ramesh2022hierarchical}。
+
+除此之外，还有其他创新架构被探索，例如组合多扩散模型生成图像的合成架构\cite{liu2022compositional}、共享参数或受限关系的多扩散过程架构\cite{bar2023multidiffusion}、以及为降低高昂计算成本而研发的基于检索的扩散模型\cite{blattmann2022retrieval}等。
+\section{预训练扩散模型的再利用与调整}
+\label{pretrained_diffusion_models}
+
+面对重新训练扩散模型的高昂成本，一条重要的研究路径是探索如何通过有效的监督策略引导预训练模型的去噪过程，或是对其进行低成本的微调，如图~\ref{diffusion_pretrained}所示。
+
+\begin{figure*}[h]
+\centering
+\includegraphics[width=1.0\linewidth]{figures/diffusion_pretrained.pdf}
+\caption{用于多模态图片生成与编辑任务的预训练扩散模型的典型框架,包括指引函数方法和微调方法。图像据 \cite{liu2021more} 和 \cite{kawar2022imagic} 重现。}
+\label{diffusion_pretrained}
+\end{figure*}
+
+
+\subsection{指导函数方法}
+\label{guidance_function_approach}
+
+Dhariwal等人\cite{dhariwal2021diffusion}率先尝试将分类器指导整合进预训练扩散模型中，这种方法可以推广至使用多样化的指导信号实现有条件生成。具体来说，在存在指导信号 \(y\) 的情况下，反向过程 \(p(\mathbf{x}_{t-1}|\mathbf{x}_t)\) 能够被改写为 \(p(\mathbf{x}_{t-1}|\mathbf{x}_t, y)\)。按照\cite{dhariwal2021diffusion}中的推导，最终的扩散采样公式可以表达为：
+\begin{equation}
+    \mathbf{x}_{t-1} = \mu(\mathbf{x}_t) + \sigma_t^2 \nabla_{\mathbf{x}_t} \log p(y|\mathbf{x}_t) + \sigma_t \varepsilon, \quad \varepsilon \sim \mathcal{N}(0, \mathbf{I})
+\end{equation}
+其中，\(F(\mathbf{x}_t, y) = \log p(y|\mathbf{x}_t)\) 被称为指导函数，表示在时间步 \(t\) 时，噪声图像 \(\mathbf{x}_t\) 与指导信号 \(y\) 的一致性，这一一致性可以通过诸如余弦相似度、L2距离等相似度度量来建模\cite{liu2021more}。由于相似度常常在特征空间中计算，所以可以使用预训练的 CLIP 模型作为图像编码器和条件编码器，尤其是在文本指导的情况下，如图~\ref{diffusion_pretrained}(a)所示。考虑到 CLIP 在干净图像上训练，而扩散模型则处理的是带噪图像，因此有必要对 CLIP 进行自监督微调，确保其从干净和带噪图像中提取的特征一致\cite{liu2021more}。
+
+为了增强生成结果与指导信号的一致性，可以引入参数 \(\gamma\) 来调整指导梯度的权重：
+\begin{equation}
+    \mathbf{x}_{t-1} = \mu(\mathbf{x}_t) + \sigma_t^2 \gamma \nabla_{\mathbf{x}_t} \log p(y|\mathbf{x}_t) + \sigma_t \varepsilon, \quad \varepsilon \sim \mathcal{N}(0, \mathbf{I})
+\end{equation}
+显而易见，当 \(\gamma\) 较大时，模型将更加重视与指导模式的一致性。因此，\(\gamma\) 与生成结果与指导信号的一致性正相关，而与生成多样性的关系则相反\cite{dhariwal2021diffusion}。此外，为了实现在局部区域对图像进行指导编辑，可以采用混合扩散机制\cite{avrahami2021blended}，即在不同的去噪程度下，将带噪图像与局部指导的扩散潜在表示空间进行混合。
+
+\subsection{微调方法}
+\label{fine_tuning_methods}
+
+在微调策略方面，可以通过调整潜在编码或适应预训练的扩散模型，以实现多模态图片生成和编辑，如图~\ref{diffusion_pretrained}(b)所示。对于无条件预训练模型以适应文本引导编辑，首先通过前向扩散过程将输入图像转换至潜在空间，随后在逆向路径上对扩散模型进行微调，使其根据目标文本及 CLIP 损失生成对应的图像\cite{kim2021diffusionclip}。
+
+对于已经预训练好的有条件模型（通常以文本为条件），类似GAN的逆向过程，可以微调文本潜在嵌入或整个扩散模型，以便忠实重建少量图像（或目标）\cite{ruiz2022dreambooth, gal2022image}。随后，得到的文本嵌入或微调后的模型可用于新环境下的同一目标生成。然而，这些方法\cite{ruiz2022dreambooth, gal2022image}往往会导致原始图像布局的重大变化。鉴于图像空间布局与文本提示之间关系的关键在于交叉注意力层，Prompt-to-Prompt\cite{hertz2022prompt}提出通过操作交叉注意力映射来保留原始图像的部分内容。
+
+另外，通过使用针对图像重建微调的模型，在扩散采样的早期阶段提供得分指导，可以保证内容和结构的保留\cite{zhang2022sine}。同样地，\cite{kawar2022imagic}也采用了类似技术，通过对扩散模型和文本嵌入进行图像重建的微调，使得通过文本嵌入插值仍能维持内容不变。这些方法利用逐步扩散采样过程，在保持原有内容的同时实现目标指导下的图像生成与编辑。
+
+
+\section{特定条件下可控的文本到图像生成}
+\label{sec:method}
+
+% \begin{figure*}[t!]
+% 	\begin{center}
+% 		\includegraphics[width=1.0\linewidth]{figures/controllable.pdf}
+% 	\end{center}
+% 	\captionsetup{font=small}
+% 	\caption{\small{
+% \textbf{特定条件下可控的文本到图像生成示意图。} 条件部分用蓝色背景标记。示例来源于\cite{wei2023elite,chen2023photoverse,chen2023artadapter,huang2023learning,ramesh2022hierarchical,cao2023concept,zhang2023adding,wang2023context,wu2023paragraph,lu2023minddiffuser,qin2023gluegen,zhang2023brush}。}}
+% \label{fig:personalized}
+% \end{figure*}
+
+基于文本到图像扩散模型的基础，引入新颖条件以引导生成过程是一项复杂而多层面的任务。接下来的章节将从条件视角回顾现有的条件生成方法，对其方法论进行全面评述。
+
+\subsection{个性化}
+\label{sec:personalization}
+个性化任务旨在捕获和利用难以通过文本描述的概念作为生成条件，这些条件来自示例图像并用于可控生成。本节本文将概述这些个性化的条件，并对其进行分类，以便更清晰地理解它们在不同应用和功能上的多样性。本文在图\ref{fig:personalized}中展示了个性化的结果。
+
+\subsubsection{主体驱动生成}
+\label{sec:subject}
+在本节中，本文将详细概述主体驱动生成方法。主体驱动生成任务（也称为主体中心化个性化）旨在产生保留所提供样本主体内容的视觉内容。实际上，许多主体驱动生成方法并不局限于特定主体类型的条件，它们往往展现出更为普遍的能力。因此，在总结本章讨论的诸多方法时，本文将采取更宽泛的视角，尽可能展示其通用适用性，旨在更好地理解它们的贡献和作用。
+
+根据第\ref{sec:control}节提到的控制机制，由于所有这些方法均采用基于条件的评分预测来引入条件，本文将它们按以下管道进行分类：调优式方法，通过适应模型参数或嵌入以满足特定条件；模型式方法，利用编码器提取个性化条件并将其输入扩散模型；以及无训练式方法，借助外部参考指导生成过程，无需训练。
+
+\myparagraph{基于调优的个性化评分预测}
+一种简单而有效的方法是从提供的样本中抓取概念，即选择性地调整一部分参数以在文本到图像模型中重建这些概念，更新后的参数针对期望的概念进行了定制~\cite{dong2022dreamartist,gal2022image,ruiz2023dreambooth,voynov2023p+,zhang2023prospect,roy2023diffnat,zhao2023videoassembler}。
+
+作为文本到图像扩散模型的基本输入，文本在使模型适应特定用户需求方面起着至关重要的作用。文本反转（Textual Inversion, TI）\cite{gal2022image}采用了创新的方式，即将用户提供的概念嵌入到文本嵌入空间中的新“词汇”中。这种方法扩展了分词器的词汇表并通过在提供的图像上执行去噪过程优化附加令牌。DreamBooth\cite{ruiz2023dreambooth}遵循类似的路径，但使用低频词（例如，sks）来表示概念，并进一步通过类特定先验保持损失更新UNet的参数，以增强生成输出的多样性。TI和DreamBooth的直接和可适应框架奠定了后续众多基于调优方法的基础。
+
+此外，Custom Diffusion~\cite{kumari2023multi}分析了微调过程中权重的变化，发现跨注意力层参数，特别是键和值投影（即$W^k$和$W^v$）的关键作用。这一洞察促使研究人员专注于更新这些投影，并在微调过程中加入额外文本令牌和正则化损失。
+
+一些方法着眼于扩展文本嵌入空间，特别是考虑到每个UNet层之间的差异\cite{voynov2023p+,zhang2023prospect}，它们在不同层上应用不同的文本嵌入。相比之下，CatVersion \cite{zhao2023catversion}并未聚焦于文本嵌入和UNet参数，而是提倡在文本编码器内密集特征空间中调整拼接嵌入，这种方法被认为更有效地学习个性化概念与其基础类别之间的细微差别，有助于模型内在先验知识的保持。
+
+另外，\textbf{参数高效调优（Parameter-Efficient Fine-Tuning, PEFT）}\cite{houlsby2019parameter,hu2021lora, valipour2022dylora,chavan2023one}在个性化方法中扮演了核心角色。低秩适应（LoRA）\cite{hu2021lora}已被广泛应用于各种个性化技术中\cite{ruiz2023dreambooth,chen2023disenbooth,gu2023mix,smith2023continual,guo2023animatediff}。Xiang等人提出的ANOVA\cite{xiang2023closer}选择了适配器\cite{houlsby2019parameter}，并揭示了在交叉注意力块之后放置适配器能显著提高性能。
+
+为了促进PEFT在扩散模型微调中的全面应用和评估，LyCORIS\cite{yeh2023navigating}开发了一个开源库\footnote{https://github.com/KohakuBlueleaf/LyCORIS}。这个库涵盖了广泛的PEFT方法，包括但不限于LoRA\cite{hu2021lora}、LoHa和DyLoRA\cite{valipour2022dylora}。LyCORIS还提出了一个详尽的框架，用于系统地分析和评估这些PEFT技术，极大地推动了扩散模型个性化领域的进展。
+
+此外，在个性化领域的一个关键挑战是\textbf{解耦}所提供的样本中的特定概念。许多研究\cite{avrahami2023break,chen2023disenbooth,cai2023decoupled,li2023generate,motamed2023lego}指出，在定制过程中常常出现一个问题，即不相关的信息与预期概念交织在一起，例如在主题驱动生成中无意间学习到了图像周围的情境信息。为了有效地从样本中隔离和提取关键概念信息，一些工作\cite{avrahami2023break,jin2023image,safaee2023clic}研究了显式掩模的使用。
+
+与此相似，Disenbooth\cite{chen2023disenbooth}和DETEX\cite{cai2023decoupled}专注于减轻个性化过程中背景元素的影响。DETEX更进一步，旨在从整体概念中分离主体的姿态信息。同时，PACGen\cite{li2023generate}采用激进的数据增强技术，改变样本中个性化概念的大小和位置，从而有助于从核心概念本身中分离出空间信息。
+此外，当在小规模数据集上训练扩散模型时，经常会遇到另一个重大挑战：这可能会损害生成模型的广泛应用性，因此要求在保真度和可编辑性之间达到微妙平衡 \cite{hua2023dreamtuner}。为此，多个研究引入了\textbf{保留机制}，重点关注防止过拟合输入样本的策略~\cite{ruiz2023dreambooth,kumari2023multi,tewel2023key,qiu2023controlling,han2023svdiff,wang2023hifi}。例如，Perfusion~\cite{tewel2023key}通过锁定概念的交叉注意力键至其先前类别，并采用门控秩-1方法进行概念学习，从而解决这个问题。而SVDiff~\cite{han2023svdiff}采取了不同的途径，对模型权重矩阵中的奇异值进行调整，这种技术旨在最小化过拟合风险以及缓解语言漂移等问题。
+
+除了上述方法外，不少研究者探索了其他替代训练技术，旨在优化生成性能、加速调优过程并减少GPU内存使用~\cite{voronov2023loss,fei2023gradient,agarwal2023image,yang2023controllable,he2023data,zhao2023catversion}。具体来说，DVAR~\cite{voronov2023loss}识别了标准训练指标在评估概念学习收敛性方面的局限性，并利用基于方差的早期停止准则提升调优过程的效率。梯度自由文本反转（Gradient-Free Textual Inversion）\cite{fei2023gradient}通过将优化过程分为搜索空间的维度降低和子空间内的非凸、无梯度优化两部分，实现了显著的优化速度提升，且对性能影响较小。MATTE~\cite{agarwal2023image}深入探讨了时间步长和UNet各层在个性化颜色、物体、布局和风格等多种概念类别中的作用，力求在不同类型的概念上提高性能。COTI~\cite{yang2023controllable}针对文本反转对高质量数据的需求，提出了一种主动可控的数据选择框架，通过拓宽数据范围改善文本反转效果。He等人~\cite{he2023data}采用数据中心的方法，提出一种在文本和图像层面生成正则化数据集的新策略，进一步丰富了该领域的研究格局。
+
+对于基于模型的个性化评分预测方法，这类方法利用编码器嵌入概念，在从图像中提取概念时相比调优型方法具有显著的速度优势。一些工作侧重于设计专门针对目标域的领域感知编码器~\cite{gal2023designing,shi2023instantbooth}，如InstantBooth~\cite{shi2023instantbooth}使用专为面部和猫域训练的特化编码器和适配器，从图像中提取用于概念学习的文本嵌入和详细的补丁特征。另一方面，其他基于模型的方法采用领域无关的方法，通过在开放世界图像上训练编码器以提取更为泛化的条件~\cite{wei2023elite,ma2023unified,chen2023subject,arar2023domain,ma2023subject,zhao2023videoassembler,jiang2023videobooth,pan2023kosmos}。这些方法通常利用大型预训练模型如CLIP~\cite{radford2021learning}和BLIP-2~\cite{Li2023BLIP2BL}作为图像编码器，重点关注少量参数的微调，比如投影层~\cite{wei2023elite,ma2023unified,hua2023dreamtuner,arar2023domain}。
+
+例如，ELITE~\cite{wei2023elite}结合了基于CLIP的全局映射网络和局部映射网络，全局网络将层级图像特征转换为多个文本嵌入，而局部网络则将补丁特征注入交叉注意力层实现细节重建。BLIP-Diffusion~\cite{li2023blip}通过预训练一个针对文本对齐图像表示的BLIP-2编码器，并开发用于学习主体表示的任务，使得生成新的主体变体成为可能。继E4T~\cite{gal2023designing}之后，Arar等人~\cite{arar2023domain}引入了一个获取文本嵌入的编码器，并提出了一种超网络来预测UNet中类似LoRA风格的注意力权重偏移。SuTI~\cite{chen2023subject}借鉴学徒学习思想~\cite{abbeel2004apprenticeship}，首先在数百万个互联网图像集群上训练大量专家模型，然后让学徒模型模仿这些专家模型的行为。CAFE~\cite{zhou2023customization}则构建了一个基于预训练大语言模型和扩散模型的定制助手。
+
+\myparagraph{无训练个性化得分预测}
+在无需训练的个性化技术中，关键在于从合成过程中的参考图像中提取概念信息。类似于自然语言处理中的检索增强生成方法，利用样本中的知识有助于模型忠实地生成给定的概念。Re-Imagen~\cite{chen2022re}是一种新颖的方法，用于生成罕见或不常见类别（如“Chortai（狗）”和“Picarones（食物）”）的图像。该方法利用一个外部多模态知识库，通过从该数据库检索相关图像文本对作为生成图像的参考。此外，无论是基于调整的还是基于模型的方法，都有若干方法采用参考图像以提高生成图像中视觉细节的准确性和保真度~\cite{wang2023hifi,zhao2023videoassembler,tang2023retrieving}。
+
+\subsection{以人为本的生成}
+\label{sec:person}
+以人为本的生成任务（也称为以人为中心的个性化）专门关注创建与示例样本中个体身份保持一致的人类中心视觉输出。虽然以人为本的生成是主体驱动生成这一大类别的一个特殊子集，并且前一部分已讨论了与此任务相关的几种方法，但在本部分本文将重点突出和分析那些专门为以人为本生成定制的技术。
+
+与基于模型的主体驱动生成类似，许多以人为本的方法将面部图像编码到文本嵌入空间以提供身份条件~\cite{xiao2023fastcomposer,valevski2023face0,chen2023dreamidentity,chen2023photoverse,ruiz2023hyperdreambooth}。例如，为了在身份保留和可编辑性之间取得平衡，Xiao 等人~\cite{xiao2023fastcomposer}提出了一种新颖的方法——FastComposer，它结合了文本提示与来自个人参考图像的视觉特征。具体来说，这种方法通过多层感知机将与人类相关的文本嵌入（如“男性”和“女性”）与视觉特征融合，有效地封装了人的身份的文本和视觉条件。
+
+除了CLIP~\cite{radford2021learning}之外，Face0~\cite{valevski2023face0}和DreamIdentity~\cite{chen2023dreamidentity}采用了预训练的人脸识别模型~\cite{cao2018vggface2}作为面部图像编码器，其中Face0使用了Inception ResNet V1~\cite{szegedy2017inception}，而DreamIdentity引入了一种ViT风格的~\cite{dosovitskiy2020image}多词多尺度（M²ID）编码器。
+
+受检索增强生成（RAG）启发，唐等人~\cite{tang2023retrieving}提出了一种专为以人为本个性化设计的新型检索式方法。补充这一方法的是，他们还发布了一个具有增强的身份和服装标签的动漫人物数据集——RetriBooru-V1。其核心在于使用冻结的变分自编码器（VAE）~\cite{kingma2013auto}对参考图像进行编码，并通过交叉注意力和零卷积层无缝融入生成过程。这些层在正确几何位置精确放置参考属性（如身份和服装特征）方面发挥着关键作用，从而确保生成图像的高度逼真性和相关性。
+
+与主体驱动方法相比，以人为本的生成方法可以从人脸分割中显著获益，这些分割可以通过解析模型或注解获得~\cite{xiao2023fastcomposer,chen2023photoverse,li2023photomaker,achlioptas2023stellar,peng2023portraitbooth}。例如，有些工作如Stellar~\cite{achlioptas2023stellar}利用人脸蒙版在数据处理过程中消除背景元素，从而更加聚焦于输入数据中的人类身份。相反，其他方法则利用人脸蒙版构建~\cite{xiao2023fastcomposer,chen2023photoverse,li2023photomaker,peng2023portraitbooth}或调整损失函数~\cite{hyung2023magicapture}。
+
+\subsubsection{风格驱动生成}
+风格条件生成任务旨在从给定样本中提取风格信息作为可控生成的条件。
+
+类似于基于调整的主体驱动方法的途径，StyleDrop~\cite{sohn2023styledrop}采用在Muse~\cite{szegedy2017inception}上微调适配器~\cite{houlsby2019parameter, sohn2023visual}的方法，使模型适应特定的风格条件，并进一步提出一种提示工程技术来构建能够有效分离主题线索和风格的训练数据。同时，有多种方法正在探索整合用于生成与条件生成相关的风格嵌入的编码器设计~\cite{liu2023stylecrafter,chen2023artadapter}。在解决从风格参考中借用内容问题时，ArtAdapter~\cite{chen2023artadapter}创新地引入了辅助内容适配器（ACA），旨在为UNet提供必要的内容线索，确保模型聚焦于风格元素。
+
+另外，一些方法尝试建立无需训练的框架以实现风格一致性图像生成~\cite{hertz2023style,pan2023towards}。例如，StyleAligned~\cite{hertz2023style}被设计生成一系列遵循给定参考风格的图像。此方法在自注意力层内引入了一种新颖的注意力共享机制，促进了单个图像特征与额外参考图像特征之间的交互。这种设计使得生成过程可以同时考虑并整合多个图像的风格元素。此外，StyleAligned通过使用自适应实例归一化（AdaIN）\cite{huang2017arbitrary}对查询和键进行规范化，增强了风格属性的一致性，从而进一步细化生成图像间的风格一致性。
+
+\subsubsection{互动驱动生成}
+互动条件生成任务特别设计用于学习和生成与互动相关的概念，如人类行为和人-物互动（HOI）。本质上，该任务围绕着以“动词”作为条件元素的新颖理念。
+
+对于动作驱动的图像生成，黄等人~\cite{huang2023learning}提出了动作解耦标识符（ADI），以分离主体身份和动作以改进动作条件学习。为了阻止无关的动作无关特征的反转，ADI从构建的样本三元组中提取梯度不变性，并屏蔽无关通道的更新，从而有效地确保动作条件被嵌入到文本嵌入中。
+
+此外，Reversion~\cite{huang2023reversion}被开发用于理解样本图像中描绘的关系，如“物体A \textless 被涂在\textgreater 物体B”场景中，“\textless 被涂在\textgreater”作为个性化条件。该方法引入了一种新颖的关系导向对比学习机制，独特地利用介词作为正样本，精确引导关系提示，而其他词汇则被视为负样本。此外，Reversion采用了一种关系焦点重要性抽样技术，在训练期间优先选择噪声水平较高的样本，这有助于模型学习高层次的语义关系。
+
+田等人~\cite{tian2023interactdiffusion}引入了InteractDiffusion模型来封装人-物互动（HOI）信息以实现可控生成。他们的方法学的核心是构造包含一个人、一个动作以及一个物体的三元标签，连同相应的边界框，这些标签在InteractDiffusion中通过互动嵌入进行标记化，以学习和表示这些主体之间的复杂关系。
+
+\subsubsection{图像驱动生成}
+图像条件生成任务旨在通过使用示例图像作为提示，从多个视角（例如内容和风格）生成相似的图像。
+
+unCLIP~\cite{Ramesh2022HierarchicalTI}是早期探索使用图像提示进行图像生成的工作，提出了一个两阶段模型：先验阶段根据文本标题生成CLIP图像嵌入，然后解码器根据图像嵌入生成图像。徐等人~\cite{xu2023versatile}将现有的单一流扩散管道扩展为一个多任务多模态网络，即Versatile Diffusion（VD），在一个统一模型中处理文本到图像、图像到文本等多种流变及其变化。许等人~\cite{xu2023prompt}引入Prompt-Free Diffusion，在文本到图像模型中丢弃文本，仅使用视觉输入生成新图像。他们提出了一种语义上下文编码器（SeeCoder），由主干编码器、解码器和查询变换器组成~\cite{Li2023BLIP2BL}，用于编码示例图像。在推理阶段，SeeCoder将在Stable Diffusion中替换CLIP文本编码器，以接受参考图像作为输入。IP-Adapter~\cite{ye2023ip}将跨注意力机制解耦，分别对文本特征和图像特征设置跨注意力层，以实现预训练文本到图像扩散模型的图像提示能力。尽管这些方法直接使用图像作为提示，但ViscoNet~\cite{cheong2023visconet}则使用分割的人物图像提供人本主义生成所需的时尚参考。

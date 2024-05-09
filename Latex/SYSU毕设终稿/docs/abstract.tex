@@ -1,0 +1,27 @@
+%%
+% 摘要信息
+% 本文档中前缀"c-"代表中文版字段, 前缀"e-"代表英文版字段
+% 摘要内容应概括地反映出本论文的主要内容，主要说明本论文的研究目的、内容、方法、成果和结论。要突出本论文的创造性成果或新见解，不要与引言相 混淆。语言力求精练、准确，以 300—500 字为宜。
+% 在摘要的下方另起一行，注明本文的关键词（3—5 个）。关键词是供检索用的主题词条，应采用能覆盖论文主要内容的通用技术词条(参照相应的技术术语 标准)。按词条的外延层次排列（外延大的排在前面）。摘要与关键词应在同一页。
+% modifier: 黄俊杰(huangjj27, 349373001dc@gmail.com)
+% update date: 2017-04-15
+%%
+
+\cabstract{
+文本到图像的扩散模型在条件图像生成方面取得了长足进步，但在准确渲染人体图像时仍面临挑战，常常出现肢体扭曲等异常现象。这一问题的根源在于扩散模型对人体结构特征的识别和评估能力不足。为解决这一痛点，本文提出了AbHuman，这是首个专注于解决人体异常问题的大规模合成人体数据集。该数据集包含56,000张带有详细标注的合成人体图像，涵盖147,000个分属18大类的人体异常实例。借助AbHuman，可以建立针对人体异常的检测模型，进而通过负面提示和参考指导等传统手段，改善文本到图像生成的人体质量。
+
+然而，上述方法仍然存在局部异常、细粒度畸形等问题，为进一步提升生成质量，本文设计了一种称为HumanRefiner的新颖即插即用模块，用于在文本到图像生成过程中分阶段修正人体异常。具体而言，HumanRefiner利用自我诊断程序，先检测并纠正与粗略人体姿势相关的问题，进而识别并改善细粒度人体部位异常，最终生成高质量、姿势自然的人体图像。
+
+本文在AbHuman数据集上评测了HumanRefiner。实验结果表明，与目前最先进的开源生成模型SDXL相比，HumanRefiner能够将人体质量提升2.9倍。此外，人工评估也显示，HumanRefiner生成的人体图像质量较DALL-E 3有1.4倍的提升。这说明了HumanRefiner在改善文本到图像生成中的人体质量方面具有卓越的能力，对提高条件图像生成的整体质量具有重要意义。
+
+从理论层面上讲，本研究拓展了扩散模型在图像生成任务中的应用场景，特别是在解决人体生成的挑战方面做出了创新性贡献。从实践角度来看，HumanRefiner技术可望为众多基于人体图像的应用场景提供高质量的辅助内容，推动相关领域的技术发展。
+}
+% 中文文关键词(每个关键词之间用逗号分开, 最后一个关键词不打标点符号。)
+\ckeywords{文本到图像扩散模型, 异常人类数据集, 人类异常修正}
+
+
+\eabstract{
+    Text-to-image diffusion models have significantly advanced in conditional image generation. However, these models usually struggle with accurately rendering images featuring humans, resulting in distorted limbs and other anomalies. This issue primarily stems from the insufficient recognition and evaluation of limb qualities in diffusion models. To address this issue, we introduce \textbf{AbHuman}, the first large-scale synthesized human benchmark focusing on anatomical anomalies. This benchmark consists of 56K synthesized human images, each annotated with detailed, bounding-box level labels identifying 147K human anomalies in 18 different categories. Based on this, the recognition of human anomalies can be established, which in turn enhances image generation through traditional techniques such as negative prompting and guidance. To further boost the improvement, we propose \textbf{HumanRefiner}, a novel plug-and-play approach for the coarse-to-fine refinement of human anomalies in text-to-image generation. Specifically, HumanRefiner utilizes a self-diagnostic procedure to detect and correct issues related to both coarse-grained abnormal human poses and fine-grained anomaly levels, facilitating pose-reversible diffusion generation. Experimental results on the AbHuman benchmark demonstrate that HumanRefiner significantly reduces generative discrepancies, achieving a 2.9x improvement in limb quality compared to the state-of-the-art open-source generator SDXL and a 1.4x improvement over DALL-E 3 in human evaluations. 
+}
+% 英文文关键词(每个关键词之间用,分开, 最后一个关键词不打标点符号。)
+\ekeywords{Text-to-Image Diffusion Model, Abnormal Human Dataset, Human Anomalies Refinement}

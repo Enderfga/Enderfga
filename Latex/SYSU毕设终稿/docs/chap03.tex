@@ -1,0 +1,208 @@
+\chapter{HumanRefiner算法}
+
+
+
+本研究开发了一个灵活的人类图像合成和修正机制，\textbf{HumanRefiner}，它可以被集成到任何人类图像生成流程中。如图~\ref{fig:humanrefiner-framework}所示，除了从异常引导学习的负面提示获得的基本生成改进外，HumanRefiner还根据最初生成的图像执行一个粗到细的可逆姿态修正。采用现成的姿态检测器~\cite{open_pose_cao2017realtime}将姿态引导注入文本到图像扩散模型，作为对初始生成图像进行粗修正的条件。然后，异常检测器识别异常情况，通过修补扩散模型进一步纠正，以细粒度级别修正剩余异常。
+
+\begin{figure*}[h!]
+    \centering
+    \includegraphics[width=1.0\linewidth]{fig/framework_v3.drawio.pdf}\vspace{-3mm}
+    \caption{通过提出的AbHuman基准加强的本文的HumanRefiner流程概览。它包括了一个在AbHuman基准上使用负面提示训练的文本到图像扩散模型，该模型在异常评分器的指导下生成初步的人类图像，以及一个\textbf{粗到细的修正过程}，其中生成的图像通过姿态引导生成全局修正和通过检测器引导的修补进行局部修正。对于姿态-T2Iadapter~\cite{t2i_adapter}和修补扩散模型，都采用了从文本到图像模型中继承的稳定扩散参数，这些参数通过在异常引导阶段的训练进行了修正。}
+    \label{fig:humanrefiner-framework}
+\end{figure*}
+
+以下部分将展示异常评分器与异常检测器的搭建，以及从负面提示和异常引导控制人类生成的基本方法，紧随其后的是姿态引导生成的粗修正模块和检测器引导修补的细粒度修正模块。
+
+\section{异常评分器} \label{sec:abnormal-scorer}
+
+
+如前文所述，目前缺乏一个有效的衡量生成图像中肢体质量的标准，使得定量比较不同模型变得困难，同时也制约了针对生成器优化的进展。基于提出的AbHuman数据集，本文提出了一个量化的肢体异常度量，专门用于评估生成或真实人类图像中的肢体异常。该评分器的设计借鉴了基于Laion数据集开发的美学评分器\cite{schuhmann2023laionaesthetics}，本文训练了一个异常评分器$S_\theta(\cdot)$。
+对于异常评分器$S_\theta(\cdot)$的模型结构，本文遵循了美学评分器\cite{schuhmann2023laionaesthetics}所采用的架构。
+
+本研究选择了预训练的CLIP ViT-Large模型作为特征提取的基础，其配置包括一个14大小的patch和768的隐藏维度，在此基础上，叠加了一个多层感知机（MLP），该MLP包含若干线性层和丢弃层，以确保模型可以有效地学习和抑制过拟合。表~\ref{tab:model-architecture-abnormal-scorer}详细描述了MLP部分的架构。每个线性层后都跟随一个丢弃层，以减少训练过程中的过拟合风险。这种设计不仅提高了模型的泛化能力，也使模型能够更加精细地解析出图像中的微妙肢体异常。
+
+
+
+\begin{table}[htb]
+    \centering
+    \caption{本文的异常评分器MLP部分的模型架构。Liner(A, B)表示输入特征维度为A，输出特征维度为B的线性层。Dropout层 ($\alpha$)表示概率为$\alpha$的丢弃层。}
+    \begin{tabular}{c|cccc}
+        \toprule
+        层序号 & 0 & 1 &  2 &  3 \\
+        \hline
+        层 & 线性层 (768, 1024) & 丢弃层 (0.2) & 线性层 (1024, 128) & 丢弃层 (0.2) \\
+        \hline
+        层序号 &  4&  5 & 6 & 7 \\
+        \hline
+        层 & 线性层 (128, 64) & 丢弃层 (0.1) & 线性层 (64, 16) & 线性层 (16, 1) \\
+        \bottomrule
+    \end{tabular}
+    \label{tab:model-architecture-abnormal-scorer}
+\end{table}
+
+给定一个图像$x \in \mathcal{R}^{3 \times H \times W}$，异常评分器首先通过CLIP ViT-Large模型提取高维特征，然后输入到MLP中进行进一步处理。MLP通过其多层结构逐步降低特征维度，从1024维到最后的1维输出，最终输出一个介于0到1之间的分数$S_\theta(x)$，这个分数表示图像中肢体畸变或扭曲的严重程度。
+
+异常评分器的输出是一个连续变量，可以精确地量化肢体异常的程度。这种精细的量化能力使其成为评估和比较不同图像生成模型的理想工具。此外，这一指标还可以被集成到自动图像编辑工具中，用于自动检测并修正肢体异常，从而提高生成图像的自然度和真实性。
+
+
+
+如图~\ref{fig:abnormal-score-visualize}所示，异常评分器的输出结果可以直观地展示图像中的肢体异常程度。具体来说，得分较高的图像通常呈现出明显的肢体扭曲或是肢体部分的缺失，例如肢体比例不当、位置错误或是完全缺失的情况。这些图像往往引起视觉上的不协调感，说明模型在处理这些极端情况时可能存在缺陷。相反，得分较低的图像则表现为正常的人类形态，肢体比例和位置符合常规的人体标准。
+
+这种基于量化的评分机制能够客观地评价生成图像中的异常情况，开发者可以利用此机制识别出生成模型在肢体生成方面的具体弱点，从而针对性地进行调整和优化。本文在接下来的HumanRefiner算法中实施了一个名为“异常引导”的解决方案，旨在利用异常评分器的反馈来指导生成模型的优化。当模型生成的图像得分较高（即异常程度高）时，HumanRefiner将介入调整生成策略，优化那些导致高异常得分的因素。这一机制会将异常评分器的输出转化为生成模型的改进措施，通过不断的迭代学习，模型能够逐步减少生成肢体异常的情况。
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\linewidth]{fig/abnormal-score-visualize.pdf}
+    \caption{异常分数可视化。\textcolor{red}{红色}表示异常分数高的图像，而\textcolor{green}{绿色}表示异常分数低的图像。}
+    \label{fig:abnormal-score-visualize}
+\end{figure}
+
+\section{异常检测器} \label{sec:detector}
+为了精确而高效地定位和识别人类图像中出现的异常肢体，为后续的细粒度修正提供精确锚点，本文提出了一个专门针对此类任务设计的异常肢体检测器。该检测器融合了当前目标检测领域的先进技术，并经过精心调整以适应人体异常检测的独特挑战。
+
+具体而言，我们选择了两种先进的通用目标检测框架——YOLOv8 \cite{yolo_redmon2016you} 和 RT-DETR \cite{lv2023detrs} 作为基础模型。
+
+YOLOv8 (You Only Look Once, Version 8) 是目标检测领域中的一个先进框架，它继承并改进了YOLO系列先前版本的特性。YOLOv8的设计目标是在保持高速处理能力的同时，提升检测精度和效率。该模型采用了更深更广的神经网络架构，并引入了多尺度预测技术，使得它能够在多个不同分辨率的特征层上进行目标检测。此外，YOLOv8通过改进的损失函数和锚定策略，优化了模型对小目标的识别能力。这使得YOLOv8在处理包含快速移动或遮挡物体的复杂场景时，仍能保持出色的性能。
+
+RT-DETR (Real-Time DETR) 是基于Transformer的目标检测框架，旨在解决DETR（Detection Transformer）的计算效率和推理速度问题。RT-DETR通过采用轻量化的Transformer编码器和解码器，显著提高了模型的处理速度，使其更适合实时应用场景。同时，该模型引入了更高效的训练策略，比如较快的收敛速度和更低的资源消耗。RT-DETR还针对复杂背景和多样化的目标类别进行了优化，保持了较高的检测精度。这些改进不仅使RT-DETR在通用目标检测任务中表现卓越，也为处理具有挑战性的异常肢体检测提供了强大的技术支持。
+
+我们将预训练后的两个目标检测模型在AbHuman训练集上进行了深入的适应性训练。考虑到异常肢体的多样性、模糊边界以及与正常肢体间的细微差异，我们采用了100个训练周期的精细微调策略，旨在充分挖掘模型潜力，提升其对异常特征的学习与识别能力。微调过程中，我们不仅关注模型的整体性能提升，还特别注重其在各类异常肢体样本上的均衡表现，确保检测器在面对各种复杂情况时具有稳健的检测能力。
+
+完成训练后，我们在AbHuman测试集上对该异常肢体检测器进行了严格的评估与验证。通过一系列标准评估指标（如平均精度AP、召回率Recall、假正率FP等），我们证实了检测器在异常肢体检测任务上展现出的一致性和稳定性。其不仅能够准确区分正常与异常区域，还能有效识别不同类型的异常（如扭曲、缺失、冗余等），为后续的细粒度修正提供了可靠的目标定位信息。
+
+图 \ref{fig_detection_example} 以可视化方式直观展示了异常肢体检测器的实际应用效果。该图呈现了几组典型的人体图像及其对应的检测结果，清晰地标注出了异常肢体的位置、类别及其与正常肢体的边界。从中可以看出，检测器能够准确地捕捉到各种形态和位置的异常，无论是在复杂的背景中、与其他肢体相互遮挡的情况下，还是在存在多种异常并发的复杂场景中，都能有效地分离出异常区域并正确分类。这种直观的可视化结果进一步验证了检测器在实际应用中的高效性和准确性。
+
+综上所述，本文提出的异常肢体检测器凭借对YOLOv8和RT-DETR的有效微调，以及在AbHuman数据集上的严格验证，展现出了在人体异常肢体检测任务上的卓越性能。其精准的定位与分类能力为后续的细粒度修正工作奠定了坚实基础，为实现高效的人体图像异常修正提供了关键技术支持。
+
+
+\begin{figure*}[h]
+    \centering
+    \vspace{-2mm}
+    \includegraphics[width=1\columnwidth]{fig/grid_images_resized.pdf}
+    \caption{使用微调后的AbHuman检测模型在测试集中进行的肢体检测可视化。红色框和标签用于注释检测到的异常肢体，白色框和标签用于注释检测到的正常肢体。}
+    \label{fig_detection_example}
+    \vspace{-5mm}
+\end{figure*}
+
+
+
+\section{负面提示}
+
+扩散模型旨在通过一系列去噪自编码器生成数据。在潜在扩散模型（Latent Diffusion Model, LDM）中，一个由变分自编码器（VAE）组成的框架首先将原始图像$x$编码成一个初始潜在表示$z_0=\mathcal{E}(x)$。随后，该模型通过一个精心设计的噪声计划${\alpha_t}_{t=1}^T$，在前向扩散过程中向$z_0$逐渐添加高斯噪声$\epsilon$，生成一系列的噪声潜在变量$z_t$。这一过程可以通过以下公式描述：
+
+\begin{equation}
+    z_t = \sqrt{1 - \overline{\alpha}_t} z_0 + \sqrt{\overline{\alpha}_t} \epsilon,
+\end{equation}
+
+其中$\epsilon \sim \mathcal{N}(0, I)$表示标准正态分布，$\overline{\alpha}t=\prod{i=1}^t \alpha_i$表示到时间步$t$为止的噪声累积。
+
+在去噪阶段，扩散模型通过学习一个噪声预测器$\epsilon_\theta(z_t, t, y)$，努力预测在给定文本条件$y$和时间步$t$下的噪声。该模型的目标是最小化以下损失函数，从而精确地估计原始噪声：
+
+
+
+\begin{equation}
+    L = \mathbb{E}_{\mathcal{E}(x), y, \epsilon \sim \mathcal{N}(0,1),t}[ || \epsilon - \epsilon_\theta(z_t, t, y)||_2^2].
+\end{equation}
+
+这一损失函数确保模型能够有效地从带噪声的潜在表示中恢复出原始噪声，从而引导图像逐步清晰化。
+
+为了处理图像中的异常肢体信息，如异常的手或脚（Ab. Hand, Ab. Feet等），本研究引入了异常文本条件$y_a$。通过将这些异常条件融入到扩散模型中，模型可以在生成过程中意识到并避免这些异常特征的出现。具体实现方式为，在生成过程中使用异常文本$y_a$作为负面提示~\cite{Posetrack_andriluka2018posetrack}，通过如下方式调整噪声预测器的输出：
+
+\begin{equation}
+\hat{\epsilon}_\theta(z_t, t, y) = \epsilon_\theta(z_t , t, y_a) + s \cdot (\epsilon_\theta(z_t, t, y) - \epsilon_\theta(z_t, t, y_a)),
+\end{equation}
+
+其中$s$为一个缩放因子，用以调节正常条件和异常条件影响的权重。这样，模型不仅可以生成符合文本描述的图像，还能有效避免不希望出现的异常特征，提高生成图像的真实性和准确性。
+
+\section{异常引导}
+除了前文提到的利用负面提示来增加对生成图像中人类异常信息的控制之外，本研究还引入了一种更为通用的引导形式，以进一步改善对去噪过程的精确控制。如第~\ref{sec:abnormal-scorer}节中详述，本研究开发了一个异常评分器$S_\phi(x)$，该评分器能够为生成的图像分配一个分数，用以衡量图像中肢体异常的严重程度。
+
+异常评分器的运用基分类器引导技术（Classifier Guidance）\cite{dhariwal2021diffusion}来优化生成过程。在具体实施中，首先利用以下公式估算出无噪声的潜在变量$z_0$：
+
+\begin{equation}
+\hat{z_0} = \frac{z_t - \sqrt{\overline{\alpha}_t} \epsilon_\theta(z_t, t, y)}{\sqrt{1 - \overline{\alpha}_t}}.
+\end{equation}
+
+这一步骤是通过从当前带噪声的潜在变量$z_t$中剔除由噪声预测器$\epsilon\theta(z_t, t, y)$预测的噪声成分来实现的。
+获得$\hat{z_0}$后，可以通过解码器$\mathcal{D}$重构出对应的图像，并使用$S_\phi(\mathcal{D}(\hat{z_0}))$来计算这一图像的异常分数。这一分数反映了图像中肢体异常的严重程度，为下一步的噪声调整提供了依据。基于此，噪声预测的调整可以通过以下方式进行：
+\begin{equation}
+\ddot{\epsilon}\theta (z_t, t, y) = \epsilon\theta(z_t, t, y) + \mu \cdot \nabla S_\phi(\mathcal{D}(\hat{z_0})).
+\end{equation}
+其中，$\mu$是一个调节因子，用于控制异常评分器的梯度对噪声预测的影响程度。
+
+
+进一步地，为了将负面提示的分类器无指导与异常引导结合起来，本研究提出了以下混合调整方案：
+
+\begin{equation}
+\begin{split}
+    \hat{\epsilon}_t = & \epsilon_\theta(z_t, t, y_a) + s \cdot (\epsilon_\theta(z_t, t, y) - \epsilon_\theta(z_t , t, y_a)) \\
+& + \mu \cdot \nabla S_\phi(\mathcal{D}(\hat{z_0})).  
+\end{split}  
+\end{equation}
+
+这一方案使得模型在生成过程中能同时考虑到来自负面提示和异常评分器的引导，有效地提升了生成图像的质量和实用性。
+
+
+如算法流程~\ref{algo}所示，HumanRefiner系统通过一个精细设计的算法流程实现了对生成图像的异常肢体的避免与修正，同时还能够在修正阶段进一步调整和改善生成的人类图像，使其更加真实和自然。本系统采用了一种从粗到细的修正过程，结合了异常评分器和异常检测器，为文本到图像的生成提供了一个全面的改进策略，在处理具有复杂动作或细节的人类图像时具有显著的改进效果。
+
+
+
+\RestyleAlgo{ruled}
+\label{algo}
+\begin{algorithm}
+\caption{异常引导}\label{alg:abnormal-guidance}
+\SetKwInput{KwData}{输入}
+\KwData{引导尺度$\alpha$，扩散模型（$\mu_{\theta}$,  $\sigma_{\phi}$），异常评分器$S_\theta(x_{t}, t)$}
+$x_{T} \leftarrow$ 从$\mathcal{N}(0, \mathbf{I})$中采样 \\
+\textbf{for} $t=T, \cdots, 1$ \textbf{do} \\
+    \Indp $\mu, \Sigma \leftarrow \mu_{\theta}(x_t), \sigma^{2}_{\theta}(x_t)\mathbf{I}$  \\
+    $x_{t-1} \leftarrow$ 从$\mathcal{N}(\mu - \alpha \Sigma \nabla_{x_{t}} S_{\phi}(x_{t}, t), \Sigma)$中采样 \\
+\Indm\textbf{end for} \\
+\textbf{return} $x_0$
+\end{algorithm}
+
+在此算法中，模型首先从一个标准正态分布$\mathcal{N}(0, \mathbf{I})$中采样初始噪声图像$x_{T}$，作为扩散过程的起点。随后，算法从步骤$t=T$开始，逐步向前执行到$t=1$。在每一个时间步骤$t$，算法首先通过扩散模型计算当前的均值$\mu$和方差$\Sigma$，这一计算基于当前的图像$x_t$。然后，算法利用异常评分器$S_{\phi}(x_{t}, t)$计算的梯度来调整均值$\mu$，通过引导尺度$\alpha$和异常评分器的梯度信息来调整下一步的生成图像$x_{t-1}$。这样的调整不仅考虑了图像的正常扩散过程，还纳入了对异常特征的识别和修正，以确保生成的图像逐步接近真实、自然的人类形象。
+
+通过上述算法，HumanRefiner能有效地在每一步修正中减少异常特征，最终返回一个经过细致修正的人类图像$x_0$。这种结合异常引导的扩散模型不仅优化了图像质量，也提供了对生成过程更深入的控制，是处理人类图像特别有效的一种策略。
+
+
+\section{粗到细的可逆姿态引导}
+
+通过有效结合负面提示和异常引导，本研究在AbHuman基准的支持下，优化了生成人类图像的质量。相比于传统的无引导方法，HumanRefiner现在能够更准确地生成初始的人类图像，尤其是在姿态的精确度上有了显著的提升。为了进一步提高生成的图像质量，本文在粗粒度和细粒度层面上运用了可逆姿态引导对生成图像进行深度修正。
+
+此外，本文展示了异常引导的文本到图像扩散模型如何与成熟的姿态检测技术（如OpenPose~\cite{open_pose_cao2017realtime}）以及T2I-Adapter~\cite{t2i_adapter}结合使用，进一步提升了图像生成的质量。
+
+\textbf{姿态引导的粗略修正：} 异常引导的文本到图像扩散模型可以与现成的姿态检测器~\cite{open_pose_cao2017realtime}和T2I-Adapter~\cite{t2i_adapter}结合，进一步注入全局人体姿态信息以进行姿态引导修正。
+具体而言，对于由引导的文本到图像扩散模型生成的初始图像$\hat{x}$，姿态检测器$P_\psi(\hat{x})$可以检测出姿态关键点图$M$。这些关键点图随后被用于通过T2I-Adapter强化中间编码器特征：
+
+\begin{equation}
+    F_c = \mathcal{F}_{AD} (M),
+\end{equation}
+\vspace{-5.5mm}
+\begin{equation}
+    F_{enc} = F_{enc} + F_c,
+\end{equation}
+
+其中$\mathcal{F}{AD}$表示T2I-Adapter，$F{enc}$是$\epsilon_\theta(\cdot)$编码器部分的中间特征。通过这种方式，姿态条件化的去噪成为了$\epsilon_\theta(z_t, t, y, \mathcal{F}{AD}(M))$的一部分，同时异常引导和负面提示的优势也被集成进来：
+\begin{equation}\label{eq9}
+\begin{split}
+    \hat{\epsilon}_t= & \epsilon_\theta(z_t, t, y_a) + s \cdot (\epsilon_\theta(z_t, t, y, \mathcal{F}_{AD}(M)) - \epsilon_\theta(z_t , t, y_a)) \\
+& + \mu \cdot \nabla S_\phi(\mathcal{D}(\hat{z_0})).  
+\end{split}  
+\end{equation}
+
+这种方法的灵活性允许其扩展到其他图像控制技术，如Pose-ControlNet~\cite{controlnet}和HumanSD~\cite{ju2023humansd}等。通过集成异常引导增强的文本到图像扩散模型，与现成的扩散模型相比，集成的姿态引导扩散实现了更高的修正质量和更真实的人类图像生成。
+
+
+
+
+
+\textbf{检测器引导的修补修正：}
+在HumanRefiner系统中，姿态引导主要负责从全局视角对初始生成的图像进行粗略修正。这种修正过程考虑整体姿态的准确性和自然度。然而，为了进一步细化图像质量并解决局部异常，本文引入了一个高效的异常检测器，它在区域级别提供精确的异常信息，以实施细粒度的修正策略。
+
+具体操作如下：首先，通过应用等式(\ref{eq9})中描述的扩散去噪过程，修正后的图像$x_r$由解码器$\mathcal{D}(\hat{z_0})$生成。在此基础上，异常检测器$D_{Ab}(\cdot)$进一步分析$x_r$，输出一组$K$个边界框及其对应的异常类别${B_i, C_i}{i=1}^K = D{Ab}(x_r)$。每个边界框$B_i={x_i, y_i, w_i, h_i}$标识了图像中的一个具体区域，而$C_i \in {0,..17}$则指明了在第~\ref{sec:3.2}节中定义的具体异常类别。
+
+对于每一个由检测器识别的异常类别，相关的局部区域$B_i$将根据该异常类别对应的条件输入文本$\hat{y}(C_i)$进行精细修补。这一步骤涉及将文本条件映射到修补过程，以确保局部修补行为与全局内容保持一致性。完成修补后，原始图像中相应的局部区域将被替换为修补后的输出，从而消除异常并提升图像的整体质量和真实感。
+
+此修补过程的关键优势在于它能兼顾图像的视觉质量和图像的局部细节的真实性，使得生成的人类图像在细节上更为精准和自然。通过这种精细化的区域级修正策略，HumanRefiner能够有效地处理和改善图像中的各种局部异常，确保生成的结果在视觉上符合人类美感。
+

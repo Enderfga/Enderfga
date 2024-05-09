@@ -1,0 +1,98 @@
+\chapter{合成人像异常肢体数据集}
+
+\label{cha:sysu-thesis-contents-format-requirement}
+
+
+本文提供了一个名为AbHuman的大规模异常人类图像数据集。首先，这是第一个专注于肢体异常的数据集，因为现有的文本到人类算法主要基于MS-COCO\cite{MSCOCO_lin2014microsoft}和LAION-5B\cite{schuhmann2022laion}数据集。值得注意的是，基于真实图像训练的模型在准确生成人类肢体异常方面常常面临挑战。为了解决一般人类图像生成场景中的这个问题，本文构建了一个新的基准。其次，这个数据集收集了基于现有生成模型的大量失败案例。本文观察到现有的人工智能生成的人类图像经常出现肢体异常，本文对这些异常进行了筛选、标注和分析。在这个数据集的指导下，生成模型的质量得到了极大的改善。
+
+
+
+\section{数据收集}
+本文设计了一个标准化的异常人类肢体图像收集流程，包括提示收集、图像生成和异常注释，如图 \ref{fig_datasetpipeline} 所示。
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=1\columnwidth]{fig/dataset_pipeline.pdf}
+    \caption{本文的AbHuman数据集的数据生成流程。}
+    \label{fig_datasetpipeline}
+\end{figure}
+
+\begin{itemize}
+    \item \textbf{提示收集：}本文的提示来自三个来源：Laion-5B\cite{schuhmann2022laion}中与人类相关的文本描述、Human-Art数据集\cite{ju2023humanART}中的文本描述，以及使用ChatGPT 3.5\cite{GPT_brown2020language}生成的提示。为了从Laion数据集中提取生成人类相关内容的文本，本文采用了基于关键词的过滤，以确保文本提示的高质量。这一收集过程共获得了100,000条精心策划的文本提示条目。随后，本文利用收集到的文本内容作为本文数据集的基础。
+    \item \textbf{图像生成：}随着文本到图像模型的快速发展，人类图像生成的质量显著提高。然而，在生成人形图像时出现的异常问题仍未解决。即使是最先进的生成模型，如SDXL\cite{podell2023sdxl}、Midjourney和DALL-E 3\cite{openai2023dalle3}在生成人类图像时也会遇到肢体异常问题。为了使用现有最佳生成模型作为基线来提高人类生成的质量，本文采用了SDXL模型来生成本文的图像。
+    \item \textbf{异常注释：}在收集了大量图像后，对比分析揭示了数据集中存在非人类图像。最初，本文采用基于ResNet50的分类器来过滤所有标记为“人”的图像。在移除一部分低质量图像后，接受过特别培训的人类标注员被分配了剩余56,000张图像的注释任务。随后，标注的目标检测数据集经过两名人类评估员的复审，形成了一个包含56,000张图像和147,000个人类肢体检测注释的精选AbHuman数据集。注释类别的详细信息在附录中提供。
+    \item \textbf{数据分割：}数据集被分为训练和测试集，比例为4:1，分别包含52k和13k的图像-文本对。本文进一步开发了一个用于人类评估的测试分割，其中提示来自HumanArt~\cite{ju2023humanART}，每个提示描述了人类执行难度动作，如杂技、舞蹈和戏剧。
+\end{itemize}
+
+如图 \ref{fig_detection_example} 所示，AbHuman数据集为异常人类提供了边界框和分类信息。与现有基于关键点的注释方法不同，边界框注释使得能够识别肢体异常的位置和类型。通过检测和修复人类肢体中的异常，本文的数据集更有利于改进生成算法。这些注释是由一个专业团队进行的，包括10名数据标注员和2名数据审核员，所有人在注释开始前都接受了广泛的培训，以确保高质量的注释和及时的反馈。
+
+
+
+
+\section{操作细节}
+在本节中，本文提供有关数据集收集的更多细节，包括本文的AbHuman数据集的图像生成过程、注释过程以及带有可视化示例的类别定义的详细说明。
+
+\textbf{图像生成：}
+本文的数据集提示来源于三个来源：Laion数据集，利用通过关键词分析提取的提示（例如，“孩子手中的纸飞机在黄色背景和蓝天上的多云天气”）；第二部分包含来自Human-Art的文本描述（例如，“杂技，一位女士在舞台上表演空中杂技”）；第三部分由基于Human-Art的场景描述，由GPT-3.5生成的语言文本组成（例如，“电影，一位女士坐在沙发上抽烟”）。
+
+在获得大量与人类相关的文本后，本文使用SDXL以1024*1024的分辨率进行图像生成。随后，本文对生成的图像进行了初步筛选。使用分类为‘人物’的Resnet50分类模型，本文识别出与人类相关度较高的图像。
+
+\textbf{类别定义：}
+在观察了大量生成的图像后，本文分析了现有人类图像中的异常。最终，本文将异常分为18个类别，注释索引范围为（0-17）。关于图像的生成，本文将它们分类为十个类别：正常人类（0），非人类（9）和异常注释（1-8）。为了提高检测器对正常和异常实例的区分能力，本文引入了一组真实图像。值得注意的是，本文将正常部分注释为（10-17）。具体的注释结果在随附的表~\ref{tab:your-label1}和\ref{tab:your-label2}中进行了说明。
+
+\textbf{注释过程：}
+注释员使用标注工具labelme~\cite{labelme}根据表~\ref{tab:your-label1}和\ref{tab:your-label2}中提供的类别定义和示例，在边界框级别标注图像中的所有对象。然后，注释图像中标记的类别被保留为注释文本，如类别与解释列所示。这种分类文本将与图像的原始描述文本连接起来，这样的聚合文本用于负面提示训练。
+
+\begin{table}[ht]
+    \centering
+        \caption{AbHuman的注释示例、类别定义和相应的文本解释（第1部分）。}
+    \includegraphics[width=\textwidth]{fig/Page1.pdf}
+    \label{tab:your-label1} 
+\end{table}
+
+\begin{table}[ht]
+    \centering
+     \caption{AbHuman的注释示例、类别定义和相应的文本解释的续集（第2部分）。}
+    \includegraphics[width=\textwidth]{fig/Page2.pdf}
+    \label{tab:your-label2} 
+\end{table}
+
+\section{数据集统计与分析} \label{sec:3.2}
+在审查了大量生成的样本后，本文对人类异常进行了分析，并识别出了18个不同的检测类别（例如，正常人类、异常头部、异常颈部、异常身体、异常手臂、异常手...）。为了说明由SDXL模型生成的异常人类样本的类别分布，本文对异常人类及其相应的注释进行了统计分析。如图 \ref{fig_bar_dataset} 所示，该模型主要生成具有异常手部的图像，这与手部异常注释的最高计数相一致。因此，很明显，手部异常仍然是文本到图像模型的一个挑战。此外，与人体的其他部分相比，头部和脚部区域的样本异常数量相对较高。
+
+
+\begin{figure}[h]
+  \centering
+    \includegraphics[width=\linewidth]{fig/Data_Anno1.pdf}
+    \caption{非正常人类注释统计。}
+    \label{fig_bar_dataset}
+    \end{figure}
+
+表~\ref{tab:addlabel} 展示了关于人类图像的数据集比较。
+\begin{table}[htb]
+  \centering
+  \caption{以人类为主题的数据集比较，包括人类生成和检测任务。\textbf{AbHuman提供了更细粒度的注释框和信息，以解决人类生成中的异常问题。}}
+    \begin{tabular}{lcccccc}
+      \toprule
+      数据集 & 图像数量 & 边界框  & 正常 & 异常肢体 & 通用 \\
+      \midrule
+      BodyHands\cite{HandDetec_narasimhaswamy2022whose} & 20K   & \checkmark     & \checkmark     & \cxmark     & \cxmark \\
+      CrowdPose\cite{CrowdPose_li2019crowdpose} & 20K   & \checkmark     & \checkmark     & \cxmark     & \cxmark \\
+      Multi-Person PoseTrack\cite{Multi_Person_PoseTrack_iqbal2017posetrack} & 23K   & \checkmark     & \checkmark     & \cxmark     & \cxmark \\
+      PoseTrack\cite{Posetrack_andriluka2018posetrack} & 23K   & \checkmark     & \checkmark     & \cxmark     & \cxmark \\
+      ClassArch\cite{madhu2022enhancing} & 1.5K  & \checkmark     & \checkmark     & \cxmark     & \cxmark \\
+      Human-Art\cite{ju2023humanART} & 50K   & \checkmark     & \checkmark     & \cxmark     & \checkmark \\
+      \midrule
+      AbHuman (本文的) & 56K & \checkmark & \checkmark & \checkmark & \checkmark \\
+      \bottomrule
+    \end{tabular}
+  \label{tab:addlabel}
+\end{table}
+
+
+与仅注释真实和正常个体图像的其他人类数据集\cite{HandDetec_narasimhaswamy2022whose, CrowdPose_li2019crowdpose, Multi_Person_PoseTrack_iqbal2017posetrack, Posetrack_andriluka2018posetrack, madhu2022enhancing, ju2023humanART}相比，现有数据集对真正异常的人类肢体的注释有限。相反，AbHuman数据集引入了人类生成图像中的异常，并为异常身体姿势提供了充足的注释。
+
+%在以人类为中心的任务如生成和检测的背景下，AbHuman证明是更加合适的。此外，与相对单调的场景的数据集相比，AbHuman包含了更多样化的场景范围，增强了其在各种背景下的适用性。
+
+
+
