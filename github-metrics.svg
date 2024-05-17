@@ -190,7 +190,7 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
                                         <path fill-rule="evenodd" d="M2.75 1.5a.25.25 0 00-.25.25v12.5c0 .138.112.25.25.25h10.5a.25.25 0 00.25-.25V4.664a.25.25 0 00-.073-.177l-2.914-2.914a.25.25 0 00-.177-.073H2.75zM1 1.75C1 .784 1.784 0 2.75 0h7.586c.464 0 .909.184 1.237.513l2.914 2.914c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0113.25 16H2.75A1.75 1.75 0 011 14.25V1.75zm7 1.5a.75.75 0 01.75.75v1.5h1.5a.75.75 0 010 1.5h-1.5v1.5a.75.75 0 01-1.5 0V7h-1.5a.75.75 0 010-1.5h1.5V4A.75.75 0 018 3.25zm-3 8a.75.75 0 01.75-.75h4.5a.75.75 0 010 1.5h-4.5a.75.75 0 01-.75-.75z"/>
                                     </svg>
-                                    3.58m added, 773k removed
+                                    2.71m added, 1.25k removed
                                 </div>
                             </section>
                             <section>
@@ -385,14 +385,14 @@
                         <rect x="0" y="0" width="460" height="8" fill="white" rx="5"/>
                     </mask>
                     <rect mask="url(#languages-bar)" x="0" y="0" width="0" height="8" fill="#d1d5da"/>
-                    <rect mask="url(#languages-bar)" x="0" y="0" width="345.2476375104327" height="8" fill="#DA5B0B"/>
-                    <rect mask="url(#languages-bar)" x="345.2476375104327" y="0" width="94.70528635995507" height="8" fill="#3572A5"/>
-                    <rect mask="url(#languages-bar)" x="439.95292387038774" y="0" width="9.56975511544921" height="8" fill="#3D6117"/>
-                    <rect mask="url(#languages-bar)" x="449.52267898583693" y="0" width="3.50615011650032" height="8" fill="#f34b7d"/>
-                    <rect mask="url(#languages-bar)" x="453.0288291023373" y="0" width="2.699020917009226" height="8" fill="#e34c26"/>
-                    <rect mask="url(#languages-bar)" x="455.72785001934653" y="0" width="2.0097232649194514" height="8" fill="#e16737"/>
-                    <rect mask="url(#languages-bar)" x="457.737573284266" y="0" width="1.7484460500737211" height="8" fill="#3A4E3A"/>
-                    <rect mask="url(#languages-bar)" x="459.4860193343397" y="0" width="0.5139806656603008" height="8" fill="#563d7c"/>
+                    <rect mask="url(#languages-bar)" x="0" y="0" width="345.1691181834032" height="8" fill="#DA5B0B"/>
+                    <rect mask="url(#languages-bar)" x="345.1691181834032" y="0" width="94.78836497358228" height="8" fill="#3572A5"/>
+                    <rect mask="url(#languages-bar)" x="439.9574831569855" y="0" width="9.567578675555456" height="8" fill="#3D6117"/>
+                    <rect mask="url(#languages-bar)" x="449.525061832541" y="0" width="3.5053527162643703" height="8" fill="#f34b7d"/>
+                    <rect mask="url(#languages-bar)" x="453.0304145488053" y="0" width="2.6984070813648455" height="8" fill="#e34c26"/>
+                    <rect mask="url(#languages-bar)" x="455.72882163017016" y="0" width="2.0092661955549374" height="8" fill="#e16737"/>
+                    <rect mask="url(#languages-bar)" x="457.73808782572513" y="0" width="1.7480484027264749" height="8" fill="#3A4E3A"/>
+                    <rect mask="url(#languages-bar)" x="459.4861362284516" y="0" width="0.5138637715483966" height="8" fill="#563d7c"/>
                 </svg>
                 <div class="field center horizontal-wrap fill-width">
                     <div class="field center no-wrap language">
@@ -1610,7 +1610,7 @@
                                     </svg>
                                     <div class="name">
                                         <span>ShihaoZhaoZSH/LaVi-Bridge</span>
-                                        <span>starred 3 hours ago</span>
+                                        <span>starred 4 hours ago</span>
                                     </div>
                                 </div>
                                 <div class="field description">Bridging Different Language Models and Generative Vision Models for Text-to-Image Generation</div>
@@ -1663,7 +1663,7 @@
                                     </svg>
                                     <div class="name">
                                         <span>qLab/qLib</span>
-                                        <span>starred 6 hours ago</span>
+                                        <span>starred 7 hours ago</span>
                                     </div>
                                 </div>
                                 <div class="field description">A procedural asset library for SideFX Houdini. https://www.facebook.com/qLibHoudini</div>
@@ -1716,7 +1716,7 @@
                                     </svg>
                                     <div class="name">
                                         <span>Aeoll/Aelib</span>
-                                        <span>starred 6 hours ago</span>
+                                        <span>starred 7 hours ago</span>
                                     </div>
                                 </div>
                                 <div class="field description">Digital Assets for Houdini FX</div>
@@ -1769,7 +1769,7 @@
                                     </svg>
                                     <div class="name">
                                         <span>stassius/StableHoudini</span>
-                                        <span>starred 6 hours ago</span>
+                                        <span>starred 7 hours ago</span>
                                     </div>
                                 </div>
                                 <div class="field description">Stable Diffusion Houdini Toolset</div>
@@ -1983,7 +1983,7 @@
             </section>
             <footer>
                 <span>These metrics include private contributions</span>
-                <span>Last updated 17 May 2024, 16:18:43 (timezone Asia/Shanghai) with lowlighter/metrics@3.34.0</span>
+                <span>Last updated 17 May 2024, 17:16:52 (timezone Asia/Shanghai) with lowlighter/metrics@3.34.0</span>
             </footer>
         </div>
         <div xmlns="http://www.w3.org/1999/xhtml" id="metrics-end"></div>
