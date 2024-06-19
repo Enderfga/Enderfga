@@ -190,7 +190,7 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
                                         <path fill-rule="evenodd" d="M2.75 1.5a.25.25 0 00-.25.25v12.5c0 .138.112.25.25.25h10.5a.25.25 0 00.25-.25V4.664a.25.25 0 00-.073-.177l-2.914-2.914a.25.25 0 00-.177-.073H2.75zM1 1.75C1 .784 1.784 0 2.75 0h7.586c.464 0 .909.184 1.237.513l2.914 2.914c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0113.25 16H2.75A1.75 1.75 0 011 14.25V1.75zm7 1.5a.75.75 0 01.75.75v1.5h1.5a.75.75 0 010 1.5h-1.5v1.5a.75.75 0 01-1.5 0V7h-1.5a.75.75 0 010-1.5h1.5V4A.75.75 0 018 3.25zm-3 8a.75.75 0 01.75-.75h4.5a.75.75 0 010 1.5h-4.5a.75.75 0 01-.75-.75z"/>
                                     </svg>
-                                    186k added, 500k removed
+                                    3.18m added, 320k removed
                                 </div>
                             </section>
                             <section>
@@ -385,14 +385,14 @@
                         <rect x="0" y="0" width="460" height="8" fill="white" rx="5"/>
                     </mask>
                     <rect mask="url(#languages-bar)" x="0" y="0" width="0" height="8" fill="#d1d5da"/>
-                    <rect mask="url(#languages-bar)" x="0" y="0" width="415.8900327882516" height="8" fill="#3572A5"/>
-                    <rect mask="url(#languages-bar)" x="415.8900327882516" y="0" width="38.31005336325468" height="8" fill="#DA5B0B"/>
-                    <rect mask="url(#languages-bar)" x="454.2000861515063" y="0" width="3.6896472466783043" height="8" fill="#e34c26"/>
-                    <rect mask="url(#languages-bar)" x="457.8897333981846" y="0" width="1.0618981545820432" height="8" fill="#3D6117"/>
-                    <rect mask="url(#languages-bar)" x="458.9516315527667" y="0" width="0.3890563858200188" height="8" fill="#f34b7d"/>
-                    <rect mask="url(#languages-bar)" x="459.34068793858665" y="0" width="0.24229062125594622" height="8" fill="#89e051"/>
-                    <rect mask="url(#languages-bar)" x="459.5829785598426" y="0" width="0.2230069004371161" height="8" fill="#e16737"/>
-                    <rect mask="url(#languages-bar)" x="459.8059854602797" y="0" width="0.1940145397202668" height="8" fill="#3A4E3A"/>
+                    <rect mask="url(#languages-bar)" x="0" y="0" width="415.88966509446186" height="8" fill="#3572A5"/>
+                    <rect mask="url(#languages-bar)" x="415.88966509446186" y="0" width="38.31001915577267" height="8" fill="#DA5B0B"/>
+                    <rect mask="url(#languages-bar)" x="454.19968425023455" y="0" width="3.6896439521503477" height="8" fill="#e34c26"/>
+                    <rect mask="url(#languages-bar)" x="457.8893282023849" y="0" width="1.0618972064011134" height="8" fill="#3D6117"/>
+                    <rect mask="url(#languages-bar)" x="458.951225408786" y="0" width="0.38905603842715053" height="8" fill="#f34b7d"/>
+                    <rect mask="url(#languages-bar)" x="459.34028144721316" y="0" width="0.24269748499264082" height="8" fill="#89e051"/>
+                    <rect mask="url(#languages-bar)" x="459.58297893220583" y="0" width="0.2230067013117204" height="8" fill="#e16737"/>
+                    <rect mask="url(#languages-bar)" x="459.80598563351754" y="0" width="0.19401436648247947" height="8" fill="#3A4E3A"/>
                 </svg>
                 <div class="field center horizontal-wrap fill-width">
                     <div class="field center no-wrap language">
@@ -1637,7 +1637,7 @@
                                     </svg>
                                     <div class="name">
                                         <span>InkTimeRecord/TTime</span>
-                                        <span>starred 7 hours ago</span>
+                                        <span>starred 8 hours ago</span>
                                     </div>
                                 </div>
                                 <div class="field description">🚀 Screenshots, word marking, OCR, AI, translation software || 截图、划词、文字识别、AI、翻译软件</div>
@@ -2015,7 +2015,7 @@
             </section>
             <footer>
                 <span>These metrics include private contributions</span>
-                <span>Last updated 19 Jun 2024, 22:13:58 (timezone Asia/Shanghai) with lowlighter/metrics@3.34.0</span>
+                <span>Last updated 19 Jun 2024, 23:16:50 (timezone Asia/Shanghai) with lowlighter/metrics@3.34.0</span>
             </footer>
         </div>
         <div xmlns="http://www.w3.org/1999/xhtml" id="metrics-end"></div>
