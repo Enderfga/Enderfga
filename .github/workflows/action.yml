@@ -74,8 +74,5 @@ jobs:
           plugin_people_types: followers, following
           plugin_repositories: 100
           plugin_repositories_affiliations: owner
-          plugin_rss: yes
-          plugin_rss_limit: 4
-          plugin_rss_source: https://enderfga.cn/atom.xml
           plugin_stars: yes
           plugin_stars_limit: 4
