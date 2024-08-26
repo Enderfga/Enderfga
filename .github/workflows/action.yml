@@ -36,10 +36,6 @@ jobs:
           plugin_activity_limit: 5
           plugin_activity_load: 300
           plugin_activity_visibility: all
-          plugin_code: yes
-          plugin_code_days: 3
-          plugin_code_lines: 12
-          plugin_code_load: 400
           plugin_code_visibility: public
           plugin_discussions: yes
           plugin_discussions_categories: yes
