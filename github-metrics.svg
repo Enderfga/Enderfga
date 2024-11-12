@@ -1585,7 +1585,7 @@
                                     </svg>
                                     <div class="name">
                                         <span>THUDM/CogVideo</span>
-                                        <span>starred 22 hours ago</span>
+                                        <span>starred 23 hours ago</span>
                                     </div>
                                 </div>
                                 <div class="field description">text and image to video generation: CogVideoX (2024) and CogVideo (ICLR 2023)</div>
@@ -1638,7 +1638,7 @@
                                     </svg>
                                     <div class="name">
                                         <span>aigc-apps/EasyAnimate</span>
-                                        <span>starred 22 hours ago</span>
+                                        <span>starred 23 hours ago</span>
                                     </div>
                                 </div>
                                 <div class="field description">📺 An End-to-End Solution for High-Resolution and Long Video Generation Based on Transformer Diffusion</div>
@@ -2017,7 +2017,7 @@
                                 <div class="title">
                                     <span class="prefix">Super</span>
                                     maintainer
-                                    <span class="gh">ranked 7.84k out of 208m repositories</span>
+                                    <span class="gh">ranked 7.84k out of 213m repositories</span>
                                 </div>
                                 <div class="text">Maintaining a repository with 5748 stars</div>
                             </div>
@@ -2118,7 +2118,7 @@
             </section>
             <footer>
                 <span>These metrics include private contributions</span>
-                <span>Last updated 12 Nov 2024, 14:24:33 (timezone Asia/Shanghai) with lowlighter/metrics@3.34.0</span>
+                <span>Last updated 12 Nov 2024, 15:16:19 (timezone Asia/Shanghai) with lowlighter/metrics@3.34.0</span>
             </footer>
         </div>
         <div xmlns="http://www.w3.org/1999/xhtml" id="metrics-end"></div>
