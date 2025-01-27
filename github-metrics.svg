@@ -1576,7 +1576,7 @@
                                     </svg>
                                     <div class="name">
                                         <span>sayakpaul/diffusers-torchao</span>
-                                        <span>starred 4 days ago</span>
+                                        <span>starred 5 days ago</span>
                                     </div>
                                 </div>
                                 <div class="field description">End-to-end recipes for optimizing diffusion models with torchao and diffusers (inference and FP8 training).</div>
@@ -2024,7 +2024,7 @@
                                 <div class="title">
                                     <span class="prefix">Super</span>
                                     maintainer
-                                    <span class="gh">ranked 8.04k out of 215m repositories</span>
+                                    <span class="gh">ranked 8.04k out of 231m repositories</span>
                                 </div>
                                 <div class="text">Maintaining a repository with 5801 stars</div>
                             </div>
@@ -2125,7 +2125,7 @@
             </section>
             <footer>
                 <span>These metrics include private contributions</span>
-                <span>Last updated 27 Jan 2025, 14:24:55 (timezone Asia/Shanghai) with lowlighter/metrics@3.34.0</span>
+                <span>Last updated 27 Jan 2025, 15:16:40 (timezone Asia/Shanghai) with lowlighter/metrics@3.34.0</span>
             </footer>
         </div>
         <div xmlns="http://www.w3.org/1999/xhtml" id="metrics-end"></div>
