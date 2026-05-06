@@ -82,7 +82,7 @@
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
                                 <path fill-rule="evenodd" d="M10.5 7.75a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0zm1.43.75a4.002 4.002 0 01-7.86 0H.75a.75.75 0 110-1.5h3.32a4.001 4.001 0 017.86 0h3.32a.75.75 0 110 1.5h-3.32z"/>
                             </svg>
-                            1660 Commits
+                            1661 Commits
                         </div>
                         <div class="field">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
@@ -385,14 +385,14 @@
                         <rect x="0" y="0" width="460" height="8" fill="white" rx="5"/>
                     </mask>
                     <rect mask="url(#languages-bar)" x="0" y="0" width="0" height="8" fill="#d1d5da"/>
-                    <rect mask="url(#languages-bar)" x="0" y="0" width="258.36561983502276" height="8" fill="#DA5B0B"/>
-                    <rect mask="url(#languages-bar)" x="258.36561983502276" y="0" width="147.29337928019117" height="8" fill="#3572A5"/>
-                    <rect mask="url(#languages-bar)" x="405.658999115214" y="0" width="25.219781997485388" height="8" fill="#e34c26"/>
-                    <rect mask="url(#languages-bar)" x="430.87878111269936" y="0" width="14.694082588875691" height="8" fill="#3178c6"/>
-                    <rect mask="url(#languages-bar)" x="445.57286370157505" y="0" width="7.000135342428142" height="8" fill="#3D6117"/>
-                    <rect mask="url(#languages-bar)" x="452.5729990440032" y="0" width="2.889661783939054" height="8" fill="#89e051"/>
-                    <rect mask="url(#languages-bar)" x="455.4626608279422" y="0" width="2.361576447208299" height="8" fill="#f34b7d"/>
-                    <rect mask="url(#languages-bar)" x="457.8242372751505" y="0" width="2.175762724849473" height="8" fill="#f1e05a"/>
+                    <rect mask="url(#languages-bar)" x="0" y="0" width="258.3151187381285" height="8" fill="#DA5B0B"/>
+                    <rect mask="url(#languages-bar)" x="258.3151187381285" y="0" width="147.3545020695257" height="8" fill="#3572A5"/>
+                    <rect mask="url(#languages-bar)" x="405.66962080765416" y="0" width="25.214852445886685" height="8" fill="#e34c26"/>
+                    <rect mask="url(#languages-bar)" x="430.8844732535408" y="0" width="14.691210429301721" height="8" fill="#3178c6"/>
+                    <rect mask="url(#languages-bar)" x="445.57568368284257" y="0" width="6.998767070157911" height="8" fill="#3D6117"/>
+                    <rect mask="url(#languages-bar)" x="452.57445075300046" y="0" width="2.8890969599898164" height="8" fill="#89e051"/>
+                    <rect mask="url(#languages-bar)" x="455.46354771299025" y="0" width="2.361114844766535" height="8" fill="#f34b7d"/>
+                    <rect mask="url(#languages-bar)" x="457.8246625577568" y="0" width="2.175337442243154" height="8" fill="#f1e05a"/>
                 </svg>
                 <div class="field center horizontal-wrap fill-width">
                     <div class="field center no-wrap language">
@@ -1596,7 +1596,7 @@
                                     </svg>
                                     <div class="name">
                                         <span>YanjieZe/3D-Diffusion-Policy</span>
-                                        <span>starred 19 hours ago</span>
+                                        <span>starred 20 hours ago</span>
                                     </div>
                                 </div>
                                 <div class="field description">[RSS 2024] 3D Diffusion Policy: Generalizable Visuomotor Policy Learning via Simple 3D Representations</div>
@@ -1676,7 +1676,7 @@
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
                                             <path fill-rule="evenodd" d="M5 3.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm0 2.122a2.25 2.25 0 10-1.5 0v.878A2.25 2.25 0 005.75 8.5h1.5v2.128a2.251 2.251 0 101.5 0V8.5h1.5a2.25 2.25 0 002.25-2.25v-.878a2.25 2.25 0 10-1.5 0v.878a.75.75 0 01-.75.75h-4.5A.75.75 0 015 6.25v-.878zm3.75 7.378a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm3-8.75a.75.75 0 100-1.5.75.75 0 000 1.5z"/>
                                         </svg>
-                                        690
+                                        691
                                     </div>
                                     <div>
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
@@ -1782,7 +1782,7 @@
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
                                             <path fill-rule="evenodd" d="M5 3.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm0 2.122a2.25 2.25 0 10-1.5 0v.878A2.25 2.25 0 005.75 8.5h1.5v2.128a2.251 2.251 0 101.5 0V8.5h1.5a2.25 2.25 0 002.25-2.25v-.878a2.25 2.25 0 10-1.5 0v.878a.75.75 0 01-.75.75h-4.5A.75.75 0 015 6.25v-.878zm3.75 7.378a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm3-8.75a.75.75 0 100-1.5.75.75 0 000 1.5z"/>
                                         </svg>
-                                        143
+                                        144
                                     </div>
                                     <div>
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
@@ -1884,7 +1884,7 @@
             </section>
             <footer>
                 <span>These metrics include private contributions</span>
-                <span>Last updated 7 May 2026, 05:58:04 (timezone Asia/Shanghai) with lowlighter/metrics@3.34.0</span>
+                <span>Last updated 7 May 2026, 06:55:59 (timezone Asia/Shanghai) with lowlighter/metrics@3.34.0</span>
             </footer>
         </div>
         <div xmlns="http://www.w3.org/1999/xhtml" id="metrics-end"></div>
