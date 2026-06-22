@@ -57,6 +57,18 @@ const SETTLE = Number(process.env.SHOT_SETTLE_MS || 10000);
 
   await page.evaluate(() => window.scrollTo(0, 0));
 
+  // Force-reveal elements that app.js fades in on scroll (a one-way
+  // IntersectionObserver starts .research-paper / .collaboration-item at
+  // opacity:0). If the observer didn't fire for the bottom grid during the
+  // scroll, those stay invisible — so set them visible explicitly.
+  await page.evaluate(() => {
+    document.querySelectorAll(".research-paper, .collaboration-item").forEach((el) => {
+      el.style.opacity = "1";
+      el.style.transform = "none";
+      el.style.transition = "none";
+    });
+  });
+
   // Hide the back-to-top button (it becomes visible after scrolling).
   await page.addStyleTag({ content: ".to-top{display:none!important}" });
 
