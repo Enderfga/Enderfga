@@ -1,27 +1,17 @@
-# Visit https://github.com/lowlighter/metrics/blob/master/action.yml for full reference
 name: Metrics
 on:
-  # Schedule updates (each hour)
-  schedule: [{cron: "0 * * * *"}]
-  # Lines below let you run workflow manually and on each commit
+  schedule: [{cron: "0 */6 * * *"}]
   workflow_dispatch:
   push: {branches: ["master", "main"]}
+permissions:
+  contents: write
 jobs:
   github-metrics:
     runs-on: ubuntu-latest
     steps:
-      - uses: lowlighter/metrics@latest
+      - uses: lowlighter/metrics@v3.34
         with:
-          # Your GitHub token
-          # The following scopes are required:
-          #  - public_access (default scope)
-          # The following additional scopes may be required:
-          #  - read:org  (for organization related metrics)
-          #  - read:user (for user related data)
-          #  - repo      (optional, if you want to include private repositories)
           token: ${{ secrets.METRICS_TOKEN }}
-
-          # Options
           user: Enderfga
           template: classic
           base: header, activity, community, repositories, metadata
@@ -59,6 +49,7 @@ jobs:
           plugin_screenshot: yes
           plugin_screenshot_title: Academic Homepage
           plugin_screenshot_url: https://enderfga.cn
+          plugin_screenshot_wait: 8000
           plugin_people: yes
           plugin_people_limit: 24
           plugin_people_size: 28
