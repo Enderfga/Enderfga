@@ -25,9 +25,6 @@ jobs:
           plugin_code_visibility: public
           plugin_followup: yes
           plugin_followup_sections: repositories
-          plugin_habits: yes
-          plugin_habits_facts: yes
-          plugin_habits_charts: yes
           plugin_isocalendar: yes
           plugin_isocalendar_duration: full-year
           plugin_languages: yes
