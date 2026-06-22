@@ -12,15 +12,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
-      - name: Install CJK fonts (render 中文 correctly)
-        run: sudo apt-get update -qq && sudo apt-get install -y -qq fonts-noto-cjk
-      - name: Capture homepage (1280x720, classic 16:9)
+      - name: Install CJK fonts + Pillow (render 中文; crop image)
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq fonts-noto-cjk python3-pil
+      - name: Capture homepage (full-page desktop, 1280 wide @2x)
         run: |
           google-chrome --headless=new --disable-gpu --no-sandbox --hide-scrollbars \
-            --force-device-scale-factor=2 --window-size=1280,720 \
-            --virtual-time-budget=12000 --screenshot=homepage.png \
+            --force-device-scale-factor=2 --window-size=1280,8000 \
+            --virtual-time-budget=18000 --screenshot=raw.png \
             https://enderfga.cn
-          python3 -c "import struct;b=open('homepage.png','rb').read();print('captured',*struct.unpack('>II',b[16:24]))"
+          python3 .github/scripts/crop_screenshot.py
+          rm -f raw.png
       - name: Commit if changed
         run: |
           if [ -n "$(git status --porcelain homepage.png)" ]; then
