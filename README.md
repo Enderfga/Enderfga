@@ -7,5 +7,8 @@
   <a href="https://space.bilibili.com/11866023">BILIBILI</a>
 </h5>
 <div align="center">
+  <a href="https://enderfga.cn/" title="Academic homepage"><img src="homepage.png" width="100%" alt="Academic homepage preview"></a>
+</div>
+<div align="center">
     <img src="github-metrics.svg" width="100%">
 </div>
