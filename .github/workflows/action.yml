@@ -46,11 +46,6 @@ jobs:
           plugin_notable: yes
           plugin_notable_from: organization
           plugin_notable_types: commit
-          plugin_screenshot: yes
-          plugin_screenshot_title: Academic Homepage
-          plugin_screenshot_url: https://enderfga.cn
-          plugin_screenshot_viewport: '{"width": 1280, "height": 8000}'
-          plugin_screenshot_wait: 10000
           plugin_people: yes
           plugin_people_limit: 24
           plugin_people_size: 28
