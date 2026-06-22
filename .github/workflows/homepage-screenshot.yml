@@ -12,16 +12,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
-      - name: Install CJK fonts + Pillow (render 中文; crop image)
-        run: sudo apt-get update -qq && sudo apt-get install -y -qq fonts-noto-cjk python3-pil
-      - name: Capture homepage (full-page desktop, 1280 wide @2x)
+      - name: Install CJK fonts + puppeteer-core
         run: |
-          google-chrome --headless=new --disable-gpu --no-sandbox --hide-scrollbars \
-            --force-device-scale-factor=2 --window-size=1280,8000 \
-            --virtual-time-budget=18000 --screenshot=raw.png \
-            https://enderfga.cn
-          python3 .github/scripts/crop_screenshot.py
-          rm -f raw.png
+          sudo apt-get update -qq && sudo apt-get install -y -qq fonts-noto-cjk
+          npm --prefix .github/scripts install
+      - name: Capture full-page homepage (desktop 1280 @2x)
+        run: SHOT_OUT="$PWD/homepage.png" CHROME_PATH="$(which google-chrome)" node .github/scripts/screenshot.js
       - name: Commit if changed
         run: |
           if [ -n "$(git status --porcelain homepage.png)" ]; then
