@@ -11,7 +11,7 @@ jobs:
   screenshot:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Capture homepage (1280x720, classic 16:9)
         run: |
           google-chrome --headless=new --disable-gpu --no-sandbox --hide-scrollbars \
