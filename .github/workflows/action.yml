@@ -49,7 +49,8 @@ jobs:
           plugin_screenshot: yes
           plugin_screenshot_title: Academic Homepage
           plugin_screenshot_url: https://enderfga.cn
-          plugin_screenshot_wait: 8000
+          plugin_screenshot_viewport: '{"width": 460, "height": 12000}'
+          plugin_screenshot_wait: 10000
           plugin_people: yes
           plugin_people_limit: 24
           plugin_people_size: 28
