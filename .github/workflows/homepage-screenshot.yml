@@ -1,0 +1,36 @@
+name: Homepage screenshot
+on:
+  schedule: [{cron: "30 */12 * * *"}]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: homepage-screenshot
+  cancel-in-progress: false
+jobs:
+  screenshot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Capture homepage (1280x720, classic 16:9)
+        run: |
+          google-chrome --headless=new --disable-gpu --no-sandbox --hide-scrollbars \
+            --force-device-scale-factor=2 --window-size=1280,720 \
+            --virtual-time-budget=12000 --screenshot=homepage.png \
+            https://enderfga.cn
+          python3 -c "import struct;b=open('homepage.png','rb').read();print('captured',*struct.unpack('>II',b[16:24]))"
+      - name: Commit if changed
+        run: |
+          if [ -n "$(git status --porcelain homepage.png)" ]; then
+            git config user.name  "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add homepage.png
+            git commit -m "Update homepage.png [skip ci]"
+            for i in 1 2 3; do
+              git pull --rebase origin "${GITHUB_REF_NAME}" && git push && exit 0
+              sleep 5
+            done
+            echo "push failed after retries" >&2; exit 1
+          else
+            echo "homepage.png unchanged"
+          fi
