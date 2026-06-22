@@ -1,0 +1,7 @@
+{
+  "name": "homepage-screenshot",
+  "private": true,
+  "dependencies": {
+    "puppeteer-core": "23.11.1"
+  }
+}
