@@ -13,6 +13,9 @@ const SETTLE = Number(process.env.SHOT_SETTLE_MS || 10000);
   const browser = await puppeteer.launch({
     executablePath: EXE,
     headless: "new",
+    // Default protocolTimeout is 180s. A single in-page wait (see image loop
+    // below) must never be able to burn through it, but give some headroom.
+    protocolTimeout: 240000,
     args: ["--no-sandbox", "--disable-gpu", "--disable-dev-shm-usage", "--hide-scrollbars"],
   });
   const page = await browser.newPage();
@@ -38,18 +41,31 @@ const SETTLE = Number(process.env.SHOT_SETTLE_MS || 10000);
           last = y;
         }
       }, 250);
+      // Hard stop: if the page never stabilizes (lazy content that keeps
+      // growing the height, an animated element, etc.) don't spin forever.
+      setTimeout(() => {
+        clearInterval(timer);
+        resolve();
+      }, 30000);
     });
   });
 
-  // Wait for every <img> to finish loading (or error out).
+  // Wait for every <img> to finish loading (or error out), but never block on a
+  // single image. An image that never enters the viewport (e.g. a loading="lazy"
+  // logo on an off-screen carousel slide) fires neither load nor error, so an
+  // unbounded Promise.all would hang until the CDP protocolTimeout and fail the
+  // job. Cap each image's wait and move on.
   await page.evaluate(async () => {
+    const PER_IMG_MS = 8000;
     await Promise.all(
       Array.from(document.images).map((img) =>
         img.complete
           ? Promise.resolve()
           : new Promise((r) => {
-              img.addEventListener("load", r);
-              img.addEventListener("error", r);
+              const done = () => r();
+              img.addEventListener("load", done);
+              img.addEventListener("error", done);
+              setTimeout(done, PER_IMG_MS);
             })
       )
     );
